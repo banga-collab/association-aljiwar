@@ -6,32 +6,48 @@
 <meta name="robots" content="noindex">
 <title>Admin · Association Al Jiwar</title>
 <link rel="icon" href="/assets/img/favicon.png">
-<link rel="stylesheet" href="/admin/admin.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/admin/admin.css?v=2">
 </head>
 <body>
   <section id="login" class="login" hidden>
+    <div class="login-rings" aria-hidden="true"><span></span><span></span><span></span></div>
     <form class="login-box">
-      <img src="/assets/img/logo.png" alt="Association Al Jiwar" width="160">
+      <img src="/assets/img/logo.png" alt="Association Al Jiwar" width="150">
       <h1>Espace admin</h1>
+      <p class="sub">Modifiez les textes et les photos du site.</p>
       <label>Mot de passe <input type="password" name="password" autocomplete="current-password" required autofocus></label>
-      <button class="btn primary" type="submit">Se connecter</button>
+      <button class="btn primary big" type="submit">Se connecter</button>
       <p class="err" role="alert"></p>
     </form>
   </section>
 
-  <section id="app" hidden>
-    <header class="bar">
-      <div class="bar-l"><img src="/assets/img/symbol.png" alt="" width="40"><strong>Admin Al Jiwar</strong></div>
-      <nav id="tabs" class="tabs"></nav>
-      <div class="bar-r">
-        <a class="btn" href="/" target="_blank" rel="noopener">Voir le site ↗</a>
-        <button id="save" class="btn primary" disabled>Enregistrer</button>
-        <button id="logout" class="btn ghost" title="Se déconnecter">⎋</button>
+  <section id="app" class="app" hidden>
+    <aside class="side">
+      <a class="side-brand" href="/" target="_blank" rel="noopener"><img src="/assets/img/symbol.png" alt="" width="38"><span>Al Jiwar<small>Administration</small></span></a>
+      <nav id="tabs" class="side-nav"></nav>
+      <div class="side-end">
+        <a class="side-link" href="/" target="_blank" rel="noopener"><span class="i">↗</span>Voir le site</a>
+        <button id="logout" class="side-link" type="button"><span class="i">⎋</span>Se déconnecter</button>
       </div>
-    </header>
-    <main id="panel" class="panel"></main>
+    </aside>
+    <div class="main">
+      <header class="head">
+        <button id="menu" class="menu" type="button" aria-label="Menu">☰</button>
+        <div class="head-t"><h1 id="title"></h1><p id="hint" class="hint"></p></div>
+        <div class="head-r">
+          <div id="langs" class="seg" role="group" aria-label="Langue affichée">
+            <button data-l="all" type="button">Toutes</button><button data-l="fr" type="button">FR</button><button data-l="ar" type="button">ع</button><button data-l="en" type="button">EN</button>
+          </div>
+          <a id="preview" class="btn" href="/" target="_blank" rel="noopener">Aperçu ↗</a>
+          <button id="save" class="btn primary" type="button" disabled><span class="dot"></span><span class="lbl">Enregistré</span></button>
+        </div>
+      </header>
+      <main id="panel" class="panel"></main>
+    </div>
     <div id="toast" class="toast" role="status"></div>
   </section>
-<script src="/admin/admin.js"></script>
+<script src="/admin/admin.js?v=2"></script>
 </body>
 </html>

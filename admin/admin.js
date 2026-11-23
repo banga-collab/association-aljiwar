@@ -8,7 +8,7 @@
   var STATUS = [["current", "En cours"], ["upcoming", "À venir"], ["done", "Réalisé"]];
 
   var TABS = [
-    { id: "general", label: "Général", hint: "Nom, coordonnées et réseaux. Les champs vides ne s'affichent pas sur le site.", fields: [
+    { id: "general", icon: "⚙", page: "", label: "Général", hint: "Nom, coordonnées et réseaux. Les champs vides ne s'affichent pas sur le site.", fields: [
       { obj: "site", k: "name", label: "Nom de l'association", type: "ml" },
       { obj: "site", k: "tagline", label: "Slogan", type: "ml" },
       { obj: "site", k: "defaultLang", label: "Langue d'accueil", type: "select", opts: [["ar", "Arabe"], ["fr", "Français"], ["en", "Anglais"]] },
@@ -22,7 +22,7 @@
       { obj: "site", k: "mapEmbed", label: "Carte Google Maps", hint: "Google Maps › Partager › Intégrer une carte › copier seulement le lien src=\"https://www.google.com/maps/embed?...\"", type: "text" },
       { obj: "site", k: "siteUrl", label: "Adresse du site", hint: "ex. https://association-aljiwar.vercel.app", type: "text" }
     ] },
-    { id: "home", label: "Accueil", fields: [
+    { id: "home", icon: "⌂", page: "", label: "Accueil", fields: [
       { obj: "home", k: "heroTitle", label: "Grand titre", type: "ml" },
       { obj: "home", k: "heroText", label: "Texte d'introduction", type: "mlarea" },
       { obj: "home", k: "heroCards", label: "Cartes photo du bandeau d'accueil", hint: "3 photos au format portrait", type: "list", title: function (x) { return x.image; }, blank: function () { return { image: "" }; }, fields: [{ k: "image", label: "Photo", type: "image" }] },
@@ -40,34 +40,34 @@
       { root: "stats", label: "Chiffres clés", hint: "un chiffre vide n'est pas affiché", type: "list", title: function (x) { return (x.value || "—") + " " + (x.label && x.label.fr || ""); }, blank: function () { return { value: "", label: { ar: "", fr: "", en: "" } }; }, fields: [
         { k: "value", label: "Chiffre", type: "text", ph: "ex. 120" }, { k: "label", label: "Légende", type: "ml" } ] }
     ] },
-    { id: "about", label: "Qui sommes-nous", fields: [
+    { id: "about", icon: "◎", page: "about", label: "Qui sommes-nous", fields: [
       { obj: "about", k: "intro", label: "Introduction", type: "mlarea" },
       { obj: "about", k: "story", label: "Notre histoire", hint: "laissez une ligne vide entre deux paragraphes", type: "mlarea", rows: 6 },
       { obj: "about", k: "image", label: "Photo", type: "image" },
       { obj: "about", k: "values", label: "Valeurs", type: "list", title: function (x) { return x.title && x.title.fr; }, blank: function () { return { title: {}, text: {} }; }, fields: [
         { k: "title", label: "Titre", type: "ml" }, { k: "text", label: "Texte", type: "mlarea" } ] }
     ] },
-    { id: "gallery", label: "Galerie", hint: "Photos de la section « Nos actions en images » (les 2 premières vont aussi dans la grille, les 4 dernières dans le bandeau du bas).", fields: [
+    { id: "gallery", icon: "▦", page: "", label: "Galerie", hint: "Photos de la section « Nos actions en images » (les 2 premières vont aussi dans la grille, les 4 dernières dans le bandeau du bas).", fields: [
       { root: "gallery", label: "Photos", type: "list", title: function (x) { return (x.caption && x.caption.fr) || x.image; }, blank: function () { return { image: "", caption: {} }; }, fields: [
         { k: "image", label: "Photo", type: "image" }, { k: "caption", label: "Légende", hint: "facultatif", type: "ml" } ] }
     ] },
-    { id: "activities", label: "Activités", fields: [
+    { id: "activities", icon: "✦", page: "activities", label: "Activités", fields: [
       { root: "activities", label: "Activités", type: "list", title: function (x) { return x.title && x.title.fr; }, blank: function () { return { id: "", icon: "heart", image: "", title: {}, text: {} }; }, fields: [
         { k: "title", label: "Titre", type: "ml" }, { k: "icon", label: "Icône (si pas de photo)", type: "select", opts: ICONS },
         { k: "text", label: "Description", type: "mlarea", rows: 4 }, { k: "image", label: "Photo", type: "image" } ] }
     ] },
-    { id: "projects", label: "Projets", fields: [
+    { id: "projects", icon: "◆", page: "projects", label: "Projets", fields: [
       { root: "projects", label: "Projets", type: "list", title: function (x) { return (x.title && x.title.fr) + " · " + ((STATUS.filter(function (s) { return s[0] === x.status; })[0] || [0, ""])[1]); }, blank: function () { return { id: "", status: "current", image: "", title: {}, text: {}, needs: {} }; }, fields: [
         { k: "title", label: "Titre", type: "ml" }, { k: "status", label: "État", type: "select", opts: STATUS },
         { k: "text", label: "Description", type: "mlarea", rows: 4 }, { k: "needs", label: "Besoins", hint: "facultatif", type: "ml" }, { k: "image", label: "Photo", type: "image" } ] }
     ] },
-    { id: "partners", label: "Partenaires", fields: [
+    { id: "partners", icon: "♡", page: "partners", label: "Partenaires", fields: [
       { obj: "partners", k: "intro", label: "Introduction", type: "mlarea" },
       { obj: "partners", k: "list", label: "Partenaires", type: "list", title: function (x) { return x.name; }, blank: function () { return { name: "", logo: "", url: "", text: {} }; }, fields: [
         { k: "name", label: "Nom", type: "text" }, { k: "logo", label: "Logo", type: "image" }, { k: "url", label: "Site web", hint: "facultatif", type: "text" }, { k: "text", label: "Petite phrase", hint: "facultatif", type: "ml" } ] },
       { obj: "partners", k: "become", label: "Texte « Devenir partenaire »", type: "mlarea" }
     ] },
-    { id: "donate", label: "Dons & contact", hint: "Sans coordonnées bancaires, la page propose de les demander sur WhatsApp.", fields: [
+    { id: "donate", icon: "♥", page: "donate", label: "Dons & contact", hint: "Sans coordonnées bancaires, la page propose de les demander sur WhatsApp.", fields: [
       { obj: "donate", k: "intro", label: "Introduction de la page Don", type: "mlarea" },
       { obj: "donate", k: "bankName", label: "Banque", type: "text" },
       { obj: "donate", k: "holder", label: "Titulaire du compte", type: "text" },
@@ -85,8 +85,8 @@
     (kids || []).forEach(function (k) { if (k) e.appendChild(typeof k === "string" ? document.createTextNode(k) : k); });
     return e;
   }
-  function toast(msg, bad) { var t = $("#toast"); t.textContent = msg; t.className = "toast show" + (bad ? " bad" : ""); clearTimeout(toast.t); toast.t = setTimeout(function () { t.className = "toast"; }, bad ? 5000 : 2200); }
-  function touch() { dirty = true; $("#save").disabled = false; }
+  function toast(msg, bad) { var t = $("#toast"); t.textContent = msg; t.className = "toast show" + (bad === true ? " bad" : bad === "ok" ? " ok" : ""); clearTimeout(toast.t); toast.t = setTimeout(function () { t.className = "toast"; }, bad ? 5000 : 2200); }
+  function touch() { dirty = true; $("#save").disabled = false; $("#save .lbl").textContent = "Enregistrer"; }
   function api(path, body) {
     return fetch("/api/" + path, body === undefined ? { credentials: "same-origin" } : { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw new Error(j.error || ("Erreur " + r.status)); return j; }); });
@@ -107,25 +107,30 @@
       box.appendChild(el("div", { class: "ml" }, LANGS.map(function (L) {
         var input = f.type === "ml" ? el("input", { value: o[L[0]] || "", dir: L[2], lang: L[0] }) : el("textarea", { rows: f.rows || 3, dir: L[2], lang: L[0] });
         if (f.type !== "ml") input.value = o[L[0]] || "";
-        input.addEventListener("input", function () { o[L[0]] = input.value; touch(); });
-        return el("div", {}, [input, el("span", { text: L[1] })]);
+        var cell = el("div", { class: "l-" + L[0] + (o[L[0]] ? "" : " empty") }, [input, el("span", { text: L[1] })]);
+        input.addEventListener("input", function () { o[L[0]] = input.value; cell.classList.toggle("empty", !input.value); touch(); });
+        return cell;
       })));
     } else if (f.type === "image") {
       var prev = el("div", { class: "prev" }), url = el("input", { value: obj[f.k] || "", placeholder: "/assets/uploads/… ou https://…" });
-      var show = function () { var v = obj[f.k] || ""; prev.style.backgroundImage = v ? "url(\"" + v.replace(/"/g, "") + "\")" : ""; prev.textContent = v ? "" : "aucune"; };
+      var show = function () { var v = obj[f.k] || ""; prev.style.backgroundImage = v ? "url(\"" + v.replace(/"/g, "") + "\")" : ""; prev.textContent = v ? "" : "aucune photo"; prev.classList.toggle("has", !!v); };
       url.addEventListener("input", function () { obj[f.k] = url.value.trim(); touch(); show(); });
       var file = el("input", { type: "file", accept: "image/jpeg,image/png,image/webp,image/gif", hidden: "" });
-      file.addEventListener("change", function () {
-        var fl = file.files[0]; if (!fl) return;
+      var upload = function (fl) {
+        if (!fl || String(fl.type).indexOf("image/") !== 0) return;
         shrink(fl).then(function (dataUrl) { toast("Envoi de la photo…"); return api("upload", { name: fl.name, data: dataUrl }); })
-          .then(function (r) { obj[f.k] = r.url; url.value = r.url; show(); touch(); toast("Photo ajoutée — pensez à enregistrer"); })
+          .then(function (r) { obj[f.k] = r.url; url.value = r.url; show(); touch(); toast("Photo ajoutée — pensez à enregistrer", "ok"); })
           .catch(function (e) { toast(e.message, true); });
-        file.value = "";
-      });
+      };
+      file.addEventListener("change", function () { upload(file.files[0]); file.value = ""; });
       show();
-      box.appendChild(el("div", { class: "img" }, [prev, el("div", { class: "ctl" }, [url, el("div", {}, [
+      var zone = el("div", { class: "img", title: "Glissez une photo ici" }, [prev, el("div", { class: "ctl" }, [url, el("div", {}, [
         el("button", { class: "btn small", type: "button", text: "Choisir une photo…", onclick: function () { file.click(); } }),
-        el("button", { class: "btn small ghost", type: "button", text: "Retirer", onclick: function () { obj[f.k] = ""; url.value = ""; show(); touch(); } }), file])])]));
+        el("button", { class: "btn small ghost", type: "button", text: "Retirer", onclick: function () { obj[f.k] = ""; url.value = ""; show(); touch(); } }), file])])]);
+      zone.addEventListener("dragover", function (e) { e.preventDefault(); zone.classList.add("over"); });
+      zone.addEventListener("dragleave", function () { zone.classList.remove("over"); });
+      zone.addEventListener("drop", function (e) { e.preventDefault(); zone.classList.remove("over"); upload(e.dataTransfer.files[0]); });
+      box.appendChild(zone);
     } else if (f.type === "list") {
       var arr = f.root ? data[f.root] : (obj[f.k] = Array.isArray(obj[f.k]) ? obj[f.k] : []);
       var wrap = el("div");
@@ -140,12 +145,14 @@
           ]);
           var body = el("div", { class: "body" }, f.fields.map(function (sf) { return widget(sf, item); }));
           body.addEventListener("input", function () { t.textContent = (f.title(item) || "").trim() || "(sans titre)"; });
-          wrap.appendChild(el("details", { class: "item", open: i === openIdx ? "" : null }, [el("summary", {}, [t, tools]), body]));
+          var pic = item.image || item.logo || "", th = el("span", { class: "thumb", text: pic ? "" : String(i + 1) });
+          if (pic) th.style.backgroundImage = "url(\"" + String(pic).replace(/"/g, "") + "\")";
+          wrap.appendChild(el("details", { class: "item", open: i === openIdx ? "" : null }, [el("summary", {}, [el("span", { class: "chev", text: "›" }), th, t, tools]), body]));
         });
       };
       draw();
       box.appendChild(wrap);
-      box.appendChild(el("button", { class: "btn", type: "button", text: "+ Ajouter", onclick: function () { arr.push(f.blank()); touch(); draw(arr.length - 1); } }));
+      box.appendChild(el("button", { class: "btn add", type: "button", text: "+ Ajouter", onclick: function () { arr.push(f.blank()); touch(); draw(arr.length - 1); } }));
     }
     return box;
   }
@@ -177,9 +184,11 @@
     tab = id;
     var t = TABS.filter(function (x) { return x.id === id; })[0];
     document.querySelectorAll("#tabs button").forEach(function (b) { b.className = b.dataset.id === id ? "on" : ""; });
-    var p = $("#panel"); p.innerHTML = "";
-    p.appendChild(el("h1", { text: t.label }));
-    p.appendChild(el("p", { class: "hint", text: (t.hint ? t.hint + " " : "") + "Chaque texte se saisit en français, arabe et anglais." }));
+    $("#title").textContent = t.label;
+    $("#hint").textContent = t.hint || "Chaque texte se saisit en français, arabe et anglais. Les cases orangées sont vides.";
+    $("#preview").href = "/" + (lang === "all" ? "fr" : lang) + "/" + t.page;
+    $("#app").classList.remove("nav-open");
+    var p = $("#panel"); p.innerHTML = ""; p.style.animation = "none"; void p.offsetWidth; p.style.animation = "";
     var box = el("div", { class: "box" });
     t.fields.forEach(function (f) { if (f.obj && (!data[f.obj] || typeof data[f.obj] !== "object")) data[f.obj] = {}; if (f.root && !Array.isArray(data[f.root])) data[f.root] = []; box.appendChild(widget(f, f.obj ? data[f.obj] : data)); });
     p.appendChild(box);
@@ -190,17 +199,27 @@
     api("content").then(function (c) {
       data = c;
       $("#tabs").innerHTML = "";
-      TABS.forEach(function (t) { $("#tabs").appendChild(el("button", { "data-id": t.id, text: t.label, onclick: function () { showTab(t.id); } })); });
+      TABS.forEach(function (t) { $("#tabs").appendChild(el("button", { "data-id": t.id, type: "button", onclick: function () { showTab(t.id); window.scrollTo(0, 0); } }, [el("span", { class: "i", text: t.icon }), t.label])); });
       showTab(tab);
     }).catch(function (e) { toast(e.message, true); });
   }
   function showLogin() { $("#app").hidden = true; $("#login").hidden = false; }
 
   $("#save").addEventListener("click", function () {
-    var b = $("#save"); b.disabled = true; b.textContent = "Enregistrement…";
-    api("content", data).then(function (r) { data = r.content; dirty = false; b.textContent = "Enregistrer"; toast("Enregistré ✓ — le site est à jour"); showTab(tab); })
-      .catch(function (e) { b.disabled = false; b.textContent = "Enregistrer"; toast(e.message, true); if (/Connexion/.test(e.message)) showLogin(); });
+    var b = $("#save"); b.disabled = true; $("#save .lbl").textContent = "Enregistrement…";
+    api("content", data).then(function (r) { data = r.content; dirty = false; $("#save .lbl").textContent = "Enregistré"; toast("Enregistré ✓ — le site est à jour", "ok"); showTab(tab); })
+      .catch(function (e) { b.disabled = false; $("#save .lbl").textContent = "Enregistrer"; toast(e.message, true); if (/Connexion/.test(e.message)) showLogin(); });
   });
+  var lang = "all"; try { lang = localStorage.getItem("aj-admin-lang") || "all"; } catch (e) { /* private mode */ }
+  function setLang(l) {
+    lang = l; $("#panel").setAttribute("data-lang", l);
+    document.querySelectorAll("#langs button").forEach(function (b) { b.className = b.dataset.l === l ? "on" : ""; });
+    try { localStorage.setItem("aj-admin-lang", l); } catch (e) { /* ignore */ }
+    var t = TABS.filter(function (x) { return x.id === tab; })[0]; $("#preview").href = "/" + (l === "all" ? "fr" : l) + "/" + (t ? t.page : "");
+  }
+  document.querySelectorAll("#langs button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.l); }); });
+  setLang(lang);
+  $("#menu").addEventListener("click", function () { $("#app").classList.toggle("nav-open"); });
   $("#logout").addEventListener("click", function () { if (dirty && !confirm("Des modifications ne sont pas enregistrées. Quitter quand même ?")) return; api("logout", {}).then(function () { dirty = false; showLogin(); }); });
   $(".login-box").addEventListener("submit", function (e) {
     e.preventDefault(); var f = e.target; $(".err").textContent = "";
