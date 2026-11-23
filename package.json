@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "description": "Association Al Jiwar — site (AR/FR/EN) et admin, sans dépendances",
-  "scripts": { "start": "node server.js" },
-  "engines": { "node": ">=18" }
+  "scripts": {
+    "start": "node server.js",
+    "demo": "node server.js --demo"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }

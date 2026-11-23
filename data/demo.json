@@ -1,0 +1,88 @@
+{
+  "_note": "Données de démonstration : utilisées seulement quand le serveur est lancé avec DEMO=1 (jamais sur le site en ligne).",
+  "site": {
+    "phone": "+212 5 28 00 00 00",
+    "whatsapp": "212600000000",
+    "email": "contact@exemple-aljiwar.ma",
+    "address": { "ar": "حي الجوار، أكادير، المغرب", "fr": "Quartier Al Jiwar, Agadir, Maroc", "en": "Al Jiwar neighbourhood, Agadir, Morocco" },
+    "facebook": "https://www.facebook.com/"
+  },
+  "contact": { "hours": { "ar": "من الاثنين إلى السبت، 9:00 – 18:00", "fr": "Du lundi au samedi, 9 h – 18 h", "en": "Monday to Saturday, 9am – 6pm" } },
+  "stats": [
+    { "value": "350+", "label": { "ar": "أسرة مستفيدة", "fr": "familles accompagnées", "en": "families supported" } },
+    { "value": "120", "label": { "ar": "متطوع ومتطوعة", "fr": "bénévoles", "en": "volunteers" } },
+    { "value": "2 400", "label": { "ar": "وجبة إفطار في رمضان", "fr": "repas servis pendant Ramadan", "en": "Ramadan meals served" } },
+    { "value": "12", "label": { "ar": "شريك", "fr": "partenaires", "en": "partners" } }
+  ],
+  "about": {
+    "story": {
+      "ar": "تأسست جمعية الجوار سنة 2015 على يد مجموعة من شباب الحي أرادوا أن يساعدوا جيرانهم.\n\nبدأنا بقفف رمضان لعشرين أسرة، واليوم نرافق أكثر من 350 أسرة طوال السنة بفضل متطوعينا وشركائنا.",
+      "fr": "L'Association Al Jiwar a été créée en 2015 par un groupe de jeunes du quartier qui voulaient aider leurs voisins.\n\nNous avons commencé avec des paniers du Ramadan pour vingt familles ; aujourd'hui, grâce à nos bénévoles et partenaires, nous accompagnons plus de 350 familles toute l'année.",
+      "en": "Al Jiwar Association was founded in 2015 by a group of young people from the neighbourhood who wanted to help their neighbours.\n\nWe started with Ramadan baskets for twenty families; today, thanks to our volunteers and partners, we support more than 350 families all year round."
+    },
+    "image": "/assets/img/ig/studio.jpg"
+  },
+  "projects": [
+    {
+      "id": "mamoun-al-jiwar", "status": "current", "icon": "users", "image": "/assets/img/ig/logo-3d.jpg",
+      "title": { "ar": "مأمون الجوار", "fr": "Mamoun Al Jiwar", "en": "Mamoun Al Jiwar" },
+      "text": {
+        "ar": "برنامج مرافقة للأسر الأكثر هشاشة: زيارات منتظمة، قفة شهرية وتوجيه نحو الخدمات الاجتماعية.",
+        "fr": "Un programme d'accompagnement des familles les plus fragiles : visites régulières, panier mensuel et orientation vers les services sociaux.",
+        "en": "A support programme for the most vulnerable families: regular visits, a monthly basket and guidance towards social services."
+      },
+      "needs": { "ar": "متطوعون للزيارات، مواد غذائية", "fr": "Bénévoles pour les visites, denrées alimentaires", "en": "Volunteers for visits, food supplies" }
+    },
+    {
+      "id": "ramadan-1448", "status": "upcoming", "icon": "moon", "image": "/assets/img/ig/decennie.jpg",
+      "title": { "ar": "البرنامج الاجتماعي لرمضان 1448", "fr": "Programme social Ramadan 1448", "en": "Ramadan 1448 social programme" },
+      "text": {
+        "ar": "نحضّر قفف رمضان وإفطار الأيتام لرمضان 1448 (بداية 2027). التبرعات العينية والمالية مرحب بها منذ الآن.",
+        "fr": "Nous préparons les paniers et le ftour des orphelins du Ramadan 1448 (début 2027). Les dons en nature et en argent sont les bienvenus dès maintenant.",
+        "en": "We are preparing the food baskets and the orphans' iftar for Ramadan 1448 (early 2027). In-kind and financial donations are welcome now."
+      },
+      "needs": { "ar": "مواد غذائية أساسية، متطوعون للتوزيع، شركاء للإفطار", "fr": "Denrées de base, bénévoles pour la distribution, partenaires pour le ftour", "en": "Staple food, volunteers for distribution, partners for the iftar" }
+    },
+    {
+      "id": "entrepots", "status": "current", "icon": "box", "image": "",
+      "title": { "ar": "تنظيم المخازن", "fr": "Organisation des entrepôts", "en": "Organising the warehouses" },
+      "text": {
+        "ar": "جرد وتتبع المخزون لمعرفة ما هو متوفر وما ينقص في كل لحظة، وتوجيه التبرعات حسب الحاجة.",
+        "fr": "Inventaire et suivi du stock pour savoir à tout moment ce qui est disponible et ce qui manque, et orienter les dons selon les besoins.",
+        "en": "Inventory and stock tracking so we always know what is available and what is missing, and can direct donations where they are needed."
+      },
+      "needs": { "ar": "رفوف، علب تخزين", "fr": "Étagères, bacs de rangement", "en": "Shelves, storage boxes" }
+    },
+    {
+      "id": "iguiliz", "status": "done", "icon": "book", "image": "/assets/img/ig/projection-ecran.jpg",
+      "title": { "ar": "عرض «إگيليز، الطريق إلى مراكش»", "fr": "Projection « Iguiliz, la route de Marrakech »", "en": "Screening of \"Iguiliz, the road to Marrakech\"" },
+      "text": {
+        "ar": "عرض الفيلم الوثائقي يوم السبت 24 أكتوبر 2026 بسينما الصحراء بأكادير، بتعاون مع جمعية الجوار.",
+        "fr": "Projection du documentaire le samedi 24 octobre 2026 au Cinéma Sahara d'Agadir, en collaboration avec l'Association Al Jiwar.",
+        "en": "Screening of the documentary on Saturday 24 October 2026 at Cinéma Sahara in Agadir, in collaboration with Al Jiwar Association."
+      },
+      "needs": { "ar": "", "fr": "", "en": "" }
+    }
+  ],
+  "partners": {
+    "list": [
+      { "name": "Épicerie Atlas (démo)", "logo": "", "url": "", "text": { "ar": "مواد غذائية", "fr": "Denrées alimentaires", "en": "Food supplies" } },
+      { "name": "Boulangerie du Souk (démo)", "logo": "", "url": "", "text": { "ar": "خبز الإفطار", "fr": "Pain du ftour", "en": "Iftar bread" } },
+      { "name": "Transports Sous (démo)", "logo": "", "url": "", "text": { "ar": "النقل", "fr": "Transport", "en": "Transport" } },
+      { "name": "Cinéma Sahara", "logo": "", "url": "", "text": { "ar": "عرض إگيليز", "fr": "Projection Iguiliz", "en": "Iguiliz screening" } },
+      { "name": "Pharmacie Al Amal (démo)", "logo": "", "url": "", "text": { "ar": "أدوية", "fr": "Médicaments", "en": "Medicines" } },
+      { "name": "Café des Jeunes (démo)", "logo": "", "url": "", "text": { "ar": "فضاء للاجتماعات", "fr": "Salle de réunion", "en": "Meeting space" } }
+    ]
+  },
+  "donate": { "bankName": "Banque Démo du Maroc", "holder": "Association Al Jiwar", "rib": "000 000 0000000000000000 00", "swift": "DEMOMAMC" },
+  "campaign": { "active": "yes", "goal": "300", "current": "184", "deadline": { "ar": "قبل بداية رمضان", "fr": "avant le début du Ramadan", "en": "before Ramadan starts" } },
+  "legal": { "registration": "N° 00/2015 (démo)", "founded": "2015", "office": { "ar": "الرئيس: (مثال)\nأمين المال: (مثال)", "fr": "Président : (exemple)\nTrésorier : (exemple)", "en": "President: (example)\nTreasurer: (example)" } },
+  "newsExtra": [
+    { "id": "distribution-hiver", "date": "2026-11-20", "image": "/assets/img/ig/identite.jpg",
+      "title": { "ar": "توزيع أغطية الشتاء على 80 أسرة", "fr": "Distribution de couvertures d'hiver à 80 familles", "en": "Winter blankets for 80 families" },
+      "text": { "ar": "مع بداية البرد، وزّع متطوعونا أغطية وملابس دافئة على 80 أسرة من الحي.\n\nشكرًا لكل من ساهم.", "fr": "Avec l'arrivée du froid, nos bénévoles ont distribué couvertures et vêtements chauds à 80 familles du quartier.\n\nMerci à tous les donateurs.", "en": "As the cold arrived, our volunteers handed out blankets and warm clothes to 80 local families.\n\nThank you to every donor." } },
+    { "id": "nouveau-partenaire", "date": "2026-11-02", "image": "/assets/img/ig/atlas-desert.jpg",
+      "title": { "ar": "شريك جديد لإفطار الأيتام", "fr": "Un nouveau partenaire pour le ftour des orphelins", "en": "A new partner for the orphans' iftar" },
+      "text": { "ar": "انضم شريك جديد إلى برنامج رمضان 1448 وسيتكفل بخبز الإفطار طيلة الشهر.", "fr": "Un nouveau partenaire rejoint le programme Ramadan 1448 et offrira le pain du ftour pendant tout le mois.", "en": "A new partner joins the Ramadan 1448 programme and will provide the iftar bread for the whole month." } }
+  ]
+}

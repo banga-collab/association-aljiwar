@@ -46,6 +46,14 @@ function clientIp(req) { return String(req.headers["x-forwarded-for"] || req.soc
 
 /* ---------------- content ---------------- */
 function load() { try { return JSON.parse(fs.readFileSync(DATA_FILE, "utf8")); } catch (e) { return {}; } }
+const DEMO = (process.env.DEMO === "1" || process.argv.includes("--demo")) && !SERVERLESS;
+function merge(a, b) { for (const k in b) { if (b[k] && typeof b[k] === "object" && !Array.isArray(b[k]) && a[k] && typeof a[k] === "object" && !Array.isArray(a[k])) merge(a[k], b[k]); else a[k] = b[k]; } return a; }
+function loadPublic() {
+  const c = load(); if (!DEMO) return c;
+  let d = {}; try { d = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "demo.json"), "utf8")); } catch (e) { return c; }
+  const extra = d.newsExtra || []; delete d.newsExtra; delete d._note;
+  merge(c, d); c.news = extra.concat(c.news || []); c._demo = true; return c;
+}
 const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 function tr(o, lang) { if (!o) return ""; if (typeof o === "string") return o; return o[lang] || o.fr || o.ar || o.en || ""; }
 const isTodo = p => /^\[[^\]]*\]$/.test(String(p || "").trim());
@@ -56,7 +64,7 @@ function img(u) { u = String(u || "").trim(); return /^\/assets\/[\w\-./]+\.(jpe
 
 /* ---------------- interface strings ---------------- */
 const UI = {
-  ar: { news: "المستجدات", latestNews: "آخر المستجدات", allNews: "كل المستجدات", readMore: "اقرأ المقال", backNews: "العودة إلى المستجدات", noNews: "لا توجد مستجدات حاليًا.", faq: "أسئلة شائعة", faqMore: "لم تجدوا جوابكم؟", collected: "تم جمعه", goal: "الهدف", chatOpen: "عندك سؤال؟", chatTitle: "مساعد الجوار", chatHello: "مرحبًا! اختاروا سؤالًا أو اكتبوا سؤالكم.", chatPh: "اكتبوا سؤالكم…", chatSend: "إرسال", chatNo: "لم أجد جوابًا دقيقًا. راسلونا مباشرة وسنرد عليكم:", chatClose: "إغلاق", learnMore: "اقرأ المزيد", support: "ادعم هذا العمل", youSupport: "أنتم تدعمون:", askInsta: "اطلبوا معلومات الحساب البنكي برسالة على إنستغرام.", instaMsg: "راسلونا على إنستغرام", transparency: "الشفافية", legalTitle: "الجمعية في سطور", l_status: "الصفة القانونية", l_registration: "رقم الوصل / الترخيص", l_founded: "سنة التأسيس", l_office: "المكتب المسير", l_report: "التقرير الأدبي والمالي", privacyTitle: "المعطيات الشخصية", download: "تحميل", home: "الرئيسية", about: "من نحن", activities: "أنشطتنا", projects: "مشاريعنا", partners: "شركاؤنا", donate: "تبرّع", contact: "اتصل بنا",
+  ar: { demo: "بيانات تجريبية للعرض فقط", themeLight: "الوضع الفاتح", themeDark: "الوضع الداكن", news: "المستجدات", latestNews: "آخر المستجدات", allNews: "كل المستجدات", readMore: "اقرأ المقال", backNews: "العودة إلى المستجدات", noNews: "لا توجد مستجدات حاليًا.", faq: "أسئلة شائعة", faqMore: "لم تجدوا جوابكم؟", collected: "تم جمعه", goal: "الهدف", chatOpen: "عندك سؤال؟", chatTitle: "مساعد الجوار", chatHello: "مرحبًا! اختاروا سؤالًا أو اكتبوا سؤالكم.", chatPh: "اكتبوا سؤالكم…", chatSend: "إرسال", chatNo: "لم أجد جوابًا دقيقًا. راسلونا مباشرة وسنرد عليكم:", chatClose: "إغلاق", learnMore: "اقرأ المزيد", support: "ادعم هذا العمل", youSupport: "أنتم تدعمون:", askInsta: "اطلبوا معلومات الحساب البنكي برسالة على إنستغرام.", instaMsg: "راسلونا على إنستغرام", transparency: "الشفافية", legalTitle: "الجمعية في سطور", l_status: "الصفة القانونية", l_registration: "رقم الوصل / الترخيص", l_founded: "سنة التأسيس", l_office: "المكتب المسير", l_report: "التقرير الأدبي والمالي", privacyTitle: "المعطيات الشخصية", download: "تحميل", home: "الرئيسية", about: "من نحن", activities: "أنشطتنا", projects: "مشاريعنا", partners: "شركاؤنا", donate: "تبرّع", contact: "اتصل بنا",
     donateNow: "تبرّع الآن", seeActivities: "اكتشف أنشطتنا", allActivities: "كل الأنشطة", allProjects: "كل المشاريع", inNumbers: "الجوار بالأرقام",
     values: "قيمنا", story: "قصتنا", current: "مشاريع جارية", upcoming: "مشاريع قادمة", done: "مشاريع منجزة", needs: "ما نحتاجه", s_current: "جارٍ", s_upcoming: "قادم", s_done: "منجز",
     ctaTitle: "ساهم معنا في رمضان 1448", ctaText: "قفة واحدة أو مقعد على مائدة إفطار الأيتام: كل مساهمة تصنع الفرق.",
@@ -66,7 +74,7 @@ const UI = {
     phone: "الهاتف", email: "البريد الإلكتروني", address: "العنوان", hours: "أوقات الاستقبال", follow: "تابعونا", gallery: "أنشطتنا بالصور",
     formName: "الاسم", formMsg: "رسالتكم", formSend: "إرسال عبر واتساب", formNoWa: "أسهل طريقة للتواصل معنا حاليًا: رسالة على إنستغرام.",
     rights: "جميع الحقوق محفوظة", stay: "لنبقَ على تواصل", stayTitle: "سؤال، تبرع أو رغبة في التطوع؟ نحن هنا.", menu: "القائمة", privacy: "لا ننشر أي معطيات شخصية عن المستفيدين." },
-  fr: { news: "Actualités", latestNews: "Dernières actualités", allNews: "Toutes les actualités", readMore: "Lire l'article", backNews: "Retour aux actualités", noNews: "Aucune actualité pour le moment.", faq: "Questions fréquentes", faqMore: "Vous ne trouvez pas votre réponse ?", collected: "réunis", goal: "objectif", chatOpen: "Une question ?", chatTitle: "Assistant Al Jiwar", chatHello: "Bonjour ! Choisissez une question ou écrivez la vôtre.", chatPh: "Votre question…", chatSend: "Envoyer", chatNo: "Je n'ai pas de réponse précise. Écrivez-nous directement, nous vous répondrons :", chatClose: "Fermer", learnMore: "En savoir plus", support: "Soutenir cette action", youSupport: "Vous soutenez :", askInsta: "Demandez nos coordonnées bancaires par message sur Instagram.", instaMsg: "Écrivez-nous sur Instagram", transparency: "Transparence", legalTitle: "L'association en bref", l_status: "Statut", l_registration: "Récépissé / autorisation", l_founded: "Création", l_office: "Bureau", l_report: "Rapport moral et financier", privacyTitle: "Données personnelles", download: "Télécharger", home: "Accueil", about: "Qui sommes-nous", activities: "Nos activités", projects: "Nos projets", partners: "Partenaires", donate: "Faire un don", contact: "Contact",
+  fr: { demo: "Données de démonstration — aperçu uniquement", themeLight: "Mode clair", themeDark: "Mode sombre", news: "Actualités", latestNews: "Dernières actualités", allNews: "Toutes les actualités", readMore: "Lire l'article", backNews: "Retour aux actualités", noNews: "Aucune actualité pour le moment.", faq: "Questions fréquentes", faqMore: "Vous ne trouvez pas votre réponse ?", collected: "réunis", goal: "objectif", chatOpen: "Une question ?", chatTitle: "Assistant Al Jiwar", chatHello: "Bonjour ! Choisissez une question ou écrivez la vôtre.", chatPh: "Votre question…", chatSend: "Envoyer", chatNo: "Je n'ai pas de réponse précise. Écrivez-nous directement, nous vous répondrons :", chatClose: "Fermer", learnMore: "En savoir plus", support: "Soutenir cette action", youSupport: "Vous soutenez :", askInsta: "Demandez nos coordonnées bancaires par message sur Instagram.", instaMsg: "Écrivez-nous sur Instagram", transparency: "Transparence", legalTitle: "L'association en bref", l_status: "Statut", l_registration: "Récépissé / autorisation", l_founded: "Création", l_office: "Bureau", l_report: "Rapport moral et financier", privacyTitle: "Données personnelles", download: "Télécharger", home: "Accueil", about: "Qui sommes-nous", activities: "Nos activités", projects: "Nos projets", partners: "Partenaires", donate: "Faire un don", contact: "Contact",
     donateNow: "Faire un don", seeActivities: "Découvrir nos activités", allActivities: "Toutes les activités", allProjects: "Tous les projets", inNumbers: "Al Jiwar en chiffres",
     values: "Nos valeurs", story: "Notre histoire", current: "Projets en cours", upcoming: "Projets à venir", done: "Projets réalisés", needs: "Nos besoins", s_current: "En cours", s_upcoming: "À venir", s_done: "Réalisé",
     ctaTitle: "Participez au Ramadan 1448", ctaText: "Un panier, une place à la table du ftour des orphelins : chaque geste compte.",
@@ -76,7 +84,7 @@ const UI = {
     phone: "Téléphone", email: "E-mail", address: "Adresse", hours: "Horaires", follow: "Suivez-nous", gallery: "Nos actions en images",
     formName: "Votre nom", formMsg: "Votre message", formSend: "Envoyer sur WhatsApp", formNoWa: "Le plus simple pour nous joindre aujourd'hui : un message sur Instagram.",
     rights: "Tous droits réservés", stay: "Restons en contact", stayTitle: "Une question, un don, l'envie d'aider ? Écrivez-nous.", menu: "Menu", privacy: "Nous ne publions aucune donnée personnelle sur les bénéficiaires." },
-  en: { news: "News", latestNews: "Latest news", allNews: "All news", readMore: "Read more", backNews: "Back to news", noNews: "No news yet.", faq: "FAQ", faqMore: "Didn't find your answer?", collected: "collected", goal: "goal", chatOpen: "Got a question?", chatTitle: "Al Jiwar assistant", chatHello: "Hello! Pick a question or type your own.", chatPh: "Your question…", chatSend: "Send", chatNo: "I don't have a precise answer. Write to us directly and we'll reply:", chatClose: "Close", learnMore: "Learn more", support: "Support this", youSupport: "You are supporting:", askInsta: "Ask us for our bank details by Instagram message.", instaMsg: "Message us on Instagram", transparency: "Transparency", legalTitle: "The association at a glance", l_status: "Legal status", l_registration: "Registration", l_founded: "Founded", l_office: "Board", l_report: "Annual report", privacyTitle: "Personal data", download: "Download", home: "Home", about: "About us", activities: "What we do", projects: "Projects", partners: "Partners", donate: "Donate", contact: "Contact",
+  en: { demo: "Demo data — preview only", themeLight: "Light mode", themeDark: "Dark mode", news: "News", latestNews: "Latest news", allNews: "All news", readMore: "Read more", backNews: "Back to news", noNews: "No news yet.", faq: "FAQ", faqMore: "Didn't find your answer?", collected: "collected", goal: "goal", chatOpen: "Got a question?", chatTitle: "Al Jiwar assistant", chatHello: "Hello! Pick a question or type your own.", chatPh: "Your question…", chatSend: "Send", chatNo: "I don't have a precise answer. Write to us directly and we'll reply:", chatClose: "Close", learnMore: "Learn more", support: "Support this", youSupport: "You are supporting:", askInsta: "Ask us for our bank details by Instagram message.", instaMsg: "Message us on Instagram", transparency: "Transparency", legalTitle: "The association at a glance", l_status: "Legal status", l_registration: "Registration", l_founded: "Founded", l_office: "Board", l_report: "Annual report", privacyTitle: "Personal data", download: "Download", home: "Home", about: "About us", activities: "What we do", projects: "Projects", partners: "Partners", donate: "Donate", contact: "Contact",
     donateNow: "Donate now", seeActivities: "See what we do", allActivities: "All activities", allProjects: "All projects", inNumbers: "Al Jiwar in numbers",
     values: "Our values", story: "Our story", current: "Current projects", upcoming: "Upcoming projects", done: "Completed projects", needs: "What we need", s_current: "In progress", s_upcoming: "Upcoming", s_done: "Completed",
     ctaTitle: "Join us for Ramadan 1448", ctaText: "A food basket, a seat at the orphans' iftar table: every gesture counts.",
@@ -106,6 +114,8 @@ const ICONS = {
   arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
   chat: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
   close: '<path d="M6 6l12 12M18 6 6 18"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  moonsm: '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
   cal: '<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
   insta: '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/>',
   fb: '<path d="M14 21v-7.5h2.6l.4-3H14V8.7c0-.9.3-1.5 1.5-1.5H17V4.5a20 20 0 0 0-2.3-.1C12.4 4.4 11 5.8 11 8.3v2.2H8.5v3H11V21"/>'
@@ -132,11 +142,11 @@ function layout(c, lang, page, title, body, desc) {
     '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "</script>" +
     '<link rel="icon" href="/assets/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Readex+Pro:wght@300;400;500;600&display=swap">' +
-    '<link rel="stylesheet" href="/assets/css/site.css?v=20"><script src="/assets/js/site.js?v=20"></script></head><body class="page-' + (page || "home") + '">' +
-    '<a class="skip" href="#main">↓</a><header class="top"><div class="wrap top-in">' +
+    '<link rel="stylesheet" href="/assets/css/site.css?v=21"><script src="/assets/js/site.js?v=21"></script></head><body class="page-' + (page || "home") + '">' +
+    '<a class="skip" href="#main">↓</a>' + (c._demo ? '<div class="demo-bar">' + esc(u.demo) + "</div>" : "") + '<header class="top"><div class="wrap top-in">' +
     '<a class="brand" href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo-sm.png" alt="' + esc(name) + '" width="62" height="56"></a>' +
     '<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="' + esc(u.menu) + '"><span></span><span></span><span></span></button>' +
-    '<nav id="nav" class="nav"><div class="pill-nav">' + nav + '</div><div class="nav-end"><div class="langs">' + langs + '</div><a class="btn btn-outline" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div></nav></div></header>" +
+    '<nav id="nav" class="nav"><div class="pill-nav">' + nav + '</div><div class="nav-end"><button class="theme-btn" type="button" data-l="' + esc(u.themeLight) + '" data-d="' + esc(u.themeDark) + '" aria-label="' + esc(u.themeDark) + '"><span class="t-sun">' + icon("sun") + '</span><span class="t-moon">' + icon("moonsm") + '</span></button><div class="langs">' + langs + '</div><a class="btn btn-orange" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div></nav></div></header>" +
     '<main id="main">' + body + "</main>" +
     '<footer class="foot"><div class="wrap">' +
       '<div class="foot-top"><p class="foot-say">' + esc(tr(s.tagline, lang)) + '</p><a class="btn btn-orange" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div>" +
@@ -242,7 +252,7 @@ function render(c, lang, page, query) {
       '<section class="a-hero"><div class="wrap a-center">' +
         '<p class="a-eyebrow rv">' + esc(tr(s.tagline, lang)) + '</p><h1 class="a-title">' + esc(tr(h.heroTitle, lang)) + "</h1>" +
         '<p class="a-sub rv" style="--d:2">' + esc(first(tr(h.heroText, lang))) + "</p>" +
-        '<div class="a-ctas rv" style="--d:3"><a class="btn btn-blue btn-lg" href="' + href("donate") + '">' + esc(u.donateNow) + "</a>" + alink(u.seeActivities, href("activities")) + "</div></div>" +
+        '<div class="a-ctas rv" style="--d:3"><a class="btn btn-orange btn-lg" href="' + href("donate") + '">' + esc(u.donateNow) + "</a>" + alink(u.seeActivities, href("activities")) + "</div></div>" +
         (cards.length ? '<div class="a-visual"><div class="a-stack">' + cards.map((src, i) => '<figure class="a-shot s' + i + '"><img src="' + esc(src) + '" alt="" loading="' + (i === 1 ? "eager" : "lazy") + '"></figure>').join("") + "</div></div>" : "") +
       "</section>" +
       campaignBlock(c, lang, u, href, true) +
@@ -265,7 +275,7 @@ function render(c, lang, page, query) {
       /* PARTNERS (only when there are some) */
       (plist.length ? '<section class="a-sec"><div class="wrap"><div class="a-head rv"><h2>' + esc(u.partners) + "</h2>" + alink(u.becomePartner, href("partners")) + "</div>" + partnersGrid(c, lang, u) + "</div></section>" : "") +
       /* CLOSING CALL */
-      '<section class="a-end"><div class="wrap a-center rv"><img src="/assets/img/logo-md.png" alt="" width="120" height="109" loading="lazy"><h2>' + esc(u.stayTitle) + '</h2><div class="a-ctas"><a class="btn btn-blue btn-lg" href="' + href("donate") + '">' + esc(u.donateNow) + "</a>" + alink(u.writeUs, href("contact")) + "</div></div></section>";
+      '<section class="a-end"><div class="wrap a-center rv"><img src="/assets/img/logo-md.png" alt="" width="120" height="109" loading="lazy"><h2>' + esc(u.stayTitle) + '</h2><div class="a-ctas"><a class="btn btn-orange btn-lg" href="' + href("donate") + '">' + esc(u.donateNow) + "</a>" + alink(u.writeUs, href("contact")) + "</div></div></section>";
     return layout(c, lang, page, "", body);
   }
   if (page === "about") {
@@ -464,7 +474,7 @@ async function handle(req, res) {
   try {
     if (p.startsWith("/api/")) return await api(req, res, url);
     if (req.method !== "GET" && req.method !== "HEAD") return send(res, 405, "Method not allowed");
-    const c = load();
+    const c = loadPublic();
     if (p === "/") return send(res, 302, "", { Location: "/" + ((c.site && c.site.defaultLang) || "ar") + "/" });
     if (p === "/admin" || p === "/admin/") return serveStatic(req, res, "admin/index.html") || send(res, 404, "Not found");
     if (p === "/robots.txt") return send(res, 200, "User-agent: *\nDisallow: /admin\nDisallow: /api/\n" + (safeUrl(c.site && c.site.siteUrl) ? "Sitemap: " + safeUrl(c.site.siteUrl).replace(/\/+$/, "") + "/sitemap.xml\n" : ""), { "Content-Type": "text/plain; charset=utf-8" });

@@ -199,3 +199,24 @@ document.addEventListener("DOMContentLoaded", function () {
     dlg.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
   }
 });
+
+/* ---------- light / dark mode (remembered per visitor; follows the system by default) ---------- */
+(function () {
+  var root = document.documentElement, saved = null;
+  try { saved = localStorage.getItem("aj-theme"); } catch (e) { /* private mode */ }
+  var dark = saved ? saved === "dark" : !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  root.setAttribute("data-theme", dark ? "dark" : "light");
+  document.addEventListener("DOMContentLoaded", function () {
+    var b = document.querySelector(".theme-btn"); if (!b) return;
+    var label = function () { var d = root.getAttribute("data-theme") === "dark"; b.setAttribute("aria-label", d ? b.dataset.l : b.dataset.d); b.title = b.getAttribute("aria-label"); };
+    label();
+    b.addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.classList.add("theme-anim");
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("aj-theme", next); } catch (e) { /* ignore */ }
+      label();
+      setTimeout(function () { root.classList.remove("theme-anim"); }, 450);
+    });
+  });
+})();

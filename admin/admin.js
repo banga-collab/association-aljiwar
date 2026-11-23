@@ -2,12 +2,13 @@
 (function () {
   "use strict";
   var $ = function (s, el) { return (el || document).querySelector(s); };
-  var data = null, dirty = false, tab = "general";
+  var data = null, dirty = false, tab = "dashboard";
   var LANGS = [["fr", "FR", "ltr"], ["ar", "ع", "rtl"], ["en", "EN", "ltr"]];
   var ICONS = [["box", "Carton (stock)"], ["heart", "Cœur"], ["moon", "Croissant (Ramadan)"], ["table", "Table (ftour)"], ["hands", "Mains (bénévolat)"], ["home", "Maison"], ["users", "Personnes"], ["book", "Livre (école)"]];
   var STATUS = [["current", "En cours"], ["upcoming", "À venir"], ["done", "Réalisé"]];
 
   var TABS = [
+    { id: "dashboard", icon: "◫", page: "", label: "Tableau de bord", hint: "Vue d'ensemble du site : ce qui est prêt, ce qui manque, la cagnotte.", custom: true },
     { id: "general", icon: "⚙", page: "", label: "Général", hint: "Nom, coordonnées et réseaux. Les champs vides ne s'affichent pas sur le site.", fields: [
       { obj: "site", k: "name", label: "Nom de l'association", type: "ml" },
       { obj: "site", k: "tagline", label: "Slogan", type: "ml" },
@@ -220,9 +221,70 @@
     $("#preview").href = "/" + (lang === "all" ? "fr" : lang) + "/" + t.page;
     $("#app").classList.remove("nav-open");
     var p = $("#panel"); p.innerHTML = ""; p.style.animation = "none"; void p.offsetWidth; p.style.animation = "";
+    if (t.custom) { dashboard(p); return; }
     var box = el("div", { class: "box" });
     t.fields.forEach(function (f) { if (f.obj && (!data[f.obj] || typeof data[f.obj] !== "object")) data[f.obj] = {}; if (f.root && !Array.isArray(data[f.root])) data[f.root] = []; box.appendChild(widget(f, f.obj ? data[f.obj] : data)); });
     p.appendChild(box);
+  }
+
+  /* ---------- dashboard ---------- */
+  function txt(o) { return o && typeof o === "object" ? (o.fr || o.ar || o.en || "") : String(o || ""); }
+  function todo(o) { var t = txt(o).trim(); return !t || /^\[[^\]]*\]$/.test(t.split(/\n\s*\n/)[0].trim()) && t.split(/\n\s*\n/).length === 1; }
+  function hasTodo(o) { return /\[(À compléter|للإكمال|To complete)/.test(txt(o)); }
+  function dashboard(p) {
+    var d = data, s = d.site || {}, dn = d.donate || {}, k = d.campaign || {}, lg = d.legal || {};
+    var news = (d.news || []).slice().sort(function (x, y) { return String(y.date).localeCompare(String(x.date)); });
+    var go = function (id) { return function () { showTab(id); window.scrollTo(0, 0); }; };
+    /* metrics */
+    var metric = function (n, l, id, c) { return el("button", { class: "metric " + (c || ""), type: "button", onclick: go(id) }, [el("strong", { text: String(n) }), el("span", { text: l })]); };
+    p.appendChild(el("div", { class: "metrics" }, [
+      metric((d.activities || []).length, "Activités", "activities", "m-blue"),
+      metric((d.projects || []).length, "Projets", "projects", "m-orange"),
+      metric(news.length, "Actualités", "news", "m-green"),
+      metric((d.faq || []).length, "Questions FAQ", "faq", "m-blue"),
+      metric((d.gallery || []).length, "Photos galerie", "gallery", "m-orange"),
+      metric(((d.partners || {}).list || []).length, "Partenaires", "partners", "m-green")
+    ]));
+    /* checklist */
+    var checks = [
+      ["Téléphone ou WhatsApp", !!(s.phone || s.whatsapp), "general"],
+      ["E-mail", !!s.email, "general"],
+      ["Adresse", !todo(s.address), "general"],
+      ["Coordonnées bancaires (RIB)", !!dn.rib, "donate"],
+      ["Chiffres clés", (d.stats || []).some(function (x) { return String(x.value || "").trim(); }), "home"],
+      ["Partenaires", ((d.partners || {}).list || []).length > 0, "partners"],
+      ["Texte « Notre histoire »", !hasTodo((d.about || {}).story), "about"],
+      ["Présentation de Mamoun Al Jiwar", !(d.projects || []).some(function (x) { return hasTodo(x.text); }), "projects"],
+      ["Au moins une actualité", news.length > 0, "news"],
+      ["Récépissé / autorisation", !!lg.registration, "legal"],
+      ["Objectif de la cagnotte", k.active === "yes" && parseFloat(k.goal) > 0, "campaign"]
+    ];
+    var ok = checks.filter(function (c) { return c[1]; }).length, pct = Math.round(ok / checks.length * 100);
+    var ring = el("div", { class: "ring", style: "--p:" + pct }, [el("strong", { text: pct + " %" }), el("span", { text: "complet" })]);
+    var list = el("ul", { class: "checks" }, checks.map(function (c) {
+      return el("li", { class: c[1] ? "ok" : "ko" }, [el("span", { class: "mark", text: c[1] ? "✓" : "!" }), el("span", { class: "lab", text: c[0] }), c[1] ? null : el("button", { class: "btn small", type: "button", text: "Compléter", onclick: go(c[2]) })]);
+    }));
+    /* fundraiser quick edit */
+    var goal = parseFloat(k.goal) || 0, cur = parseFloat(k.current) || 0, cp = goal ? Math.min(100, Math.round(cur / goal * 100)) : 0;
+    var bar = el("div", { class: "bar" }, [el("span", { style: "width:" + cp + "%" })]);
+    var info = el("p", { class: "hint", text: goal ? cur + " / " + goal + " " + txt(k.unit) + " · " + cp + " %" : "Indiquez un objectif pour afficher la cagnotte sur le site." });
+    var upd = function () { goal = parseFloat(k.goal) || 0; cur = parseFloat(k.current) || 0; cp = goal ? Math.min(100, Math.round(cur / goal * 100)) : 0; bar.firstChild.style.width = cp + "%"; info.textContent = goal ? cur + " / " + goal + " " + txt(k.unit) + " · " + cp + " %" : "Indiquez un objectif pour afficher la cagnotte sur le site."; };
+    d.campaign = k;
+    var num = function (key, lab) { return el("label", { class: "mini" }, [lab, el("input", { type: "number", min: "0", value: k[key] || "", oninput: function (e) { k[key] = e.target.value; touch(); upd(); } })]); };
+    var act = el("select", { onchange: function (e) { k.active = e.target.value; touch(); } }, [el("option", { value: "yes", text: "Affichée" }), el("option", { value: "no", text: "Masquée" })]); act.value = k.active || "no";
+    var camp = el("div", { class: "box dash-card" }, [el("h2", { text: "Cagnotte · " + (txt(k.tag) || "Ramadan") }), bar, info,
+      el("div", { class: "mini-row" }, [num("current", "Déjà réunis"), num("goal", "Objectif"), el("label", { class: "mini" }, ["Sur le site", act])]),
+      el("p", { class: "hint", text: "Modifiez puis cliquez sur « Enregistrer » en haut." })]);
+    /* latest news + quick actions */
+    var latest = el("div", { class: "box dash-card" }, [el("h2", { text: "Dernières actualités" }),
+      news.length ? el("ul", { class: "latest" }, news.slice(0, 4).map(function (n) { return el("li", {}, [el("span", { class: "date", text: n.date || "" }), el("span", { text: txt(n.title) || "(sans titre)" })]); })) : el("p", { class: "hint", text: "Aucune actualité pour l'instant." }),
+      el("div", { class: "actions-row" }, [
+        el("button", { class: "btn primary", type: "button", text: "+ Nouvelle actualité", onclick: function () { d.news = d.news || []; d.news.push({ id: "", date: new Date().toISOString().slice(0, 10), image: "", title: {}, text: {} }); touch(); showTab("news"); } }),
+        el("a", { class: "btn", href: "/", target: "_blank", rel: "noopener", text: "Voir le site ↗" })])]);
+    p.appendChild(el("div", { class: "dash" }, [
+      el("div", { class: "box dash-card dash-wide" }, [el("h2", { text: "Le site est-il complet ?" }), el("div", { class: "comp" }, [ring, list])]),
+      camp, latest
+    ]));
   }
 
   function start() {
