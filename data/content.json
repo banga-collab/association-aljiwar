@@ -491,5 +491,153 @@
       "fr": "Ce site ne dépose aucun cookie de suivi et n'enregistre aucune donnée personnelle des visiteurs. Le formulaire de contact ouvre simplement WhatsApp : votre message n'est pas conservé sur le site. Les polices de caractères sont chargées depuis Google Fonts.\n\nNous ne publions jamais de photos ni d'informations permettant d'identifier les familles et les enfants que nous aidons.",
       "en": "This site sets no tracking cookies and records no personal data about visitors. The contact form simply opens WhatsApp: your message is not stored on the site. Fonts are loaded from Google Fonts.\n\nWe never publish photos or details that could identify the families and children we help."
     }
-  }
+  },
+  "news": [
+    {
+      "id": "deuxieme-decennie",
+      "date": "2026-11-09",
+      "image": "/assets/img/ig/decennie.jpg",
+      "title": {
+        "ar": "الجوار تدخل عقدها الثاني",
+        "fr": "Al Jiwar entre dans sa deuxième décennie",
+        "en": "Al Jiwar enters its second decade"
+      },
+      "text": {
+        "ar": "بعد عقد من العمل في الحي، تبدأ جمعية الجوار عقدها الثاني بنفس الهدف: أن يكون الجار سندًا لجاره.\n\nشكرًا لكل المتطوعين والشركاء والمحسنين الذين رافقونا طوال هذه السنوات.",
+        "fr": "Après une décennie d'action dans le quartier, l'Association Al Jiwar ouvre sa deuxième décennie avec le même objectif : que chaque voisin soit un soutien pour l'autre.\n\nMerci à tous les bénévoles, partenaires et donateurs qui nous accompagnent depuis toutes ces années.",
+        "en": "After a decade of work in the neighbourhood, Al Jiwar Association opens its second decade with the same goal: that every neighbour can be someone's support.\n\nThank you to all the volunteers, partners and donors who have been with us all these years."
+      }
+    },
+    {
+      "id": "projection-iguiliz",
+      "date": "2026-10-24",
+      "image": "/assets/img/ig/projection-salle.jpg",
+      "title": {
+        "ar": "عرض «إگيليز، الطريق إلى مراكش» بأكادير",
+        "fr": "Projection d'« Iguiliz, la route de Marrakech » à Agadir",
+        "en": "\"Iguiliz, the road to Marrakech\" screened in Agadir"
+      },
+      "text": {
+        "ar": "يوم السبت 24 أكتوبر 2026، امتلأت قاعة سينما الصحراء بأكادير لعرض الفيلم الوثائقي «إگيليز، الطريق إلى مراكش»، بتعاون مع جمعية الجوار.\n\nلحظة لاكتشاف جزء من تاريخ المغرب، وفرصة للقاء أصدقاء الجمعية.",
+        "fr": "Le samedi 24 octobre 2026, la salle du Cinéma Sahara d'Agadir a accueilli la projection du documentaire « Iguiliz, la route de Marrakech », en collaboration avec l'Association Al Jiwar.\n\nUn moment pour découvrir une page de l'histoire du Maroc, et l'occasion de retrouver les amis de l'association.",
+        "en": "On Saturday 24 October 2026, Cinéma Sahara in Agadir hosted a screening of the documentary \"Iguiliz, the road to Marrakech\", in collaboration with Al Jiwar Association.\n\nA chance to discover a page of Moroccan history, and to meet the association's friends."
+      }
+    }
+  ],
+  "campaign": {
+    "active": "yes",
+    "goal": "",
+    "current": "0",
+    "tag": {
+      "ar": "رمضان 1448",
+      "fr": "Ramadan 1448",
+      "en": "Ramadan 1448"
+    },
+    "title": {
+      "ar": "قفف رمضان للأسر",
+      "fr": "Paniers du Ramadan pour les familles",
+      "en": "Ramadan baskets for families"
+    },
+    "text": {
+      "ar": "كل قفة تكفي أسرة خلال جزء من الشهر الفضيل. ساعدونا على بلوغ الهدف.",
+      "fr": "Chaque panier nourrit une famille pendant une partie du mois sacré. Aidez-nous à atteindre l'objectif.",
+      "en": "Each basket feeds a family for part of the holy month. Help us reach the goal."
+    },
+    "unit": {
+      "ar": "قفة",
+      "fr": "paniers",
+      "en": "baskets"
+    },
+    "deadline": {
+      "ar": "",
+      "fr": "",
+      "en": ""
+    }
+  },
+  "faq": [
+    {
+      "q": {
+        "ar": "كيف يمكنني التبرع؟",
+        "fr": "Comment faire un don ?",
+        "en": "How can I donate?"
+      },
+      "a": {
+        "ar": "بتحويل بنكي (المعلومات في صفحة «تبرّع» أو عند الطلب)، أو بتبرع عيني يُسلَّم في مخزن الجمعية. راسلونا لتحديد الطريقة الأنسب لكم.",
+        "fr": "Par virement bancaire (coordonnées sur la page « Faire un don » ou sur demande), ou en nature, à déposer à l'entrepôt de l'association. Écrivez-nous pour convenir de la solution la plus simple pour vous.",
+        "en": "By bank transfer (details on the Donate page or on request), or in kind, dropped off at the association's warehouse. Write to us to find the easiest way for you."
+      }
+    },
+    {
+      "q": {
+        "ar": "ماذا يمكنني أن أتبرع به عينيًا؟",
+        "fr": "Que puis-je donner en nature ?",
+        "en": "What can I give in kind?"
+      },
+      "a": {
+        "ar": "مواد غذائية أساسية (دقيق، زيت، سكر، شاي، قطاني)، ملابس في حالة جيدة، أدوات مدرسية وأغطية. راسلونا قبل التسليم.",
+        "fr": "Des denrées de base (farine, huile, sucre, thé, légumineuses), des vêtements en bon état, des fournitures scolaires et des couvertures. Prévenez-nous avant le dépôt.",
+        "en": "Staple food (flour, oil, sugar, tea, pulses), clothes in good condition, school supplies and blankets. Let us know before dropping off."
+      }
+    },
+    {
+      "q": {
+        "ar": "كيف أصبح متطوعًا؟",
+        "fr": "Comment devenir bénévole ?",
+        "en": "How do I volunteer?"
+      },
+      "a": {
+        "ar": "راسلونا عبر صفحة «اتصل بنا». نحتاج متطوعين للفرز والتوزيع والتنظيم، خاصة في رمضان.",
+        "fr": "Écrivez-nous depuis la page Contact. Nous cherchons des bénévoles pour le tri, la distribution et l'organisation, surtout pendant Ramadan.",
+        "en": "Write to us from the Contact page. We need volunteers for sorting, distribution and organisation, especially during Ramadan."
+      }
+    },
+    {
+      "q": {
+        "ar": "فيمَ تُستعمل التبرعات؟",
+        "fr": "À quoi servent les dons ?",
+        "en": "What are donations used for?"
+      },
+      "a": {
+        "ar": "قفف غذائية للأسر المحتاجة، البرنامج الاجتماعي طوال السنة، قفف رمضان وإفطار الأيتام. كل دخول وخروج من المخزن يُسجَّل.",
+        "fr": "Aux paniers alimentaires pour les familles dans le besoin, au programme social de l'année, aux paniers du Ramadan et au ftour des orphelins. Chaque entrée et sortie de stock est enregistrée.",
+        "en": "Food baskets for families in need, the year-round social programme, Ramadan baskets and the orphans' iftar. Every item in and out of stock is recorded."
+      }
+    },
+    {
+      "q": {
+        "ar": "كيف تحمون المستفيدين؟",
+        "fr": "Comment protégez-vous les bénéficiaires ?",
+        "en": "How do you protect the people you help?"
+      },
+      "a": {
+        "ar": "لا ننشر أبدًا صورًا أو معلومات تسمح بالتعرف على الأسر والأطفال الذين نساندهم. المساعدة تُقدَّم باحترام وسرية.",
+        "fr": "Nous ne publions jamais de photos ni d'informations permettant d'identifier les familles et les enfants aidés. L'aide est donnée avec respect et discrétion.",
+        "en": "We never publish photos or details that could identify the families and children we help. Help is given with respect and discretion."
+      }
+    },
+    {
+      "q": {
+        "ar": "هل يمكن لمؤسستي أن تصبح شريكًا؟",
+        "fr": "Mon entreprise peut-elle devenir partenaire ?",
+        "en": "Can my company become a partner?"
+      },
+      "a": {
+        "ar": "نعم: تبرع عيني أو مالي، رعاية إفطار الأيتام، أو توفير فضاء أو وسيلة نقل. راسلونا لنتحدث عن ذلك.",
+        "fr": "Oui : don en nature ou en argent, parrainage du ftour des orphelins, prêt de local ou de transport. Écrivez-nous pour en parler.",
+        "en": "Yes: in-kind or financial donation, sponsoring the orphans' iftar, or lending space or transport. Write to us to talk about it."
+      }
+    },
+    {
+      "q": {
+        "ar": "كيف أتواصل معكم؟",
+        "fr": "Comment vous contacter ?",
+        "en": "How can I contact you?"
+      },
+      "a": {
+        "ar": "كل وسائل التواصل موجودة في صفحة «اتصل بنا»، ويمكنكم أيضًا مراسلتنا على إنستغرام.",
+        "fr": "Tous nos moyens de contact sont sur la page Contact. Vous pouvez aussi nous écrire sur Instagram.",
+        "en": "All our contact details are on the Contact page. You can also message us on Instagram."
+      }
+    }
+  ]
 }

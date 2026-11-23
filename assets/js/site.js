@@ -80,3 +80,51 @@
     });
   });
 })();
+
+/* ---------- FAQ assistant (no AI: answers only from the association's FAQ) ---------- */
+document.addEventListener("DOMContentLoaded", function () {
+  var box = document.querySelector("[data-chat]"); if (!box) return;
+  var data; try { data = JSON.parse(box.querySelector(".chat-data").textContent); } catch (e) { return; }
+  var fab = box.querySelector(".chat-fab"), panel = box.querySelector(".chat-panel"), log = box.querySelector(".chat-log"), form = box.querySelector(".chat-form");
+  var norm = function (t) { return String(t).toLowerCase().normalize("NFD").replace(/[̀-ًͯ-ٰٟ]/g, "").replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/[^\p{L}\p{N}\s]/gu, " "); };
+  var words = function (t) { return norm(t).split(/\s+/).filter(function (w) { return w.length > 2; }); };
+  var stem = function (w) { return w.slice(0, Math.max(4, Math.ceil(w.length * 0.7))); };
+  var index = data.faq.map(function (f) { return { f: f, q: words(f.q).map(stem), a: words(f.a).map(stem) }; });
+  function say(text, who) { var p = document.createElement("div"); p.className = "msg " + (who || "bot"); p.textContent = text; log.appendChild(p); log.scrollTop = log.scrollHeight; return p; }
+  function chips(skip) {
+    var wrap = document.createElement("div"); wrap.className = "chips-q";
+    data.faq.filter(function (f) { return f !== skip; }).slice(0, 4).forEach(function (f) {
+      var b = document.createElement("button"); b.type = "button"; b.textContent = f.q;
+      b.addEventListener("click", function () { wrap.remove(); ask(f.q, f); }); wrap.appendChild(b);
+    });
+    log.appendChild(wrap); log.scrollTop = log.scrollHeight;
+  }
+  function links() {
+    var wrap = document.createElement("div"); wrap.className = "chips-q";
+    data.links.forEach(function (l) { var a = document.createElement("a"); a.href = l[1]; a.textContent = l[0]; if (/^https/.test(l[1])) { a.target = "_blank"; a.rel = "noopener"; } wrap.appendChild(a); });
+    log.appendChild(wrap); log.scrollTop = log.scrollHeight;
+  }
+  function best(q) {
+    var t = words(q).map(stem); if (!t.length) return null;
+    var top = null, score = 0;
+    index.forEach(function (it) {
+      var sc = 0; t.forEach(function (w) { if (it.q.indexOf(w) >= 0) sc += 2; else if (it.a.indexOf(w) >= 0) sc += 1; });
+      if (sc > score) { score = sc; top = it.f; }
+    });
+    return score >= 2 ? top : null;
+  }
+  function ask(q, known) {
+    say(q, "me");
+    var f = known || best(q);
+    setTimeout(function () { if (f) { say(f.a); chips(f); } else { say(data.ui.no); links(); } }, 350);
+  }
+  function open(o) {
+    panel.hidden = !o; fab.setAttribute("aria-expanded", o ? "true" : "false"); box.classList.toggle("open", o);
+    if (o && !log.childNodes.length) { say(data.ui.hello); chips(); }
+    if (o) setTimeout(function () { form.q.focus(); }, 50);
+  }
+  fab.addEventListener("click", function () { open(panel.hidden); });
+  box.querySelector(".chat-x").addEventListener("click", function () { open(false); fab.focus(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) open(false); });
+  form.addEventListener("submit", function (e) { e.preventDefault(); var q = form.q.value.trim(); if (!q) return; form.q.value = ""; ask(q); });
+});

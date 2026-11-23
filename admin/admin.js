@@ -20,7 +20,8 @@
       { obj: "site", k: "facebook", label: "Page Facebook (lien)", type: "text", ph: "https://facebook.com/..." },
       { obj: "site", k: "instagram", label: "Instagram (lien)", type: "text", ph: "https://instagram.com/..." },
       { obj: "site", k: "mapEmbed", label: "Carte Google Maps", hint: "Google Maps › Partager › Intégrer une carte › copier seulement le lien src=\"https://www.google.com/maps/embed?...\"", type: "text" },
-      { obj: "site", k: "siteUrl", label: "Adresse du site", hint: "ex. https://association-aljiwar.vercel.app", type: "text" }
+      { obj: "site", k: "siteUrl", label: "Adresse du site", hint: "ex. https://association-aljiwar.vercel.app", type: "text" },
+      { obj: "site", k: "analytics", label: "Statistiques de visite (Vercel)", hint: "à activer aussi dans Vercel › Analytics", type: "select", opts: [["on", "Activées"], ["off", "Désactivées"]] }
     ] },
     { id: "home", icon: "⌂", page: "", label: "Accueil", fields: [
       { obj: "home", k: "heroTitle", label: "Grand titre", type: "ml" },
@@ -60,6 +61,27 @@
       { root: "projects", label: "Projets", type: "list", title: function (x) { return (x.title && x.title.fr) + " · " + ((STATUS.filter(function (s) { return s[0] === x.status; })[0] || [0, ""])[1]); }, blank: function () { return { id: "", status: "current", image: "", title: {}, text: {}, needs: {} }; }, fields: [
         { k: "title", label: "Titre", type: "ml" }, { k: "status", label: "État", type: "select", opts: STATUS }, { k: "icon", label: "Icône (si pas de photo)", type: "select", opts: ICONS },
         { k: "text", label: "Description", type: "mlarea", rows: 4 }, { k: "needs", label: "Besoins", hint: "facultatif", type: "ml" }, { k: "image", label: "Photo", type: "image" } ] }
+    ] },
+    { id: "news", icon: "✎", page: "news", label: "Actualités", hint: "Articles courts : distribution, ftour, partenariat… Les plus récents s'affichent en premier (selon la date).", fields: [
+      { root: "news", label: "Articles", type: "list", title: function (x) { return (x.date || "") + " · " + ((x.title && x.title.fr) || ""); }, blank: function () { return { id: "", date: new Date().toISOString().slice(0, 10), image: "", title: {}, text: {} }; }, fields: [
+        { k: "date", label: "Date", hint: "format AAAA-MM-JJ, ex. 2027-02-20", type: "text" },
+        { k: "title", label: "Titre", type: "ml" },
+        { k: "text", label: "Texte", hint: "laissez une ligne vide entre deux paragraphes", type: "mlarea", rows: 6 },
+        { k: "image", label: "Photo", type: "image" } ] }
+    ] },
+    { id: "campaign", icon: "◔", page: "", label: "Cagnotte", hint: "Barre de progression affichée sur l'accueil et la page Don. Elle n'apparaît que si elle est active et qu'un objectif est indiqué.", fields: [
+      { obj: "campaign", k: "active", label: "Afficher la cagnotte", type: "select", opts: [["yes", "Oui"], ["no", "Non"]] },
+      { obj: "campaign", k: "goal", label: "Objectif", hint: "un nombre, ex. 300", type: "text", ph: "300" },
+      { obj: "campaign", k: "current", label: "Déjà réunis", hint: "mettez ce nombre à jour au fil des dons", type: "text", ph: "0" },
+      { obj: "campaign", k: "unit", label: "Unité", hint: "ex. paniers, repas, DH", type: "ml" },
+      { obj: "campaign", k: "tag", label: "Petite mention", type: "ml" },
+      { obj: "campaign", k: "title", label: "Titre", type: "ml" },
+      { obj: "campaign", k: "text", label: "Texte", type: "mlarea" },
+      { obj: "campaign", k: "deadline", label: "Échéance", hint: "facultatif, ex. jusqu'au 1er Ramadan", type: "ml" }
+    ] },
+    { id: "faq", icon: "?", page: "faq", label: "FAQ", hint: "Questions fréquentes : elles servent aussi de réponses à l'assistant (bouton « Une question ? » en bas du site).", fields: [
+      { root: "faq", label: "Questions", type: "list", title: function (x) { return x.q && x.q.fr; }, blank: function () { return { q: {}, a: {} }; }, fields: [
+        { k: "q", label: "Question", type: "ml" }, { k: "a", label: "Réponse", type: "mlarea", rows: 4 } ] }
     ] },
     { id: "partners", icon: "♡", page: "partners", label: "Partenaires", fields: [
       { obj: "partners", k: "intro", label: "Introduction", type: "mlarea" },

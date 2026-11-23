@@ -10,8 +10,8 @@ const DATA_FILE = path.join(ROOT, "data", "content.json");
 const UPLOADS = path.join(ROOT, "assets", "uploads");
 const SERVERLESS = !!process.env.VERCEL;
 const LANGS = ["ar", "fr", "en"];
-const PAGES = ["", "about", "activities", "projects", "partners", "donate", "contact"];
-const EXTRA = ["transparency"];                       // reachable from the footer, not in the top menu
+const PAGES = ["", "about", "activities", "projects", "news", "partners", "donate", "contact"];
+const EXTRA = ["faq", "transparency"];                       // reachable from the footer, not in the top menu
 const DEFAULT_URL = process.env.SITE_URL || "https://association-aljiwar.vercel.app";
 const LANG_NAMES = { ar: "العربية", fr: "Français", en: "English" };
 const LOCALES = { ar: "ar_MA", fr: "fr_FR", en: "en_US" };
@@ -56,7 +56,7 @@ function img(u) { u = String(u || "").trim(); return /^\/assets\/[\w\-./]+\.(jpe
 
 /* ---------------- interface strings ---------------- */
 const UI = {
-  ar: { learnMore: "اقرأ المزيد", support: "ادعم هذا العمل", youSupport: "أنتم تدعمون:", askInsta: "اطلبوا معلومات الحساب البنكي برسالة على إنستغرام.", instaMsg: "راسلونا على إنستغرام", transparency: "الشفافية", legalTitle: "الجمعية في سطور", l_status: "الصفة القانونية", l_registration: "رقم الوصل / الترخيص", l_founded: "سنة التأسيس", l_office: "المكتب المسير", l_report: "التقرير الأدبي والمالي", privacyTitle: "المعطيات الشخصية", download: "تحميل", home: "الرئيسية", about: "من نحن", activities: "أنشطتنا", projects: "مشاريعنا", partners: "شركاؤنا", donate: "تبرّع", contact: "اتصل بنا",
+  ar: { news: "المستجدات", latestNews: "آخر المستجدات", allNews: "كل المستجدات", readMore: "اقرأ المقال", backNews: "العودة إلى المستجدات", noNews: "لا توجد مستجدات حاليًا.", faq: "أسئلة شائعة", faqMore: "لم تجدوا جوابكم؟", collected: "تم جمعه", goal: "الهدف", chatOpen: "عندك سؤال؟", chatTitle: "مساعد الجوار", chatHello: "مرحبًا! اختاروا سؤالًا أو اكتبوا سؤالكم.", chatPh: "اكتبوا سؤالكم…", chatSend: "إرسال", chatNo: "لم أجد جوابًا دقيقًا. راسلونا مباشرة وسنرد عليكم:", chatClose: "إغلاق", learnMore: "اقرأ المزيد", support: "ادعم هذا العمل", youSupport: "أنتم تدعمون:", askInsta: "اطلبوا معلومات الحساب البنكي برسالة على إنستغرام.", instaMsg: "راسلونا على إنستغرام", transparency: "الشفافية", legalTitle: "الجمعية في سطور", l_status: "الصفة القانونية", l_registration: "رقم الوصل / الترخيص", l_founded: "سنة التأسيس", l_office: "المكتب المسير", l_report: "التقرير الأدبي والمالي", privacyTitle: "المعطيات الشخصية", download: "تحميل", home: "الرئيسية", about: "من نحن", activities: "أنشطتنا", projects: "مشاريعنا", partners: "شركاؤنا", donate: "تبرّع", contact: "اتصل بنا",
     donateNow: "تبرّع الآن", seeActivities: "اكتشف أنشطتنا", allActivities: "كل الأنشطة", allProjects: "كل المشاريع", inNumbers: "الجوار بالأرقام",
     values: "قيمنا", story: "قصتنا", current: "مشاريع جارية", upcoming: "مشاريع قادمة", done: "مشاريع منجزة", needs: "ما نحتاجه", s_current: "جارٍ", s_upcoming: "قادم", s_done: "منجز",
     ctaTitle: "ساهم معنا في رمضان 1448", ctaText: "قفة واحدة أو مقعد على مائدة إفطار الأيتام: كل مساهمة تصنع الفرق.",
@@ -66,7 +66,7 @@ const UI = {
     phone: "الهاتف", email: "البريد الإلكتروني", address: "العنوان", hours: "أوقات الاستقبال", follow: "تابعونا", gallery: "أنشطتنا بالصور",
     formName: "الاسم", formMsg: "رسالتكم", formSend: "إرسال عبر واتساب", formNoWa: "أسهل طريقة للتواصل معنا حاليًا: رسالة على إنستغرام.",
     rights: "جميع الحقوق محفوظة", stay: "لنبقَ على تواصل", stayTitle: "سؤال، تبرع أو رغبة في التطوع؟ نحن هنا.", menu: "القائمة", privacy: "لا ننشر أي معطيات شخصية عن المستفيدين." },
-  fr: { learnMore: "En savoir plus", support: "Soutenir cette action", youSupport: "Vous soutenez :", askInsta: "Demandez nos coordonnées bancaires par message sur Instagram.", instaMsg: "Écrivez-nous sur Instagram", transparency: "Transparence", legalTitle: "L'association en bref", l_status: "Statut", l_registration: "Récépissé / autorisation", l_founded: "Création", l_office: "Bureau", l_report: "Rapport moral et financier", privacyTitle: "Données personnelles", download: "Télécharger", home: "Accueil", about: "Qui sommes-nous", activities: "Nos activités", projects: "Nos projets", partners: "Partenaires", donate: "Faire un don", contact: "Contact",
+  fr: { news: "Actualités", latestNews: "Dernières actualités", allNews: "Toutes les actualités", readMore: "Lire l'article", backNews: "Retour aux actualités", noNews: "Aucune actualité pour le moment.", faq: "Questions fréquentes", faqMore: "Vous ne trouvez pas votre réponse ?", collected: "réunis", goal: "objectif", chatOpen: "Une question ?", chatTitle: "Assistant Al Jiwar", chatHello: "Bonjour ! Choisissez une question ou écrivez la vôtre.", chatPh: "Votre question…", chatSend: "Envoyer", chatNo: "Je n'ai pas de réponse précise. Écrivez-nous directement, nous vous répondrons :", chatClose: "Fermer", learnMore: "En savoir plus", support: "Soutenir cette action", youSupport: "Vous soutenez :", askInsta: "Demandez nos coordonnées bancaires par message sur Instagram.", instaMsg: "Écrivez-nous sur Instagram", transparency: "Transparence", legalTitle: "L'association en bref", l_status: "Statut", l_registration: "Récépissé / autorisation", l_founded: "Création", l_office: "Bureau", l_report: "Rapport moral et financier", privacyTitle: "Données personnelles", download: "Télécharger", home: "Accueil", about: "Qui sommes-nous", activities: "Nos activités", projects: "Nos projets", partners: "Partenaires", donate: "Faire un don", contact: "Contact",
     donateNow: "Faire un don", seeActivities: "Découvrir nos activités", allActivities: "Toutes les activités", allProjects: "Tous les projets", inNumbers: "Al Jiwar en chiffres",
     values: "Nos valeurs", story: "Notre histoire", current: "Projets en cours", upcoming: "Projets à venir", done: "Projets réalisés", needs: "Nos besoins", s_current: "En cours", s_upcoming: "À venir", s_done: "Réalisé",
     ctaTitle: "Participez au Ramadan 1448", ctaText: "Un panier, une place à la table du ftour des orphelins : chaque geste compte.",
@@ -76,7 +76,7 @@ const UI = {
     phone: "Téléphone", email: "E-mail", address: "Adresse", hours: "Horaires", follow: "Suivez-nous", gallery: "Nos actions en images",
     formName: "Votre nom", formMsg: "Votre message", formSend: "Envoyer sur WhatsApp", formNoWa: "Le plus simple pour nous joindre aujourd'hui : un message sur Instagram.",
     rights: "Tous droits réservés", stay: "Restons en contact", stayTitle: "Une question, un don, l'envie d'aider ? Écrivez-nous.", menu: "Menu", privacy: "Nous ne publions aucune donnée personnelle sur les bénéficiaires." },
-  en: { learnMore: "Learn more", support: "Support this", youSupport: "You are supporting:", askInsta: "Ask us for our bank details by Instagram message.", instaMsg: "Message us on Instagram", transparency: "Transparency", legalTitle: "The association at a glance", l_status: "Legal status", l_registration: "Registration", l_founded: "Founded", l_office: "Board", l_report: "Annual report", privacyTitle: "Personal data", download: "Download", home: "Home", about: "About us", activities: "What we do", projects: "Projects", partners: "Partners", donate: "Donate", contact: "Contact",
+  en: { news: "News", latestNews: "Latest news", allNews: "All news", readMore: "Read more", backNews: "Back to news", noNews: "No news yet.", faq: "FAQ", faqMore: "Didn't find your answer?", collected: "collected", goal: "goal", chatOpen: "Got a question?", chatTitle: "Al Jiwar assistant", chatHello: "Hello! Pick a question or type your own.", chatPh: "Your question…", chatSend: "Send", chatNo: "I don't have a precise answer. Write to us directly and we'll reply:", chatClose: "Close", learnMore: "Learn more", support: "Support this", youSupport: "You are supporting:", askInsta: "Ask us for our bank details by Instagram message.", instaMsg: "Message us on Instagram", transparency: "Transparency", legalTitle: "The association at a glance", l_status: "Legal status", l_registration: "Registration", l_founded: "Founded", l_office: "Board", l_report: "Annual report", privacyTitle: "Personal data", download: "Download", home: "Home", about: "About us", activities: "What we do", projects: "Projects", partners: "Partners", donate: "Donate", contact: "Contact",
     donateNow: "Donate now", seeActivities: "See what we do", allActivities: "All activities", allProjects: "All projects", inNumbers: "Al Jiwar in numbers",
     values: "Our values", story: "Our story", current: "Current projects", upcoming: "Upcoming projects", done: "Completed projects", needs: "What we need", s_current: "In progress", s_upcoming: "Upcoming", s_done: "Completed",
     ctaTitle: "Join us for Ramadan 1448", ctaText: "A food basket, a seat at the orphans' iftar table: every gesture counts.",
@@ -104,6 +104,9 @@ const ICONS = {
   clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   wa: '<path d="M4 20l1.3-4A8 8 0 1 1 8 18.8z"/><path d="M9 9.5c.3 2 1.8 3.8 4 4.6l1.2-1.1 1.8.8c-.2 1-1 1.6-2 1.6A6.5 6.5 0 0 1 8 9.2c0-1 .7-1.8 1.6-2l.8 1.8z"/>',
   arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  chat: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+  close: '<path d="M6 6l12 12M18 6 6 18"/>',
+  cal: '<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
   insta: '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/>',
   fb: '<path d="M14 21v-7.5h2.6l.4-3H14V8.7c0-.9.3-1.5 1.5-1.5H17V4.5a20 20 0 0 0-2.3-.1C12.4 4.4 11 5.8 11 8.3v2.2H8.5v3H11V21"/>'
 };
@@ -129,7 +132,7 @@ function layout(c, lang, page, title, body, desc) {
     '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "</script>" +
     '<link rel="icon" href="/assets/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap">' +
-    '<link rel="stylesheet" href="/assets/css/site.css?v=7"><script src="/assets/js/site.js?v=7"></script></head><body class="page-' + (page || "home") + '">' +
+    '<link rel="stylesheet" href="/assets/css/site.css?v=9"><script src="/assets/js/site.js?v=9"></script></head><body class="page-' + (page || "home") + '">' +
     '<a class="skip" href="#main">↓</a><header class="top"><div class="wrap top-in">' +
     '<a class="brand" href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo-sm.png" alt="' + esc(name) + '" width="62" height="56"></a>' +
     '<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="' + esc(u.menu) + '"><span></span><span></span><span></span></button>' +
@@ -146,6 +149,8 @@ function layout(c, lang, page, title, body, desc) {
       "</div>" +
       '<div class="foot-end"><span>© ' + new Date().getFullYear() + " " + esc(name) + '</span><span class="foot-langs">' + LANGS.map(l => '<a href="/' + l + "/" + page + '" lang="' + l + '">' + LANG_NAMES[l] + "</a>").join("") + "</span></div>" +
     "</div></footer>" +
+    chatWidget(c, lang, u, href) +
+    (process.env.VERCEL && s.analytics !== "off" ? '<script defer src="/_vercel/insights/script.js"></script>' : "") +
     '</body></html>';
 }
 
@@ -175,6 +180,42 @@ function projectCard(p, lang, u) {
   return '<article class="card proj" id="' + esc(p.id) + '">' + media(p.image, tr(p.title, lang), ICONS[p.icon] ? p.icon : "home", "", TONES[(p._i || 0) % 3]) + '<div class="card-body"><span class="tag tag-' + esc(p.status) + '">' + esc(u["s_" + p.status] || "") + "</span><h3>" + esc(tr(p.title, lang)) + "</h3>" + paras(tr(p.text, lang)) +
     (needs ? '<p class="needs"><strong>' + esc(u.needs) + " :</strong> " + esc(needs) + "</p>" : "") +
     (p.status !== "done" && p._href ? '<a class="btn btn-pill" href="' + p._href("donate") + "?pour=" + encodeURIComponent(p.id) + '">' + esc(u.support) + "</a>" : "") + "</div></article>";
+}
+/* ---- news, fundraiser, FAQ, chat ---- */
+function fmtDate(d, lang) {
+  const t = Date.parse(String(d || "")); if (!t) return "";
+  try { return new Date(t).toLocaleDateString(lang === "ar" ? "ar-MA" : lang === "en" ? "en-GB" : "fr-FR", { day: "numeric", month: "long", year: "numeric" }); } catch (e) { return String(d); }
+}
+function newsList(c) { return (c.news || []).filter(n => n && tr(n.title, "fr") + tr(n.title, "ar") + tr(n.title, "en")).slice().sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0)); }
+function newsCard(n, lang, u, href, i) {
+  const ex = String(tr(n.text, lang)).split(/\n\s*\n/).find(p => p.trim() && !isTodo(p)) || "";
+  return '<article class="card news rv" style="--d:' + (i % 3) + '"><a class="news-link" href="' + href("news") + "/" + esc(n.id) + '">' + media(n.image, tr(n.title, lang), "cal", "", TONES[i % 3]) +
+    '<div class="card-body"><time datetime="' + esc(n.date) + '">' + esc(fmtDate(n.date, lang)) + "</time><h3>" + esc(tr(n.title, lang)) + "</h3><p>" + esc(ex.length > 170 ? ex.slice(0, 167).replace(/\s\S*$/, "") + "…" : ex) + '</p><span class="btn-line">' + esc(u.readMore) + icon("arrow", "flip") + "</span></div></a></article>";
+}
+function campaignBlock(c, lang, u, href, withBtn) {
+  const k = c.campaign || {}, goal = parseFloat(String(k.goal || "").replace(",", ".")) || 0, cur = parseFloat(String(k.current || "").replace(",", ".")) || 0;
+  if (k.active !== "yes" || goal <= 0) return "";
+  const pct = Math.max(0, Math.min(100, Math.round(cur / goal * 100))), unit = tr(k.unit, lang);
+  const n = v => Number(v).toLocaleString(lang === "ar" ? "ar-MA" : lang === "en" ? "en-GB" : "fr-FR");
+  return '<section class="block tight"><div class="wrap"><div class="campaign rv"><div class="cp-text"><span class="pill-label">' + esc(tr(k.tag, lang)) + "</span><h2>" + esc(tr(k.title, lang)) + "</h2>" + paras(tr(k.text, lang)) + "</div>" +
+    '<div class="cp-meter"><div class="cp-nums"><strong>' + esc(n(cur)) + '</strong><span>/ ' + esc(n(goal)) + " " + esc(unit) + '</span><em>' + pct + "%</em></div>" +
+    '<div class="cp-bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + goal + '" aria-valuenow="' + cur + '" aria-label="' + esc(tr(k.title, lang)) + '"><span style="--p:' + pct + '%"></span></div>' +
+    '<p class="cp-foot">' + esc(n(cur)) + " " + esc(unit) + " " + esc(u.collected) + " · " + esc(u.goal) + " " + esc(n(goal)) + (k.deadline ? " · " + esc(tr(k.deadline, lang)) : "") + "</p>" +
+    (withBtn ? '<a class="btn btn-orange" href="' + href("donate") + '">' + icon("heart") + esc(u.donateNow) + "</a>" : "") + "</div></div></div></section>";
+}
+function faqItems(c, lang) { return (c.faq || []).map(f => ({ q: tr(f && f.q, lang), a: tr(f && f.a, lang) })).filter(f => f.q && f.a && !isTodo(f.a)); }
+function chatWidget(c, lang, u, href) {
+  const items = faqItems(c, lang); if (!items.length) return "";
+  const s = c.site || {}, wa = digits(s.whatsapp), links = [];
+  if (wa) links.push(["WhatsApp", "https://wa.me/" + wa]);
+  if (safeUrl(s.instagram)) links.push(["Instagram", safeUrl(s.instagram)]);
+  if (s.email) links.push([s.email, "mailto:" + s.email]);
+  links.push([u.contact, href("contact")]);
+  const data = { faq: items, ui: { hello: u.chatHello, no: u.chatNo }, links: links };
+  return '<div class="chat" data-chat><button class="chat-fab" type="button" aria-expanded="false" aria-controls="chat-panel">' + icon("chat") + "<span>" + esc(u.chatOpen) + "</span></button>" +
+    '<section id="chat-panel" class="chat-panel" hidden aria-label="' + esc(u.chatTitle) + '"><header><img src="/assets/img/favicon.png" alt="" width="28"><strong>' + esc(u.chatTitle) + '</strong><button class="chat-x" type="button" aria-label="' + esc(u.chatClose) + '">' + icon("close") + "</button></header>" +
+    '<div class="chat-log" aria-live="polite"></div><form class="chat-form"><input name="q" autocomplete="off" maxlength="200" placeholder="' + esc(u.chatPh) + '" aria-label="' + esc(u.chatPh) + '"><button type="submit" aria-label="' + esc(u.chatSend) + '">' + icon("arrow", "flip") + "</button></form></section>" +
+    '<script type="application/json" class="chat-data">' + JSON.stringify(data).replace(/</g, "\\u003c") + "</script></div>";
 }
 function waLink(c, text) { const n = digits(c.site && c.site.whatsapp); return n ? "https://wa.me/" + n + "?text=" + encodeURIComponent(text) : ""; }
 function partnersGrid(c, lang, u) {
@@ -212,6 +253,7 @@ function render(c, lang, page, query) {
       "</div></div></section>" +
       /* MARQUEE */
       '<div class="marquee" aria-hidden="true"><div class="marquee-track">' + marquee + marquee + "</div></div>" +
+      campaignBlock(c, lang, u, href, true) +
       /* CAUSES */
       '<section class="block"><div class="wrap"><div class="sec-head rv"><div><span class="pill-label">' + esc(tr(s.tagline, lang)) + "</span><h2>" + esc(u.activities) + '</h2></div><a class="btn btn-outline" href="' + href("activities") + '">' + esc(u.allActivities) + icon("arrow", "flip") + '</a></div><div class="causes">' +
         acts.slice(0, 3).map((a, i) => causeRow(a, lang, u, i, href, "h3")).join("") + "</div></div></section>" +
@@ -230,6 +272,7 @@ function render(c, lang, page, query) {
           '<div class="tile rv" style="--d:1"><span class="icon-dot">' + icon("moon") + "</span><h3>" + esc(tr(h.visionTitle, lang)) + "</h3>" + paras(tr(h.visionText, lang)) + "</div>" +
           '<div class="tile rv" style="--d:2"><span class="icon-dot">' + icon("users") + "</span><h3>" + esc(tr(h.missionTitle, lang)) + "</h3>" + paras(tr(h.missionText, lang)) + "</div>" +
       "</div></div></section>" +
+      (newsList(c).length ? '<section class="block"><div class="wrap"><div class="sec-head rv"><div><span class="pill-label">' + esc(u.news) + "</span><h2>" + esc(u.latestNews) + '</h2></div><a class="btn btn-outline" href="' + href("news") + '">' + esc(u.allNews) + icon("arrow", "flip") + '</a></div><div class="grid grid-3">' + newsList(c).slice(0, 3).map((n, i) => newsCard(n, lang, u, href, i)).join("") + "</div></div></section>" : "") +
       /* PARTNERS */
       '<section class="block"><div class="wrap"><div class="sec-head rv"><div><h2>' + esc(u.partners) + '</h2><p class="muted">' + esc(tr(c.partners && c.partners.intro, lang)) + '</p></div><a class="btn btn-outline" href="' + href("partners") + '">' + esc(u.becomePartner) + "</a></div>" + partnersGrid(c, lang, u) + "</div></section>" +
       /* STAY IN TOUCH: photo mosaic with a floating card */
@@ -274,6 +317,7 @@ function render(c, lang, page, query) {
     const waBtn = wa ? '<a class="btn btn-green" href="' + esc(wa) + '" rel="noopener" target="_blank">' + icon("wa") + esc(u.whatsapp) + "</a>"
       : insta ? '<a class="btn btn-ghost" href="' + esc(insta) + '" target="_blank" rel="noopener">' + icon("insta") + esc(u.instaMsg) + "</a>" : "";
     const body = pageHead(u.donate, tr(d.intro, lang), "orange") +
+      campaignBlock(c, lang, u, href, false) +
       (tTitle ? '<section class="block tight"><div class="wrap"><p class="pour">' + icon(target.icon && ICONS[target.icon] ? target.icon : "heart") + "<span>" + esc(u.youSupport) + " <strong>" + esc(tTitle) + "</strong></span></p></div></section>" : "") +
       '<section class="block"><div class="wrap grid grid-3 donate">' +
         '<div class="card pad"><div class="badge">' + icon("heart") + "</div><h2>" + esc(u.bank) + "</h2>" + bank + "</div>" +
@@ -302,6 +346,28 @@ function render(c, lang, page, query) {
       "</div></section>";
     return layout(c, lang, page, u.contact, body, tr(ct.intro, lang));
   }
+  if (page === "news") {
+    const list = newsList(c);
+    const body = pageHead(u.news, "") + '<section class="block"><div class="wrap">' + (list.length ? '<div class="grid grid-3">' + list.map((n, i) => newsCard(n, lang, u, href, i)).join("") + "</div>" : '<p class="muted center">' + esc(u.noNews) + "</p>") + "</div></section>";
+    return layout(c, lang, page, u.news, body);
+  }
+  if (page.indexOf("news/") === 0) {
+    const n = newsList(c).find(x => x.id === page.slice(5)); if (!n) return null;
+    const pic = img(n.image);
+    const body = '<article class="article"><div class="wrap narrow"><a class="back" href="' + href("news") + '">' + icon("arrow", "flip back-ico") + esc(u.backNews) + '</a><time datetime="' + esc(n.date) + '">' + esc(fmtDate(n.date, lang)) + '</time><h1 class="rv">' + esc(tr(n.title, lang)) + "</h1>" +
+      (pic ? '<figure class="art-pic rv"><img src="' + esc(pic) + '" alt="' + esc(tr(n.title, lang)) + '"></figure>' : "") + '<div class="art-body rv">' + paras(tr(n.text, lang)) + "</div>" +
+      '<div class="art-end"><a class="btn btn-orange" href="' + href("donate") + '">' + icon("heart") + esc(u.donateNow) + '</a><a class="btn btn-outline" href="' + href("news") + '">' + esc(u.allNews) + "</a></div></div></article>";
+    return layout(c, lang, "news", tr(n.title, lang), body, String(tr(n.text, lang)).slice(0, 160));
+  }
+  if (page === "faq") {
+    const items = faqItems(c, lang);
+    const ld = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: items.map(f => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
+    const body = pageHead(u.faq, "") + '<section class="block"><div class="wrap narrow faq">' +
+      items.map((f, i) => '<details class="faq-item rv" style="--d:' + (i % 4) + '"><summary>' + esc(f.q) + '<span class="pm" aria-hidden="true"></span></summary><div class="faq-a">' + paras(f.a) + "</div></details>").join("") +
+      '<div class="faq-more rv"><h2>' + esc(u.faqMore) + '</h2><a class="btn btn-orange" href="' + href("contact") + '">' + esc(u.writeUs) + "</a></div></div></section>" +
+      '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "</script>";
+    return layout(c, lang, page, u.faq, body);
+  }
   if (page === "transparency") {
     const lg = c.legal || {};
     const rows = [["l_status", tr(lg.status, lang)], ["l_registration", lg.registration], ["l_founded", lg.founded], ["l_office", tr(lg.office, lang)]].filter(r => String(r[1] || "").trim());
@@ -329,12 +395,14 @@ function clean(v, depth) {
 function slugId(s, seen) { let id = String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 50) || "item"; let b = id, k = 2; while (seen.has(id)) id = b + "-" + k++; seen.add(id); return id; }
 function normalize(c) {
   c = clean(c, 0) || {};
-  for (const key of ["site", "home", "about", "partners", "donate", "contact", "legal"]) if (!c[key] || typeof c[key] !== "object" || Array.isArray(c[key])) c[key] = {};
-  for (const key of ["stats", "activities", "projects", "gallery"]) if (!Array.isArray(c[key])) c[key] = [];
+  for (const key of ["site", "home", "about", "partners", "donate", "contact", "legal", "campaign"]) if (!c[key] || typeof c[key] !== "object" || Array.isArray(c[key])) c[key] = {};
+  for (const key of ["stats", "activities", "projects", "gallery", "news", "faq"]) if (!Array.isArray(c[key])) c[key] = [];
   if (!Array.isArray(c.partners.list)) c.partners.list = [];
   if (!Array.isArray(c.about.values)) c.about.values = [];
   if (!LANGS.includes(c.site.defaultLang)) c.site.defaultLang = "ar";
-  const seenA = new Set(), seenP = new Set();
+  const seenA = new Set(), seenP = new Set(), seenN = new Set();
+  c.news.forEach(n => { n.id = slugId(n.id || tr(n.title, "fr") || tr(n.title, "en"), seenN); n.date = /^\d{4}-\d{2}-\d{2}$/.test(String(n.date || "")) ? n.date : new Date().toISOString().slice(0, 10); });
+  if (!["yes", "no"].includes(c.campaign.active)) c.campaign.active = "no";
   c.activities.forEach(a => { a.id = slugId(a.id || tr(a.title, "fr") || tr(a.title, "en"), seenA); if (!ICONS[a.icon]) a.icon = "heart"; });
   c.projects.forEach(p => { p.id = slugId(p.id || tr(p.title, "fr") || tr(p.title, "en"), seenP); if (p.icon && !ICONS[p.icon]) p.icon = "home"; if (!["current", "upcoming", "done"].includes(p.status)) p.status = "current"; });
   return c;
@@ -415,8 +483,10 @@ async function handle(req, res) {
     if (p === "/robots.txt") return send(res, 200, "User-agent: *\nDisallow: /admin\nDisallow: /api/\n" + (safeUrl(c.site && c.site.siteUrl) ? "Sitemap: " + safeUrl(c.site.siteUrl).replace(/\/+$/, "") + "/sitemap.xml\n" : ""), { "Content-Type": "text/plain; charset=utf-8" });
     if (p === "/sitemap.xml") {
       const base = safeUrl(c.site && c.site.siteUrl).replace(/\/+$/, "") || ((isHttps(req) ? "https://" : "http://") + req.headers.host);
-      return send(res, 200, '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + LANGS.flatMap(l => PAGES.concat(EXTRA).map(pg => "<url><loc>" + esc(base + "/" + l + "/" + pg) + "</loc></url>")).join("") + "</urlset>", { "Content-Type": "application/xml; charset=utf-8" });
+      return send(res, 200, '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + LANGS.flatMap(l => PAGES.concat(EXTRA).concat(newsList(c).map(n => "news/" + n.id)).map(pg => "<url><loc>" + esc(base + "/" + l + "/" + pg) + "</loc></url>")).join("") + "</urlset>", { "Content-Type": "application/xml; charset=utf-8" });
     }
+    const na = /^\/(ar|fr|en)\/news\/([a-z0-9-]{1,60})\/?$/.exec(p);
+    if (na) { const html = render(c, na[1], "news/" + na[2], url.searchParams); if (html) return send(res, 200, html, { "Cache-Control": "public, max-age=0, s-maxage=60, stale-while-revalidate=86400" }); }
     const m = /^\/(ar|fr|en)(?:\/([a-z]*))?\/?$/.exec(p);
     if (m) {
       const page = m[2] || "";
