@@ -128,3 +128,74 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) open(false); });
   form.addEventListener("submit", function (e) { e.preventDefault(); var q = form.q.value.trim(); if (!q) return; form.q.value = ""; ask(q); });
 });
+
+/* ---------- polish: headline reveal, smart header, card shuffle, image fade, lightbox ---------- */
+document.addEventListener("DOMContentLoaded", function () {
+  var reduce = document.documentElement.classList.contains("reduce");
+
+  /* headline words rise one after another */
+  if (!reduce) document.querySelectorAll(".hero h1, .phead h1, .article h1").forEach(function (h) {
+    var words = h.textContent.trim().split(/\s+/);
+    h.textContent = "";
+    words.forEach(function (w, i) {
+      var o = document.createElement("span"), n = document.createElement("span");
+      o.className = "w"; n.className = "wi"; n.style.setProperty("--i", i); n.textContent = w;
+      o.appendChild(n); h.appendChild(o); if (i < words.length - 1) h.appendChild(document.createTextNode(" "));
+    });
+    h.classList.add("words");
+  });
+
+  /* header hides when scrolling down, comes back when scrolling up */
+  var top = document.querySelector(".top"), nav = document.getElementById("nav"), last = window.scrollY;
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY;
+    if (top && !(nav && nav.classList.contains("open"))) top.classList.toggle("hide", y > last && y > 160);
+    last = y;
+  }, { passive: true });
+
+  /* images fade in once loaded */
+  document.querySelectorAll("main img").forEach(function (im) {
+    if (im.complete && im.naturalWidth) return;
+    im.classList.add("fade");
+    im.addEventListener("load", function () { im.classList.add("loaded"); }, { once: true });
+    im.addEventListener("error", function () { im.classList.add("loaded"); }, { once: true });
+  });
+
+  /* hero cards take turns in front */
+  var fan = document.querySelector(".fan"), cards = fan ? fan.querySelectorAll(".fan-card") : [];
+  if (!reduce && cards.length === 3) {
+    var order = ["f0", "f1", "f2"], paused = false;
+    fan.addEventListener("mouseenter", function () { paused = true; });
+    fan.addEventListener("mouseleave", function () { paused = false; });
+    setInterval(function () {
+      if (paused || document.hidden) return;
+      order.unshift(order.pop());
+      cards.forEach(function (cd, i) { cd.classList.remove("f0", "f1", "f2"); cd.classList.add(order[i]); });
+    }, 4200);
+  }
+
+  /* gallery lightbox */
+  var items = Array.prototype.slice.call(document.querySelectorAll(".g-item"));
+  if (items.length && window.HTMLDialogElement) {
+    var dlg = document.createElement("dialog"); dlg.className = "lightbox";
+    dlg.innerHTML = '<figure><img alt=""><figcaption></figcaption></figure><button class="lb-x" type="button" aria-label="×">×</button><button class="lb-p" type="button" aria-label="‹">‹</button><button class="lb-n" type="button" aria-label="›">›</button>';
+    document.body.appendChild(dlg);
+    var cur = 0, im = dlg.querySelector("img"), cap = dlg.querySelector("figcaption"), rtl = document.documentElement.dir === "rtl";
+    var show = function (i) {
+      cur = (i + items.length) % items.length;
+      var src = items[cur].querySelector("img"), fc = items[cur].querySelector("figcaption");
+      im.src = src.currentSrc || src.src; im.alt = src.alt; cap.textContent = fc ? fc.textContent : "";
+    };
+    items.forEach(function (it, i) {
+      it.tabIndex = 0; it.setAttribute("role", "button");
+      var go = function () { show(i); dlg.showModal(); };
+      it.addEventListener("click", function () { if (!document.querySelector(".gallery.drag")) go(); });
+      it.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+    });
+    dlg.querySelector(".lb-x").addEventListener("click", function () { dlg.close(); });
+    dlg.querySelector(".lb-p").addEventListener("click", function () { show(cur + (rtl ? 1 : -1)); });
+    dlg.querySelector(".lb-n").addEventListener("click", function () { show(cur + (rtl ? -1 : 1)); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
+  }
+});

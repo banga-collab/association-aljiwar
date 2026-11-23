@@ -132,7 +132,7 @@ function layout(c, lang, page, title, body, desc) {
     '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "</script>" +
     '<link rel="icon" href="/assets/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap">' +
-    '<link rel="stylesheet" href="/assets/css/site.css?v=9"><script src="/assets/js/site.js?v=9"></script></head><body class="page-' + (page || "home") + '">' +
+    '<link rel="stylesheet" href="/assets/css/site.css?v=12"><script src="/assets/js/site.js?v=12"></script></head><body class="page-' + (page || "home") + '">' +
     '<a class="skip" href="#main">↓</a><header class="top"><div class="wrap top-in">' +
     '<a class="brand" href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo-sm.png" alt="' + esc(name) + '" width="62" height="56"></a>' +
     '<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="' + esc(u.menu) + '"><span></span><span></span><span></span></button>' +
