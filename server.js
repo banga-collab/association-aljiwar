@@ -58,7 +58,7 @@ const UI = {
     partnersSoon: "قائمة الشركاء قيد التحديث.", becomePartner: "كن شريكًا", writeUs: "راسلنا",
     bank: "التحويل البنكي", bankName: "البنك", holder: "صاحب الحساب", rib: "رقم الحساب (RIB)", swift: "SWIFT", copy: "نسخ", copied: "تم النسخ",
     bankAsk: "اطلبوا معلومات الحساب البنكي عبر واتساب.", inKind: "تبرع عيني", volunteer: "تطوّع معنا", whatsapp: "واتساب", whatsappMsg: "السلام عليكم، أريد التبرع لجمعية الجوار",
-    phone: "الهاتف", email: "البريد الإلكتروني", address: "العنوان", hours: "أوقات الاستقبال", follow: "تابعونا",
+    phone: "الهاتف", email: "البريد الإلكتروني", address: "العنوان", hours: "أوقات الاستقبال", follow: "تابعونا", gallery: "أنشطتنا بالصور",
     formName: "الاسم", formMsg: "رسالتكم", formSend: "إرسال عبر واتساب", formNoWa: "رقم واتساب غير متوفر بعد. راسلونا عبر البريد الإلكتروني.",
     rights: "جميع الحقوق محفوظة", stay: "لنبقَ على تواصل", stayTitle: "سؤال، تبرع أو رغبة في التطوع؟ نحن هنا.", menu: "القائمة", privacy: "لا ننشر أي معطيات شخصية عن المستفيدين." },
   fr: { home: "Accueil", about: "Qui sommes-nous", activities: "Nos activités", projects: "Nos projets", partners: "Partenaires", donate: "Faire un don", contact: "Contact",
@@ -68,7 +68,7 @@ const UI = {
     partnersSoon: "La liste de nos partenaires arrive bientôt.", becomePartner: "Devenir partenaire", writeUs: "Nous écrire",
     bank: "Virement bancaire", bankName: "Banque", holder: "Titulaire", rib: "RIB", swift: "SWIFT", copy: "Copier", copied: "Copié",
     bankAsk: "Demandez nos coordonnées bancaires sur WhatsApp.", inKind: "Don en nature", volunteer: "Devenir bénévole", whatsapp: "WhatsApp", whatsappMsg: "Bonjour, je souhaite faire un don à l'Association Al Jiwar",
-    phone: "Téléphone", email: "E-mail", address: "Adresse", hours: "Horaires", follow: "Suivez-nous",
+    phone: "Téléphone", email: "E-mail", address: "Adresse", hours: "Horaires", follow: "Suivez-nous", gallery: "Nos actions en images",
     formName: "Votre nom", formMsg: "Votre message", formSend: "Envoyer sur WhatsApp", formNoWa: "Numéro WhatsApp bientôt disponible. Écrivez-nous par e-mail.",
     rights: "Tous droits réservés", stay: "Restons en contact", stayTitle: "Une question, un don, l'envie d'aider ? Écrivez-nous.", menu: "Menu", privacy: "Nous ne publions aucune donnée personnelle sur les bénéficiaires." },
   en: { home: "Home", about: "About us", activities: "What we do", projects: "Projects", partners: "Partners", donate: "Donate", contact: "Contact",
@@ -78,7 +78,7 @@ const UI = {
     partnersSoon: "Our partner list is coming soon.", becomePartner: "Become a partner", writeUs: "Write to us",
     bank: "Bank transfer", bankName: "Bank", holder: "Account holder", rib: "Account number (RIB)", swift: "SWIFT", copy: "Copy", copied: "Copied",
     bankAsk: "Ask us for our bank details on WhatsApp.", inKind: "In-kind donation", volunteer: "Volunteer with us", whatsapp: "WhatsApp", whatsappMsg: "Hello, I would like to donate to Al Jiwar Association",
-    phone: "Phone", email: "Email", address: "Address", hours: "Opening hours", follow: "Follow us",
+    phone: "Phone", email: "Email", address: "Address", hours: "Opening hours", follow: "Follow us", gallery: "Our work in pictures",
     formName: "Your name", formMsg: "Your message", formSend: "Send on WhatsApp", formNoWa: "WhatsApp number coming soon. Please email us.",
     rights: "All rights reserved", stay: "Stay connected", stayTitle: "A question, a donation, want to help? Write to us.", menu: "Menu", privacy: "We never publish personal data about the people we help." }
 };
@@ -117,7 +117,7 @@ function layout(c, lang, page, title, body, desc) {
     '<meta property="og:title" content="' + esc(title || name) + '"><meta property="og:image" content="/assets/img/logo.png">' + alt +
     '<link rel="icon" href="/assets/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">' +
-    '<link rel="stylesheet" href="/assets/css/site.css?v=3"></head><body class="page-' + (page || "home") + '">' +
+    '<link rel="stylesheet" href="/assets/css/site.css?v=5"><script src="/assets/js/site.js?v=5"></script></head><body class="page-' + (page || "home") + '">' +
     '<a class="skip" href="#main">↓</a><header class="top"><div class="wrap top-in">' +
     '<a class="brand" href="' + href("") + '"><img src="/assets/img/symbol.png" alt="" width="44" height="34"><span>' + esc(name) + "</span></a>" +
     '<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="' + esc(u.menu) + '"><span></span><span></span><span></span></button>' +
@@ -132,11 +132,11 @@ function layout(c, lang, page, title, body, desc) {
       (social ? "<li>" + social + "</li>" : "") +
     '</ul></div><div><h3>' + esc(u.menu) + '</h3><ul>' + PAGES.map(p => '<li><a href="' + href(p) + '">' + esc(p ? u[p] : u.home) + "</a></li>").join("") + "</ul></div></div>" +
     '<div class="wrap foot-end"><span>© ' + new Date().getFullYear() + " " + esc(name) + " · " + esc(u.rights) + "</span><span>" + esc(u.privacy) + "</span></div></footer>" +
-    '<script src="/assets/js/site.js" defer></script></body></html>';
+    '</body></html>';
 }
 
 function pageHead(title, intro, tone) {
-  return '<section class="phead-wrap"><div class="wrap"><div class="phead ' + (tone || "") + '"><span class="pill-label">' + esc(title) + "</span><h1>" + esc(title) + "</h1>" + (intro ? '<div class="lead">' + paras(intro) + "</div>" : "") + "</div></div></section>";
+  return '<section class="phead-wrap"><div class="wrap"><div class="phead ' + (tone || "") + '"><div class="rings" aria-hidden="true"><span></span><span></span><span></span></div><h1 class="rv">' + esc(title) + "</h1>" + (intro ? '<div class="lead rv" style="--d:1">' + paras(intro) + "</div>" : "") + "</div></div></section>";
 }
 /* photo, or a brand-coloured panel (blue / orange / green) when no photo has been added yet */
 function media(src, alt, fallbackIcon, cls, tone) {
@@ -146,7 +146,7 @@ function media(src, alt, fallbackIcon, cls, tone) {
 }
 const TONES = ["blue", "orange", "green"];
 function causeRow(a, lang, u, i, href, tag) {
-  return '<article class="cause" id="' + esc(a.id) + '"><div class="cause-card"><span class="icon-dot">' + icon(a.icon) + "</span><" + tag + ">" + esc(tr(a.title, lang)) + "</" + tag + ">" + paras(tr(a.text, lang)) +
+  return '<article class="cause rv" id="' + esc(a.id) + '"><div class="cause-card"><span class="icon-dot">' + icon(a.icon) + "</span><" + tag + ">" + esc(tr(a.title, lang)) + "</" + tag + ">" + paras(tr(a.text, lang)) +
     '<a class="btn btn-pill" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div>" + media(a.image, tr(a.title, lang), a.icon, "cause-media", TONES[i % 3]) + "</article>";
 }
 function statBox(x, lang, cls) {
@@ -173,37 +173,52 @@ function render(c, lang, page) {
   const u = UI[lang], h = c.home || {}, s = c.site || {}, href = p => "/" + lang + "/" + p;
   if (page === "") {
     const st = c.stats || [], vals = (c.about && c.about.values) || [], acts = c.activities || [];
-    const hero = img(h.heroImage);
+    const gal = (c.gallery || []).filter(g => img(g.image));
+    const cards = (h.heroCards || []).map(x => img(x && x.image)).filter(Boolean).slice(0, 3);
     const chips = [h.chip1, h.chip2].map(x => tr(x, lang)).filter(Boolean);
-    const tile = (v, ic) => v ? '<div class="tile"><span class="icon-dot">' + icon(ic) + "</span><h3>" + esc(tr(v.title, lang)) + "</h3>" + paras(tr(v.text, lang)) + "</div>" : "";
+    const insta = safeUrl(s.instagram);
+    const tile = (v, ic, d) => v ? '<div class="tile rv" style="--d:' + d + '"><span class="icon-dot">' + icon(ic) + "</span><h3>" + esc(tr(v.title, lang)) + "</h3>" + paras(tr(v.text, lang)) + "</div>" : "";
+    const words = [tr(s.tagline, lang)].concat(acts.map(a => tr(a.title, lang))).filter(Boolean);
+    const marquee = words.map(w => "<span>" + esc(w) + '</span><i aria-hidden="true">✦</i>').join("");
     const body =
-      /* hero: full-width rounded photo (or brand panel), headline bottom-start, chips + donation card bottom-end */
-      '<section class="hero"><div class="wrap"><div class="hero-box' + (hero ? "" : " no-photo") + '"' + (hero ? ' style="background-image:url(\'' + esc(hero) + '\')"' : "") + ">" +
-        (hero ? "" : '<img class="hero-mark" src="/assets/img/symbol.png" alt="">') +
-        '<div class="hero-text"><span class="pill-label light">' + esc(tr(s.tagline, lang)) + "</span><h1>" + esc(tr(h.heroTitle, lang)) + "</h1>" + paras(tr(h.heroText, lang)) + "</div>" +
-        '<div class="hero-side">' + chips.map(x => '<span class="chip">' + esc(x) + "</span>").join("") +
-          '<div class="float-card"><div class="fc-top"><span class="fc-brand"><img src="/assets/img/favicon.png" alt="">' + esc(tr(s.name, lang)) + "</span><span>" + esc(tr(h.cardTag, lang)) + '</span></div><span class="icon-dot">' + icon("heart") + "</span><h3>" + esc(tr(h.cardTitle, lang) || u.ctaTitle) + "</h3><p>" + esc(tr(h.cardText, lang) || u.ctaText) + '</p><a class="btn btn-pill btn-lg" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div></div>" +
+      /* HERO: brand panel, animated rings, text on one side, fanned photo cards + donation card on the other */
+      '<section class="hero"><div class="wrap"><div class="hero-box">' +
+        '<div class="rings" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="glow" aria-hidden="true"></div>' +
+        '<div class="hero-text"><span class="pill-label light rv">' + esc(tr(s.tagline, lang)) + '</span><h1 class="rv" style="--d:1">' + esc(tr(h.heroTitle, lang)) + '</h1><div class="rv hero-p" style="--d:2">' + paras(tr(h.heroText, lang)) + "</div>" +
+          '<div class="actions rv" style="--d:3"><a class="btn btn-orange btn-lg" href="' + href("donate") + '">' + icon("heart") + esc(u.donateNow) + '</a><a class="btn btn-glass btn-lg" href="' + href("activities") + '">' + esc(u.seeActivities) + icon("arrow", "flip") + "</a></div>" +
+          (chips.length ? '<div class="chips rv" style="--d:4">' + chips.map(x => '<span class="chip">' + esc(x) + "</span>").join("") + "</div>" : "") + "</div>" +
+        '<div class="hero-art" data-tilt>' +
+          '<div class="fan">' + (cards.length ? cards.map((src, i) => '<figure class="fan-card f' + i + '"><img src="' + esc(src) + '" alt="" loading="' + (i ? "lazy" : "eager") + '"></figure>').join("")
+                                              : '<figure class="fan-card f1 logo-card"><img src="/assets/img/logo.png" alt=""></figure>') + "</div>" +
+          '<div class="float-card"><div class="fc-top"><span class="fc-brand"><img src="/assets/img/favicon.png" alt="">' + esc(tr(s.name, lang)) + "</span><span>" + esc(tr(h.cardTag, lang)) + "</span></div><h3>" + esc(tr(h.cardTitle, lang) || u.ctaTitle) + "</h3><p>" + esc(tr(h.cardText, lang) || u.ctaText) + '</p><a class="btn btn-pill" href="' + href("donate") + '">' + esc(u.donateNow) + icon("arrow", "flip") + "</a></div>" +
+        "</div>" +
       "</div></div></section>" +
-      /* causes: card + photo, three rows */
-      '<section class="block"><div class="wrap"><div class="sec-head"><div><span class="pill-label">' + esc(u.activities) + "</span><h2>" + esc(tr(h.missionTitle, lang)) + '</h2></div><a class="btn btn-outline" href="' + href("activities") + '">' + esc(u.allActivities) + '</a></div><div class="causes">' +
+      /* MARQUEE */
+      '<div class="marquee" aria-hidden="true"><div class="marquee-track">' + marquee + marquee + "</div></div>" +
+      /* CAUSES */
+      '<section class="block"><div class="wrap"><div class="sec-head rv"><div><span class="pill-label">' + esc(u.activities) + "</span><h2>" + esc(tr(h.missionTitle, lang)) + '</h2></div><a class="btn btn-outline" href="' + href("activities") + '">' + esc(u.allActivities) + icon("arrow", "flip") + '</a></div><div class="causes">' +
         acts.slice(0, 3).map((a, i) => causeRow(a, lang, u, i, href, "h3")).join("") + "</div></div></section>" +
-      /* bento */
+      /* BENTO */
       '<section class="block"><div class="wrap"><div class="bento">' +
-        '<div class="b-col">' + media(c.about && c.about.image, "", "logo", "tile-photo", "blue") + '<div class="tile">' + statBox(st[1], lang) + "<h3>" + esc(tr(vals[0] && vals[0].title, lang)) + "</h3>" + paras(tr(vals[0] && vals[0].text, lang)) + "</div></div>" +
-        '<div class="b-col">' + tile(vals[1], "heart") + '<div class="tile tile-stat">' + (statBox(st[0], lang, "big") || '<div class="stat big quote"><span class="icon-dot">' + icon("heart") + "</span><strong>" + esc(tr(s.tagline, lang)) + "</strong></div>") + "</div></div>" +
-        '<div class="b-col">' + tile(vals[2], "box") + media(acts[3] && acts[3].image, "", acts[3] ? acts[3].icon : "table", "tile-photo", "orange") + "</div>" +
+        '<div class="b-col">' + media(gal[0] && gal[0].image, "", "logo", "tile-photo rv zoom", "blue") + '<div class="tile rv" style="--d:1">' + statBox(st[1], lang) + '<span class="icon-dot">' + icon("users") + "</span><h3>" + esc(tr(vals[0] && vals[0].title, lang)) + "</h3>" + paras(tr(vals[0] && vals[0].text, lang)) + "</div></div>" +
+        '<div class="b-col">' + tile(vals[1], "heart", 1) + '<div class="tile tile-stat rv" style="--d:2">' + (statBox(st[0], lang, "big") || '<div class="stat big quote"><span class="icon-dot">' + icon("heart") + "</span><strong>" + esc(tr(s.tagline, lang)) + "</strong></div>") + "</div></div>" +
+        '<div class="b-col">' + tile(vals[2], "box", 2) + media(gal[1] && gal[1].image, "", "table", "tile-photo rv zoom", "orange") + "</div>" +
       "</div></div></section>" +
-      /* vision & mission */
-      '<section class="block"><div class="wrap vm">' + media(h.visionImage, "", "hands", "vm-photo", "green") +
+      /* INSTAGRAM GALLERY */
+      (gal.length ? '<section class="block"><div class="wrap"><div class="sec-head rv"><div><span class="pill-label">Instagram</span><h2>' + esc(u.gallery) + "</h2></div>" + (insta ? '<a class="btn btn-outline" href="' + esc(insta) + '" target="_blank" rel="noopener">' + esc(u.follow) + "</a>" : "") + "</div></div>" +
+        '<div class="gallery-wrap"><div class="gallery" tabindex="0">' + gal.map((g, i) => '<figure class="g-item rv" style="--d:' + (i % 4) + '"><img src="' + esc(img(g.image)) + '" alt="' + esc(tr(g.caption, lang)) + '" loading="lazy">' + (tr(g.caption, lang) ? "<figcaption>" + esc(tr(g.caption, lang)) + "</figcaption>" : "") + "</figure>").join("") + "</div></div></section>" : "") +
+      /* VISION & MISSION */
+      '<section class="block"><div class="wrap vm">' + media(h.visionImage, "", "hands", "vm-photo rv zoom", "green") +
         '<div class="vm-grid">' + statBox(st[2], lang, "mini") + statBox(st[3], lang, "mini") +
-          '<div class="tile"><span class="icon-dot">' + icon("moon") + "</span><h3>" + esc(tr(h.visionTitle, lang)) + "</h3>" + paras(tr(h.visionText, lang)) + "</div>" +
-          '<div class="tile"><span class="icon-dot">' + icon("users") + "</span><h3>" + esc(tr(h.missionTitle, lang)) + "</h3>" + paras(tr(h.missionText, lang)) + "</div>" +
+          '<div class="tile rv" style="--d:1"><span class="icon-dot">' + icon("moon") + "</span><h3>" + esc(tr(h.visionTitle, lang)) + "</h3>" + paras(tr(h.visionText, lang)) + "</div>" +
+          '<div class="tile rv" style="--d:2"><span class="icon-dot">' + icon("users") + "</span><h3>" + esc(tr(h.missionTitle, lang)) + "</h3>" + paras(tr(h.missionText, lang)) + "</div>" +
       "</div></div></section>" +
-      /* partners */
-      '<section class="block"><div class="wrap"><div class="sec-head"><div><h2>' + esc(u.partners) + "</h2><p class=\"muted\">" + esc(tr(c.partners && c.partners.intro, lang)) + '</p></div><a class="btn btn-outline" href="' + href("partners") + '">' + esc(u.becomePartner) + "</a></div>" + partnersGrid(c, lang, u) + "</div></section>" +
-      /* stay in touch: card floating over a photo */
-      '<section class="block"><div class="wrap"><div class="band">' + media(h.bandImage, "", "logo", "band-media", "blue") +
-        '<div class="band-card"><span class="pill-label">' + esc(u.stay) + "</span><h2>" + esc(u.stayTitle) + '</h2><a class="btn btn-pill" href="' + href("contact") + '">' + esc(u.writeUs) + "</a></div></div></div></section>";
+      /* PARTNERS */
+      '<section class="block"><div class="wrap"><div class="sec-head rv"><div><h2>' + esc(u.partners) + '</h2><p class="muted">' + esc(tr(c.partners && c.partners.intro, lang)) + '</p></div><a class="btn btn-outline" href="' + href("partners") + '">' + esc(u.becomePartner) + "</a></div>" + partnersGrid(c, lang, u) + "</div></section>" +
+      /* STAY IN TOUCH: photo mosaic with a floating card */
+      '<section class="block"><div class="wrap"><div class="band rv">' +
+        (gal.length >= 4 ? '<div class="band-mosaic" aria-hidden="true">' + gal.slice(-4).map(g => '<img src="' + esc(img(g.image)) + '" alt="" loading="lazy">').join("") + "</div>" : media(h.bandImage, "", "logo", "band-media", "blue")) +
+        '<div class="band-card"><span class="pill-label">' + esc(u.stay) + "</span><h2>" + esc(u.stayTitle) + '</h2><div class="actions"><a class="btn btn-pill" href="' + href("contact") + '">' + esc(u.writeUs) + icon("arrow", "flip") + "</a>" + (insta ? '<a class="btn btn-outline btn-sm" href="' + esc(insta) + '" target="_blank" rel="noopener">Instagram</a>' : "") + "</div></div></div></div></section>";
     return layout(c, lang, page, "", body);
   }
   if (page === "about") {
@@ -278,7 +293,7 @@ function slugId(s, seen) { let id = String(s || "").toLowerCase().normalize("NFD
 function normalize(c) {
   c = clean(c, 0) || {};
   for (const key of ["site", "home", "about", "partners", "donate", "contact"]) if (!c[key] || typeof c[key] !== "object" || Array.isArray(c[key])) c[key] = {};
-  for (const key of ["stats", "activities", "projects"]) if (!Array.isArray(c[key])) c[key] = [];
+  for (const key of ["stats", "activities", "projects", "gallery"]) if (!Array.isArray(c[key])) c[key] = [];
   if (!Array.isArray(c.partners.list)) c.partners.list = [];
   if (!Array.isArray(c.about.values)) c.about.values = [];
   if (!LANGS.includes(c.site.defaultLang)) c.site.defaultLang = "ar";

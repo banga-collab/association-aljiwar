@@ -21,7 +21,7 @@
     },
     "mapEmbed": "",
     "facebook": "",
-    "instagram": "",
+    "instagram": "https://www.instagram.com/associationaljiwar/",
     "siteUrl": ""
   },
   "home": {
@@ -81,8 +81,19 @@
       "fr": "Un quartier où aucune famille ne reste seule face au besoin, où chaque voisin connaît et soutient l'autre.",
       "en": "A neighbourhood where no family faces hardship alone, where neighbours know and support each other."
     },
-    "visionImage": "",
-    "bandImage": ""
+    "visionImage": "/assets/img/ig/atlas-desert.jpg",
+    "bandImage": "",
+    "heroCards": [
+      {
+        "image": "/assets/img/ig/decennie.jpg"
+      },
+      {
+        "image": "/assets/img/ig/logo-3d.jpg"
+      },
+      {
+        "image": "/assets/img/ig/projection-salle.jpg"
+      }
+    ]
   },
   "stats": [
     {
@@ -318,6 +329,26 @@
         "fr": "",
         "en": ""
       }
+    },
+    {
+      "id": "iguiliz",
+      "status": "done",
+      "image": "/assets/img/ig/projection-ecran.jpg",
+      "title": {
+        "ar": "عرض «إگيليز، الطريق إلى مراكش»",
+        "fr": "Projection « Iguiliz, la route de Marrakech »",
+        "en": "Screening of \"Iguiliz, the road to Marrakech\""
+      },
+      "text": {
+        "ar": "عرض الفيلم الوثائقي «إگيليز، الطريق إلى مراكش» يوم السبت 24 أكتوبر 2026 بسينما الصحراء بأكادير، بتعاون مع جمعية الجوار.",
+        "fr": "Projection du documentaire « Iguiliz, la route de Marrakech » le samedi 24 octobre 2026 au Cinéma Sahara d'Agadir, en collaboration avec l'Association Al Jiwar.",
+        "en": "Screening of the documentary \"Iguiliz, the road to Marrakech\" on Saturday 24 October 2026 at Cinéma Sahara in Agadir, in collaboration with Al Jiwar Association."
+      },
+      "needs": {
+        "ar": "",
+        "fr": "",
+        "en": ""
+      }
     }
   ],
   "partners": {
@@ -365,5 +396,71 @@
       "fr": "",
       "en": ""
     }
-  }
+  },
+  "gallery": [
+    {
+      "image": "/assets/img/ig/studio.jpg",
+      "caption": {
+        "ar": "هوية الجوار",
+        "fr": "L'identité Al Jiwar",
+        "en": "The Al Jiwar identity"
+      }
+    },
+    {
+      "image": "/assets/img/ig/iguiliz-affiche.jpg",
+      "caption": {
+        "ar": "عرض «إگيليز، الطريق إلى مراكش»",
+        "fr": "Projection « Iguiliz, la route de Marrakech »",
+        "en": "\"Iguiliz, the road to Marrakech\" screening"
+      }
+    },
+    {
+      "image": "/assets/img/ig/logo-3d.jpg",
+      "caption": {
+        "ar": "أنا الجوار",
+        "fr": "Je suis Al Jiwar",
+        "en": "I am Al Jiwar"
+      }
+    },
+    {
+      "image": "/assets/img/ig/decennie.jpg",
+      "caption": {
+        "ar": "عقد من الزمان",
+        "fr": "Une décennie",
+        "en": "A decade"
+      }
+    },
+    {
+      "image": "/assets/img/ig/identite.jpg",
+      "caption": {
+        "ar": "وهذا شعاري",
+        "fr": "Notre logo",
+        "en": "Our logo"
+      }
+    },
+    {
+      "image": "/assets/img/ig/projection-salle.jpg",
+      "caption": {
+        "ar": "سينما الصحراء، أكادير",
+        "fr": "Cinéma Sahara, Agadir",
+        "en": "Cinéma Sahara, Agadir"
+      }
+    },
+    {
+      "image": "/assets/img/ig/atlas-desert.jpg",
+      "caption": {
+        "ar": "جبال الأطلس",
+        "fr": "Les montagnes de l'Atlas",
+        "en": "The Atlas mountains"
+      }
+    },
+    {
+      "image": "/assets/img/ig/iguiliz.jpg",
+      "caption": {
+        "ar": "إگيليز",
+        "fr": "Iguiliz",
+        "en": "Iguiliz"
+      }
+    }
+  ]
 }

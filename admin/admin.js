@@ -25,7 +25,7 @@
     { id: "home", label: "Accueil", fields: [
       { obj: "home", k: "heroTitle", label: "Grand titre", type: "ml" },
       { obj: "home", k: "heroText", label: "Texte d'introduction", type: "mlarea" },
-      { obj: "home", k: "heroImage", label: "Photo d'accueil", hint: "sans photo, le logo s'affiche", type: "image" },
+      { obj: "home", k: "heroCards", label: "Cartes photo du bandeau d'accueil", hint: "3 photos au format portrait", type: "list", title: function (x) { return x.image; }, blank: function () { return { image: "" }; }, fields: [{ k: "image", label: "Photo", type: "image" }] },
       { obj: "home", k: "chip1", label: "Petite étiquette 1 (sur la photo)", type: "ml" },
       { obj: "home", k: "chip2", label: "Petite étiquette 2 (sur la photo)", type: "ml" },
       { obj: "home", k: "cardTag", label: "Carte don : petite mention", hint: "ex. Ramadan 1448", type: "ml" },
@@ -46,6 +46,10 @@
       { obj: "about", k: "image", label: "Photo", type: "image" },
       { obj: "about", k: "values", label: "Valeurs", type: "list", title: function (x) { return x.title && x.title.fr; }, blank: function () { return { title: {}, text: {} }; }, fields: [
         { k: "title", label: "Titre", type: "ml" }, { k: "text", label: "Texte", type: "mlarea" } ] }
+    ] },
+    { id: "gallery", label: "Galerie", hint: "Photos de la section « Nos actions en images » (les 2 premières vont aussi dans la grille, les 4 dernières dans le bandeau du bas).", fields: [
+      { root: "gallery", label: "Photos", type: "list", title: function (x) { return (x.caption && x.caption.fr) || x.image; }, blank: function () { return { image: "", caption: {} }; }, fields: [
+        { k: "image", label: "Photo", type: "image" }, { k: "caption", label: "Légende", hint: "facultatif", type: "ml" } ] }
     ] },
     { id: "activities", label: "Activités", fields: [
       { root: "activities", label: "Activités", type: "list", title: function (x) { return x.title && x.title.fr; }, blank: function () { return { id: "", icon: "heart", image: "", title: {}, text: {} }; }, fields: [
