@@ -639,59 +639,5 @@
         "en": "All our contact details are on the Contact page. You can also message us on Instagram."
       }
     }
-  ],
-  "story": [
-    {
-      "icon": "heart",
-      "title": {
-        "ar": "التبرع",
-        "fr": "Le don",
-        "en": "The gift"
-      },
-      "text": {
-        "ar": "كل شيء يبدأ بمبادرة: تحويل بنكي، كيس دقيق، أو صندوق ملابس يحمله جار إلى الجمعية.",
-        "fr": "Tout commence par un geste : un virement, un sac de farine, un carton de vêtements déposé par un voisin.",
-        "en": "It all starts with a gesture: a bank transfer, a bag of flour, a box of clothes dropped off by a neighbour."
-      }
-    },
-    {
-      "icon": "box",
-      "title": {
-        "ar": "المخزن",
-        "fr": "L'entrepôt",
-        "en": "The warehouse"
-      },
-      "text": {
-        "ar": "كل تبرع يُفرَز ويُسجَّل ويُرتَّب في مخازننا. نعرف ما يدخل، وما يخرج، وما ينقص.",
-        "fr": "Chaque don est trié, enregistré et rangé dans nos entrepôts. Nous savons ce qui entre, ce qui sort et ce qui manque.",
-        "en": "Every donation is sorted, recorded and stored in our warehouses. We know what comes in, what goes out and what is missing."
-      }
-    },
-    {
-      "icon": "home",
-      "title": {
-        "ar": "الأسرة",
-        "fr": "La famille",
-        "en": "The family"
-      },
-      "text": {
-        "ar": "يحضّر متطوعونا القفف ويوصلونها إلى أسر الحي، باحترام وسرية.",
-        "fr": "Nos bénévoles préparent les paniers et les apportent aux familles du quartier, avec respect et discrétion.",
-        "en": "Our volunteers prepare the baskets and bring them to families in the neighbourhood, with respect and discretion."
-      }
-    },
-    {
-      "icon": "moon",
-      "title": {
-        "ar": "الإفطار",
-        "fr": "Le ftour",
-        "en": "The iftar"
-      },
-      "text": {
-        "ar": "في رمضان، تُضاء مائدة للأيتام وأسرهم. هنا تكتمل القصة.",
-        "fr": "Pendant Ramadan, une table s'allume pour les orphelins et leurs familles. C'est là que l'histoire prend tout son sens.",
-        "en": "During Ramadan, a table lights up for orphans and their families. That is where the story comes full circle."
-      }
-    }
   ]
 }

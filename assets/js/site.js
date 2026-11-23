@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var reduce = document.documentElement.classList.contains("reduce");
 
   /* headline words rise one after another */
-  if (!reduce) document.querySelectorAll(".nhero h1, .hero h1, .phead h1, .article h1").forEach(function (h) {
+  if (!reduce) document.querySelectorAll(".hero h1, .phead h1, .article h1").forEach(function (h) {
     var words = h.textContent.trim().split(/\s+/);
     h.textContent = "";
     words.forEach(function (w, i) {
@@ -198,22 +198,4 @@ document.addEventListener("DOMContentLoaded", function () {
     dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
     dlg.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
   }
-});
-
-/* ---------- night design: story chapters follow the scroll ---------- */
-document.addEventListener("DOMContentLoaded", function () {
-  var steps = document.querySelectorAll(".story .step"), stage = document.querySelector(".sv-stage");
-  if (!steps.length || !stage) return;
-  var scenes = stage.querySelectorAll(".scene"), bars = stage.querySelectorAll(".sv-bar span");
-  var set = function (i) {
-    steps.forEach(function (s, k) { s.classList.toggle("on", k === i); });
-    scenes.forEach(function (s, k) { s.classList.toggle("on", k === i); });
-    bars.forEach(function (b, k) { b.classList.toggle("on", k <= i); });
-    stage.setAttribute("data-active", i);
-  };
-  if (!("IntersectionObserver" in window)) return;
-  var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) { if (e.isIntersecting) set(+e.target.getAttribute("data-i")); });
-  }, { rootMargin: "-45% 0px -45% 0px" });
-  steps.forEach(function (s) { io.observe(s); });
 });

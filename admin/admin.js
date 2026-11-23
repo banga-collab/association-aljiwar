@@ -48,10 +48,6 @@
       { obj: "about", k: "values", label: "Valeurs", type: "list", title: function (x) { return x.title && x.title.fr; }, blank: function () { return { title: {}, text: {} }; }, fields: [
         { k: "title", label: "Titre", type: "ml" }, { k: "text", label: "Texte", type: "mlarea" } ] }
     ] },
-    { id: "story", icon: "☾", page: "", label: "Histoire", hint: "Les chapitres racontés pendant le défilement sur l'accueil (4 conseillés).", fields: [
-      { root: "story", label: "Chapitres", type: "list", title: function (x) { return x.title && x.title.fr; }, blank: function () { return { icon: "heart", title: {}, text: {} }; }, fields: [
-        { k: "title", label: "Titre", type: "ml" }, { k: "icon", label: "Dessin", type: "select", opts: ICONS }, { k: "text", label: "Texte", type: "mlarea", rows: 3 } ] }
-    ] },
     { id: "gallery", icon: "▦", page: "", label: "Galerie", hint: "Photos de la section « Nos actions en images » (les 2 premières vont aussi dans la grille, les 4 dernières dans le bandeau du bas).", fields: [
       { root: "gallery", label: "Photos", type: "list", title: function (x) { return (x.caption && x.caption.fr) || x.image; }, blank: function () { return { image: "", caption: {} }; }, fields: [
         { k: "image", label: "Photo", type: "image" }, { k: "caption", label: "Légende", hint: "facultatif", type: "ml" } ] }

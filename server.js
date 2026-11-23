@@ -56,7 +56,7 @@ function img(u) { u = String(u || "").trim(); return /^\/assets\/[\w\-./]+\.(jpe
 
 /* ---------------- interface strings ---------------- */
 const UI = {
-  ar: { storyCta: "اكتشفوا القصة", chapter: "الفصل", news: "المستجدات", latestNews: "آخر المستجدات", allNews: "كل المستجدات", readMore: "اقرأ المقال", backNews: "العودة إلى المستجدات", noNews: "لا توجد مستجدات حاليًا.", faq: "أسئلة شائعة", faqMore: "لم تجدوا جوابكم؟", collected: "تم جمعه", goal: "الهدف", chatOpen: "عندك سؤال؟", chatTitle: "مساعد الجوار", chatHello: "مرحبًا! اختاروا سؤالًا أو اكتبوا سؤالكم.", chatPh: "اكتبوا سؤالكم…", chatSend: "إرسال", chatNo: "لم أجد جوابًا دقيقًا. راسلونا مباشرة وسنرد عليكم:", chatClose: "إغلاق", learnMore: "اقرأ المزيد", support: "ادعم هذا العمل", youSupport: "أنتم تدعمون:", askInsta: "اطلبوا معلومات الحساب البنكي برسالة على إنستغرام.", instaMsg: "راسلونا على إنستغرام", transparency: "الشفافية", legalTitle: "الجمعية في سطور", l_status: "الصفة القانونية", l_registration: "رقم الوصل / الترخيص", l_founded: "سنة التأسيس", l_office: "المكتب المسير", l_report: "التقرير الأدبي والمالي", privacyTitle: "المعطيات الشخصية", download: "تحميل", home: "الرئيسية", about: "من نحن", activities: "أنشطتنا", projects: "مشاريعنا", partners: "شركاؤنا", donate: "تبرّع", contact: "اتصل بنا",
+  ar: { news: "المستجدات", latestNews: "آخر المستجدات", allNews: "كل المستجدات", readMore: "اقرأ المقال", backNews: "العودة إلى المستجدات", noNews: "لا توجد مستجدات حاليًا.", faq: "أسئلة شائعة", faqMore: "لم تجدوا جوابكم؟", collected: "تم جمعه", goal: "الهدف", chatOpen: "عندك سؤال؟", chatTitle: "مساعد الجوار", chatHello: "مرحبًا! اختاروا سؤالًا أو اكتبوا سؤالكم.", chatPh: "اكتبوا سؤالكم…", chatSend: "إرسال", chatNo: "لم أجد جوابًا دقيقًا. راسلونا مباشرة وسنرد عليكم:", chatClose: "إغلاق", learnMore: "اقرأ المزيد", support: "ادعم هذا العمل", youSupport: "أنتم تدعمون:", askInsta: "اطلبوا معلومات الحساب البنكي برسالة على إنستغرام.", instaMsg: "راسلونا على إنستغرام", transparency: "الشفافية", legalTitle: "الجمعية في سطور", l_status: "الصفة القانونية", l_registration: "رقم الوصل / الترخيص", l_founded: "سنة التأسيس", l_office: "المكتب المسير", l_report: "التقرير الأدبي والمالي", privacyTitle: "المعطيات الشخصية", download: "تحميل", home: "الرئيسية", about: "من نحن", activities: "أنشطتنا", projects: "مشاريعنا", partners: "شركاؤنا", donate: "تبرّع", contact: "اتصل بنا",
     donateNow: "تبرّع الآن", seeActivities: "اكتشف أنشطتنا", allActivities: "كل الأنشطة", allProjects: "كل المشاريع", inNumbers: "الجوار بالأرقام",
     values: "قيمنا", story: "قصتنا", current: "مشاريع جارية", upcoming: "مشاريع قادمة", done: "مشاريع منجزة", needs: "ما نحتاجه", s_current: "جارٍ", s_upcoming: "قادم", s_done: "منجز",
     ctaTitle: "ساهم معنا في رمضان 1448", ctaText: "قفة واحدة أو مقعد على مائدة إفطار الأيتام: كل مساهمة تصنع الفرق.",
@@ -66,7 +66,7 @@ const UI = {
     phone: "الهاتف", email: "البريد الإلكتروني", address: "العنوان", hours: "أوقات الاستقبال", follow: "تابعونا", gallery: "أنشطتنا بالصور",
     formName: "الاسم", formMsg: "رسالتكم", formSend: "إرسال عبر واتساب", formNoWa: "أسهل طريقة للتواصل معنا حاليًا: رسالة على إنستغرام.",
     rights: "جميع الحقوق محفوظة", stay: "لنبقَ على تواصل", stayTitle: "سؤال، تبرع أو رغبة في التطوع؟ نحن هنا.", menu: "القائمة", privacy: "لا ننشر أي معطيات شخصية عن المستفيدين." },
-  fr: { storyCta: "Découvrir l'histoire", chapter: "Chapitre", news: "Actualités", latestNews: "Dernières actualités", allNews: "Toutes les actualités", readMore: "Lire l'article", backNews: "Retour aux actualités", noNews: "Aucune actualité pour le moment.", faq: "Questions fréquentes", faqMore: "Vous ne trouvez pas votre réponse ?", collected: "réunis", goal: "objectif", chatOpen: "Une question ?", chatTitle: "Assistant Al Jiwar", chatHello: "Bonjour ! Choisissez une question ou écrivez la vôtre.", chatPh: "Votre question…", chatSend: "Envoyer", chatNo: "Je n'ai pas de réponse précise. Écrivez-nous directement, nous vous répondrons :", chatClose: "Fermer", learnMore: "En savoir plus", support: "Soutenir cette action", youSupport: "Vous soutenez :", askInsta: "Demandez nos coordonnées bancaires par message sur Instagram.", instaMsg: "Écrivez-nous sur Instagram", transparency: "Transparence", legalTitle: "L'association en bref", l_status: "Statut", l_registration: "Récépissé / autorisation", l_founded: "Création", l_office: "Bureau", l_report: "Rapport moral et financier", privacyTitle: "Données personnelles", download: "Télécharger", home: "Accueil", about: "Qui sommes-nous", activities: "Nos activités", projects: "Nos projets", partners: "Partenaires", donate: "Faire un don", contact: "Contact",
+  fr: { news: "Actualités", latestNews: "Dernières actualités", allNews: "Toutes les actualités", readMore: "Lire l'article", backNews: "Retour aux actualités", noNews: "Aucune actualité pour le moment.", faq: "Questions fréquentes", faqMore: "Vous ne trouvez pas votre réponse ?", collected: "réunis", goal: "objectif", chatOpen: "Une question ?", chatTitle: "Assistant Al Jiwar", chatHello: "Bonjour ! Choisissez une question ou écrivez la vôtre.", chatPh: "Votre question…", chatSend: "Envoyer", chatNo: "Je n'ai pas de réponse précise. Écrivez-nous directement, nous vous répondrons :", chatClose: "Fermer", learnMore: "En savoir plus", support: "Soutenir cette action", youSupport: "Vous soutenez :", askInsta: "Demandez nos coordonnées bancaires par message sur Instagram.", instaMsg: "Écrivez-nous sur Instagram", transparency: "Transparence", legalTitle: "L'association en bref", l_status: "Statut", l_registration: "Récépissé / autorisation", l_founded: "Création", l_office: "Bureau", l_report: "Rapport moral et financier", privacyTitle: "Données personnelles", download: "Télécharger", home: "Accueil", about: "Qui sommes-nous", activities: "Nos activités", projects: "Nos projets", partners: "Partenaires", donate: "Faire un don", contact: "Contact",
     donateNow: "Faire un don", seeActivities: "Découvrir nos activités", allActivities: "Toutes les activités", allProjects: "Tous les projets", inNumbers: "Al Jiwar en chiffres",
     values: "Nos valeurs", story: "Notre histoire", current: "Projets en cours", upcoming: "Projets à venir", done: "Projets réalisés", needs: "Nos besoins", s_current: "En cours", s_upcoming: "À venir", s_done: "Réalisé",
     ctaTitle: "Participez au Ramadan 1448", ctaText: "Un panier, une place à la table du ftour des orphelins : chaque geste compte.",
@@ -76,7 +76,7 @@ const UI = {
     phone: "Téléphone", email: "E-mail", address: "Adresse", hours: "Horaires", follow: "Suivez-nous", gallery: "Nos actions en images",
     formName: "Votre nom", formMsg: "Votre message", formSend: "Envoyer sur WhatsApp", formNoWa: "Le plus simple pour nous joindre aujourd'hui : un message sur Instagram.",
     rights: "Tous droits réservés", stay: "Restons en contact", stayTitle: "Une question, un don, l'envie d'aider ? Écrivez-nous.", menu: "Menu", privacy: "Nous ne publions aucune donnée personnelle sur les bénéficiaires." },
-  en: { storyCta: "See the story", chapter: "Chapter", news: "News", latestNews: "Latest news", allNews: "All news", readMore: "Read more", backNews: "Back to news", noNews: "No news yet.", faq: "FAQ", faqMore: "Didn't find your answer?", collected: "collected", goal: "goal", chatOpen: "Got a question?", chatTitle: "Al Jiwar assistant", chatHello: "Hello! Pick a question or type your own.", chatPh: "Your question…", chatSend: "Send", chatNo: "I don't have a precise answer. Write to us directly and we'll reply:", chatClose: "Close", learnMore: "Learn more", support: "Support this", youSupport: "You are supporting:", askInsta: "Ask us for our bank details by Instagram message.", instaMsg: "Message us on Instagram", transparency: "Transparency", legalTitle: "The association at a glance", l_status: "Legal status", l_registration: "Registration", l_founded: "Founded", l_office: "Board", l_report: "Annual report", privacyTitle: "Personal data", download: "Download", home: "Home", about: "About us", activities: "What we do", projects: "Projects", partners: "Partners", donate: "Donate", contact: "Contact",
+  en: { news: "News", latestNews: "Latest news", allNews: "All news", readMore: "Read more", backNews: "Back to news", noNews: "No news yet.", faq: "FAQ", faqMore: "Didn't find your answer?", collected: "collected", goal: "goal", chatOpen: "Got a question?", chatTitle: "Al Jiwar assistant", chatHello: "Hello! Pick a question or type your own.", chatPh: "Your question…", chatSend: "Send", chatNo: "I don't have a precise answer. Write to us directly and we'll reply:", chatClose: "Close", learnMore: "Learn more", support: "Support this", youSupport: "You are supporting:", askInsta: "Ask us for our bank details by Instagram message.", instaMsg: "Message us on Instagram", transparency: "Transparency", legalTitle: "The association at a glance", l_status: "Legal status", l_registration: "Registration", l_founded: "Founded", l_office: "Board", l_report: "Annual report", privacyTitle: "Personal data", download: "Download", home: "Home", about: "About us", activities: "What we do", projects: "Projects", partners: "Partners", donate: "Donate", contact: "Contact",
     donateNow: "Donate now", seeActivities: "See what we do", allActivities: "All activities", allProjects: "All projects", inNumbers: "Al Jiwar in numbers",
     values: "Our values", story: "Our story", current: "Current projects", upcoming: "Upcoming projects", done: "Completed projects", needs: "What we need", s_current: "In progress", s_upcoming: "Upcoming", s_done: "Completed",
     ctaTitle: "Join us for Ramadan 1448", ctaText: "A food basket, a seat at the orphans' iftar table: every gesture counts.",
@@ -132,7 +132,7 @@ function layout(c, lang, page, title, body, desc) {
     '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "</script>" +
     '<link rel="icon" href="/assets/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap">' +
-    '<link rel="stylesheet" href="/assets/css/site.css?v=14"><script src="/assets/js/site.js?v=14"></script></head><body class="page-' + (page || "home") + '">' +
+    '<link rel="stylesheet" href="/assets/css/site.css?v=12"><script src="/assets/js/site.js?v=12"></script></head><body class="page-' + (page || "home") + '">' +
     '<a class="skip" href="#main">↓</a><header class="top"><div class="wrap top-in">' +
     '<a class="brand" href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo-sm.png" alt="' + esc(name) + '" width="62" height="56"></a>' +
     '<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="' + esc(u.menu) + '"><span></span><span></span><span></span></button>' +
@@ -181,24 +181,6 @@ function projectCard(p, lang, u) {
     (needs ? '<p class="needs"><strong>' + esc(u.needs) + " :</strong> " + esc(needs) + "</p>" : "") +
     (p.status !== "done" && p._href ? '<a class="btn btn-pill" href="' + p._href("donate") + "?pour=" + encodeURIComponent(p.id) + '">' + esc(u.support) + "</a>" : "") + "</div></article>";
 }
-/* ---- night design: the logo drawn in light, the story in chapters ---- */
-const LINE_LOGO = '<svg class="lineart" viewBox="0 0 250 200" role="img" aria-label="Al Jiwar">' +
-  '<g class="la-glow"><path pathLength="1" class="la b" d="M26 180 Q62 128 98 34 Q105 18 113 33 L152 122"/><path pathLength="1" class="la b" d="M44 152 Q92 126 142 140"/>' +
-  '<path pathLength="1" class="la g" d="M150 116 L150 40"/><path pathLength="1" class="la g thin" d="M150 42 Q138 28 126 35 M150 42 Q162 28 174 35 M150 50 Q140 44 132 54 M150 50 Q160 44 168 54"/>' +
-  '<path pathLength="1" class="la o" d="M98 184 Q132 140 162 70 Q169 56 177 71 Q200 124 226 178"/><path pathLength="1" class="la o" d="M114 162 Q152 140 208 164"/></g>' +
-  '<g class="la-lights"><path class="lt b" d="M26 180 Q62 128 98 34 Q105 18 113 33 L152 122"/><path class="lt o" d="M98 184 Q132 140 162 70 Q169 56 177 71 Q200 124 226 178"/></g></svg>';
-const lineIcon = n => '<svg class="ico-line" viewBox="0 0 24 24" aria-hidden="true">' + String(ICONS[n] || ICONS.heart).replace(/<(path|rect|circle)/g, '<$1 pathLength="1"') + "</svg>";
-function storyBlock(c, lang, u) {
-  const st = (c.story || []).filter(x => x && tr(x.title, lang));
-  if (!st.length) return "";
-  const n = st.length;
-  return '<section class="story" id="histoire"><div class="wrap story-in">' +
-    '<div class="story-visual"><div class="sv-stage" data-active="0">' + st.map((x, i) => '<div class="scene' + (i ? "" : " on") + '" data-i="' + i + '"><span class="sc-num">' + String(i + 1).padStart(2, "0") + "</span>" + lineIcon(x.icon) + "</div>").join("") +
-      '<div class="sv-bar">' + st.map((x, i) => '<span' + (i ? "" : ' class="on"') + "></span>").join("") + "</div></div></div>" +
-    '<div class="story-steps">' + st.map((x, i) => '<article class="step' + (i ? "" : " on") + '" data-i="' + i + '"><span class="pill-label">' + esc(u.chapter) + " " + (i + 1) + " / " + n + "</span><h2>" + esc(tr(x.title, lang)) + "</h2>" + paras(tr(x.text, lang)) + "</article>").join("") + "</div>" +
-  "</div></section>";
-}
-
 /* ---- news, fundraiser, FAQ, chat ---- */
 function fmtDate(d, lang) {
   const t = Date.parse(String(d || "")); if (!t) return "";
@@ -257,17 +239,20 @@ function render(c, lang, page, query) {
     const words = [tr(s.tagline, lang)].concat(acts.map(a => tr(a.title, lang))).filter(Boolean);
     const marquee = words.map(w => "<span>" + esc(w) + '</span><img src="/assets/img/favicon.png" alt="" width="26" height="20">').join("");
     const body =
-      /* HERO: night sky, the logo drawn in light, donation card */
-      '<section class="nhero"><div class="stars" aria-hidden="true"></div><div class="wrap nh-in">' +
-        '<div class="nh-text"><span class="pill-label light rv">' + esc(tr(s.tagline, lang)) + '</span><h1 class="rv" style="--d:1">' + esc(tr(h.heroTitle, lang)) + '</h1><div class="rv hero-p" style="--d:2">' + paras(tr(h.heroText, lang)) + "</div>" +
-          '<div class="actions rv" style="--d:3"><a class="btn btn-orange btn-lg" href="' + href("donate") + '">' + icon("heart") + esc(u.donateNow) + '</a><a class="btn btn-glass btn-lg" href="#histoire">' + esc(u.storyCta) + icon("arrow", "down-ico") + "</a></div>" +
+      /* HERO: brand panel, animated rings, text on one side, fanned photo cards + donation card on the other */
+      '<section class="hero"><div class="wrap"><div class="hero-box">' +
+        '<div class="rings" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="glow" aria-hidden="true"></div>' +
+        '<div class="hero-text"><span class="pill-label light rv">' + esc(tr(s.tagline, lang)) + '</span><h1 class="rv" style="--d:1">' + esc(tr(h.heroTitle, lang)) + '</h1><div class="rv hero-p" style="--d:2">' + paras(tr(h.heroText, lang)) + "</div>" +
+          '<div class="actions rv" style="--d:3"><a class="btn btn-orange btn-lg" href="' + href("donate") + '">' + icon("heart") + esc(u.donateNow) + '</a><a class="btn btn-glass btn-lg" href="' + href("activities") + '">' + esc(u.seeActivities) + icon("arrow", "flip") + "</a></div>" +
           (chips.length ? '<div class="chips rv" style="--d:4">' + chips.map(x => '<span class="chip">' + esc(x) + "</span>").join("") + "</div>" : "") + "</div>" +
-        '<div class="nh-art">' + LINE_LOGO +
+        '<div class="hero-art" data-tilt>' +
+          '<div class="fan">' + (cards.length ? cards.map((src, i) => '<figure class="fan-card f' + i + '"><img src="' + esc(src) + '" alt="" loading="' + (i ? "lazy" : "eager") + '"></figure>').join("")
+                                              : '<figure class="fan-card f1 logo-card"><img src="/assets/img/logo.png" alt=""></figure>') + "</div>" +
           '<div class="float-card"><div class="fc-top"><span class="fc-brand"><img src="/assets/img/favicon.png" alt="">' + esc(tr(s.name, lang)) + "</span><span>" + esc(tr(h.cardTag, lang)) + "</span></div><h3>" + esc(tr(h.cardTitle, lang) || u.ctaTitle) + "</h3><p>" + esc(tr(h.cardText, lang) || u.ctaText) + '</p><a class="btn btn-pill" href="' + href("donate") + '">' + esc(u.donateNow) + icon("arrow", "flip") + "</a></div>" +
         "</div>" +
-      '</div><a class="scroll-cue" href="#histoire" aria-label="' + esc(u.storyCta) + '"><span></span></a></section>' +
-      /* STORY: four chapters told while scrolling, sticky picture on one side */
-      storyBlock(c, lang, u) +
+      "</div></div></section>" +
+      /* MARQUEE */
+      '<div class="marquee" aria-hidden="true"><div class="marquee-track">' + marquee + marquee + "</div></div>" +
       campaignBlock(c, lang, u, href, true) +
       /* CAUSES */
       '<section class="block"><div class="wrap"><div class="sec-head rv"><div><span class="pill-label">' + esc(tr(s.tagline, lang)) + "</span><h2>" + esc(u.activities) + '</h2></div><a class="btn btn-outline" href="' + href("activities") + '">' + esc(u.allActivities) + icon("arrow", "flip") + '</a></div><div class="causes">' +
@@ -411,7 +396,7 @@ function slugId(s, seen) { let id = String(s || "").toLowerCase().normalize("NFD
 function normalize(c) {
   c = clean(c, 0) || {};
   for (const key of ["site", "home", "about", "partners", "donate", "contact", "legal", "campaign"]) if (!c[key] || typeof c[key] !== "object" || Array.isArray(c[key])) c[key] = {};
-  for (const key of ["stats", "activities", "projects", "gallery", "news", "faq", "story"]) if (!Array.isArray(c[key])) c[key] = [];
+  for (const key of ["stats", "activities", "projects", "gallery", "news", "faq"]) if (!Array.isArray(c[key])) c[key] = [];
   if (!Array.isArray(c.partners.list)) c.partners.list = [];
   if (!Array.isArray(c.about.values)) c.about.values = [];
   if (!LANGS.includes(c.site.defaultLang)) c.site.defaultLang = "ar";
