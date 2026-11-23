@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var reduce = document.documentElement.classList.contains("reduce");
 
   /* headline words rise one after another */
-  if (!reduce) document.querySelectorAll(".hero h1, .phead h1, .article h1").forEach(function (h) {
+  if (!reduce) document.querySelectorAll(".a-hero h1, .phead h1, .article h1").forEach(function (h) {
     var words = h.textContent.trim().split(/\s+/);
     h.textContent = "";
     words.forEach(function (w, i) {

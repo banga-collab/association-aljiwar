@@ -131,8 +131,8 @@ function layout(c, lang, page, title, body, desc) {
     '<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0a3f59">' + alt +
     '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "</script>" +
     '<link rel="icon" href="/assets/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap">' +
-    '<link rel="stylesheet" href="/assets/css/site.css?v=12"><script src="/assets/js/site.js?v=12"></script></head><body class="page-' + (page || "home") + '">' +
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Readex+Pro:wght@300;400;500;600&display=swap">' +
+    '<link rel="stylesheet" href="/assets/css/site.css?v=20"><script src="/assets/js/site.js?v=20"></script></head><body class="page-' + (page || "home") + '">' +
     '<a class="skip" href="#main">↓</a><header class="top"><div class="wrap top-in">' +
     '<a class="brand" href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo-sm.png" alt="' + esc(name) + '" width="62" height="56"></a>' +
     '<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="' + esc(u.menu) + '"><span></span><span></span><span></span></button>' +
@@ -233,52 +233,39 @@ function render(c, lang, page, query) {
     const st = c.stats || [], vals = (c.about && c.about.values) || [], acts = c.activities || [];
     const gal = (c.gallery || []).filter(g => img(g.image));
     const cards = (h.heroCards || []).map(x => img(x && x.image)).filter(Boolean).slice(0, 3);
-    const chips = [h.chip1, h.chip2].map(x => tr(x, lang)).filter(Boolean);
-    const insta = safeUrl(s.instagram);
-    const tile = (v, ic, d) => v ? '<div class="tile rv" style="--d:' + d + '"><span class="icon-dot">' + icon(ic) + "</span><h3>" + esc(tr(v.title, lang)) + "</h3>" + paras(tr(v.text, lang)) + "</div>" : "";
-    const words = [tr(s.tagline, lang)].concat(acts.map(a => tr(a.title, lang))).filter(Boolean);
-    const marquee = words.map(w => "<span>" + esc(w) + '</span><img src="/assets/img/favicon.png" alt="" width="26" height="20">').join("");
+    const insta = safeUrl(s.instagram), news = newsList(c), plist = (c.partners && c.partners.list) || [];
+    const stats = st.filter(x => String(x.value || "").trim());
+    const alink = (t, url, ext) => '<a class="alink" href="' + esc(url) + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">" + esc(t) + '<span aria-hidden="true">' + (lang === "ar" ? "‹" : "›") + "</span></a>";
+    const first = t => String(t || "").split(/\n\s*\n/).map(x => x.trim()).find(x => x && !isTodo(x)) || "";
     const body =
-      /* HERO: brand panel, animated rings, text on one side, fanned photo cards + donation card on the other */
-      '<section class="hero"><div class="wrap"><div class="hero-box">' +
-        '<div class="rings" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="glow" aria-hidden="true"></div>' +
-        '<div class="hero-text"><span class="pill-label light rv">' + esc(tr(s.tagline, lang)) + '</span><h1 class="rv" style="--d:1">' + esc(tr(h.heroTitle, lang)) + '</h1><div class="rv hero-p" style="--d:2">' + paras(tr(h.heroText, lang)) + "</div>" +
-          '<div class="actions rv" style="--d:3"><a class="btn btn-orange btn-lg" href="' + href("donate") + '">' + icon("heart") + esc(u.donateNow) + '</a><a class="btn btn-glass btn-lg" href="' + href("activities") + '">' + esc(u.seeActivities) + icon("arrow", "flip") + "</a></div>" +
-          (chips.length ? '<div class="chips rv" style="--d:4">' + chips.map(x => '<span class="chip">' + esc(x) + "</span>").join("") + "</div>" : "") + "</div>" +
-        '<div class="hero-art" data-tilt>' +
-          '<div class="fan">' + (cards.length ? cards.map((src, i) => '<figure class="fan-card f' + i + '"><img src="' + esc(src) + '" alt="" loading="' + (i ? "lazy" : "eager") + '"></figure>').join("")
-                                              : '<figure class="fan-card f1 logo-card"><img src="/assets/img/logo.png" alt=""></figure>') + "</div>" +
-          '<div class="float-card"><div class="fc-top"><span class="fc-brand"><img src="/assets/img/favicon.png" alt="">' + esc(tr(s.name, lang)) + "</span><span>" + esc(tr(h.cardTag, lang)) + "</span></div><h3>" + esc(tr(h.cardTitle, lang) || u.ctaTitle) + "</h3><p>" + esc(tr(h.cardText, lang) || u.ctaText) + '</p><a class="btn btn-pill" href="' + href("donate") + '">' + esc(u.donateNow) + icon("arrow", "flip") + "</a></div>" +
-        "</div>" +
-      "</div></div></section>" +
-      /* MARQUEE */
-      '<div class="marquee" aria-hidden="true"><div class="marquee-track">' + marquee + marquee + "</div></div>" +
+      /* HERO: centred headline, two actions, photos rising beneath */
+      '<section class="a-hero"><div class="wrap a-center">' +
+        '<p class="a-eyebrow rv">' + esc(tr(s.tagline, lang)) + '</p><h1 class="a-title">' + esc(tr(h.heroTitle, lang)) + "</h1>" +
+        '<p class="a-sub rv" style="--d:2">' + esc(first(tr(h.heroText, lang))) + "</p>" +
+        '<div class="a-ctas rv" style="--d:3"><a class="btn btn-blue btn-lg" href="' + href("donate") + '">' + esc(u.donateNow) + "</a>" + alink(u.seeActivities, href("activities")) + "</div></div>" +
+        (cards.length ? '<div class="a-visual"><div class="a-stack">' + cards.map((src, i) => '<figure class="a-shot s' + i + '"><img src="' + esc(src) + '" alt="" loading="' + (i === 1 ? "eager" : "lazy") + '"></figure>').join("") + "</div></div>" : "") +
+      "</section>" +
       campaignBlock(c, lang, u, href, true) +
-      /* CAUSES */
-      '<section class="block"><div class="wrap"><div class="sec-head rv"><div><span class="pill-label">' + esc(tr(s.tagline, lang)) + "</span><h2>" + esc(u.activities) + '</h2></div><a class="btn btn-outline" href="' + href("activities") + '">' + esc(u.allActivities) + icon("arrow", "flip") + '</a></div><div class="causes">' +
-        acts.slice(0, 3).map((a, i) => causeRow(a, lang, u, i, href, "h3")).join("") + "</div></div></section>" +
-      /* BENTO */
-      '<section class="block"><div class="wrap"><div class="bento">' +
-        '<div class="b-col">' + media(gal[0] && gal[0].image, "", "logo", "tile-photo rv zoom", "blue") + '<div class="tile rv" style="--d:1">' + statBox(st[1], lang) + '<span class="icon-dot">' + icon("users") + "</span><h3>" + esc(tr(vals[0] && vals[0].title, lang)) + "</h3>" + paras(tr(vals[0] && vals[0].text, lang)) + "</div></div>" +
-        '<div class="b-col">' + tile(vals[1], "heart", 1) + '<div class="tile tile-stat rv" style="--d:2">' + (statBox(st[0], lang, "big") || '<div class="stat big quote"><span class="icon-dot">' + icon("heart") + "</span><strong>" + esc(tr(s.tagline, lang)) + "</strong></div>") + "</div></div>" +
-        '<div class="b-col">' + tile(vals[2], "box", 2) + media(gal[1] && gal[1].image, "", "table", "tile-photo rv zoom", "orange") + "</div>" +
+      /* TILES: one big tile per activity */
+      '<section class="a-tiles"><div class="wrap"><div class="tile-grid">' +
+        acts.slice(0, 4).map((a, i) => '<article class="a-tile t' + (i % 4) + ' rv" style="--d:' + (i % 2) + '"><div class="a-tile-text"><h2>' + esc(tr(a.title, lang)) + "</h2><p>" + esc(first(tr(a.text, lang))) + '</p><div class="a-links">' +
+          alink(u.learnMore, href("activities") + "#" + a.id) + alink(u.support, href("donate") + "?pour=" + encodeURIComponent(a.id)) + '</div></div><div class="a-tile-visual">' +
+          (img(a.image) ? '<img src="' + esc(img(a.image)) + '" alt="" loading="lazy">' : '<span class="a-ico">' + icon(a.icon) + "</span>") + "</div></article>").join("") +
       "</div></div></section>" +
-      /* INSTAGRAM GALLERY */
-      (gal.length ? '<section class="block"><div class="wrap"><div class="sec-head rv"><div><span class="pill-label">Instagram</span><h2>' + esc(u.gallery) + "</h2></div>" + (insta ? '<a class="btn btn-outline" href="' + esc(insta) + '" target="_blank" rel="noopener">' + esc(u.follow) + "</a>" : "") + "</div></div>" +
+      /* STATEMENT: black band, big gradient words, values or numbers */
+      '<section class="a-dark"><div class="wrap a-center"><p class="a-eyebrow">' + esc(tr(h.missionTitle, lang)) + '</p><h2 class="a-grad rv">' + esc(tr(s.tagline, lang)) + '</h2><p class="a-sub rv" style="--d:1">' + esc(first(tr(h.missionText, lang))) + "</p>" +
+        (stats.length ? '<div class="a-stats">' + stats.map((x, i) => '<div class="rv" style="--d:' + i + '"><strong>' + esc(x.value) + "</strong><span>" + esc(tr(x.label, lang)) + "</span></div>").join("") + "</div>"
+          : '<div class="a-values">' + vals.slice(0, 3).map((v, i) => '<div class="rv" style="--d:' + i + '"><span class="a-vi">' + icon(["users", "heart", "box"][i]) + "</span><h3>" + esc(tr(v.title, lang)) + "</h3><p>" + esc(first(tr(v.text, lang))) + "</p></div>").join("") + "</div>") +
+      "</div></section>" +
+      /* NEWS */
+      (news.length ? '<section class="a-sec"><div class="wrap"><div class="a-head rv"><h2>' + esc(u.latestNews) + "</h2>" + alink(u.allNews, href("news")) + '</div><div class="grid grid-3">' + news.slice(0, 3).map((n, i) => newsCard(n, lang, u, href, i)).join("") + "</div></div></section>" : "") +
+      /* GALLERY */
+      (gal.length ? '<section class="a-sec soft"><div class="wrap"><div class="a-head rv"><h2>' + esc(u.gallery) + "</h2>" + (insta ? alink(u.follow, insta, true) : "") + "</div></div>" +
         '<div class="gallery-wrap"><div class="gallery" tabindex="0">' + gal.map((g, i) => '<figure class="g-item rv" style="--d:' + (i % 4) + '"><img src="' + esc(img(g.image)) + '" alt="' + esc(tr(g.caption, lang)) + '" loading="lazy">' + (tr(g.caption, lang) ? "<figcaption>" + esc(tr(g.caption, lang)) + "</figcaption>" : "") + "</figure>").join("") + "</div></div></section>" : "") +
-      /* VISION & MISSION */
-      '<section class="block"><div class="wrap vm">' + media(h.visionImage, "", "hands", "vm-photo rv zoom", "green") +
-        '<div class="vm-grid">' + statBox(st[2], lang, "mini") + statBox(st[3], lang, "mini") +
-          '<div class="tile rv" style="--d:1"><span class="icon-dot">' + icon("moon") + "</span><h3>" + esc(tr(h.visionTitle, lang)) + "</h3>" + paras(tr(h.visionText, lang)) + "</div>" +
-          '<div class="tile rv" style="--d:2"><span class="icon-dot">' + icon("users") + "</span><h3>" + esc(tr(h.missionTitle, lang)) + "</h3>" + paras(tr(h.missionText, lang)) + "</div>" +
-      "</div></div></section>" +
-      (newsList(c).length ? '<section class="block"><div class="wrap"><div class="sec-head rv"><div><span class="pill-label">' + esc(u.news) + "</span><h2>" + esc(u.latestNews) + '</h2></div><a class="btn btn-outline" href="' + href("news") + '">' + esc(u.allNews) + icon("arrow", "flip") + '</a></div><div class="grid grid-3">' + newsList(c).slice(0, 3).map((n, i) => newsCard(n, lang, u, href, i)).join("") + "</div></div></section>" : "") +
-      /* PARTNERS */
-      '<section class="block"><div class="wrap"><div class="sec-head rv"><div><h2>' + esc(u.partners) + '</h2><p class="muted">' + esc(tr(c.partners && c.partners.intro, lang)) + '</p></div><a class="btn btn-outline" href="' + href("partners") + '">' + esc(u.becomePartner) + "</a></div>" + partnersGrid(c, lang, u) + "</div></section>" +
-      /* STAY IN TOUCH: photo mosaic with a floating card */
-      '<section class="block"><div class="wrap"><div class="band rv">' +
-        media(h.bandImage, "", "logo", "band-media", "blue") +
-        '<div class="band-card"><span class="pill-label">' + esc(u.stay) + "</span><h2>" + esc(u.stayTitle) + '</h2><div class="actions"><a class="btn btn-pill" href="' + href("contact") + '">' + esc(u.writeUs) + icon("arrow", "flip") + "</a>" + (insta ? '<a class="btn btn-outline btn-sm" href="' + esc(insta) + '" target="_blank" rel="noopener">Instagram</a>' : "") + "</div></div></div></div></section>";
+      /* PARTNERS (only when there are some) */
+      (plist.length ? '<section class="a-sec"><div class="wrap"><div class="a-head rv"><h2>' + esc(u.partners) + "</h2>" + alink(u.becomePartner, href("partners")) + "</div>" + partnersGrid(c, lang, u) + "</div></section>" : "") +
+      /* CLOSING CALL */
+      '<section class="a-end"><div class="wrap a-center rv"><img src="/assets/img/logo-md.png" alt="" width="120" height="109" loading="lazy"><h2>' + esc(u.stayTitle) + '</h2><div class="a-ctas"><a class="btn btn-blue btn-lg" href="' + href("donate") + '">' + esc(u.donateNow) + "</a>" + alink(u.writeUs, href("contact")) + "</div></div></section>";
     return layout(c, lang, page, "", body);
   }
   if (page === "about") {
