@@ -12,7 +12,11 @@ let handle = null;
 
 module.exports = async (req, res) => {
   const html = (code, msg) => { res.statusCode = code; res.setHeader("Content-Type", "text/html; charset=utf-8"); res.end('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Association Al Jiwar</title><body style="font:16px/1.6 system-ui;background:#fffaf3;color:#17324a;display:grid;place-items:center;min-height:100vh;margin:0;padding:24px"><main style="max-width:560px"><h1 style="font-size:22px">Association Al Jiwar</h1><p>' + msg + "</p></main></body>"); };
-  if (!vfs.enabled) return html(500, "Configuration manquante : GH_TOKEN et GH_REPO doivent être définis dans Vercel.");
+  if (!vfs.enabled) {   // no GitHub token yet: the site works from the deployment, the admin can log in but not save
+    if (req.method === "POST" && (req.url.startsWith("/api/content") || req.url.startsWith("/api/upload"))) { res.statusCode = 503; res.setHeader("Content-Type", "application/json; charset=utf-8"); return res.end(JSON.stringify({ error: "Enregistrement impossible : ajoutez GH_TOKEN et GH_REPO dans Vercel (Settings › Environment Variables), puis redéployez." })); }
+    if (!handle) handle = require("../server.js");
+    return handle(req, res);
+  }
   try { await vfs.refresh(!handle); } catch (e) {
     console.error("[vfs] refresh", e.message);
     if (!handle) return html(503, e.status === 401 || e.status === 403 || e.status === 404
