@@ -10,14 +10,9 @@
     var b = document.querySelector(".burger"), nav = document.getElementById("nav");
     if (b && nav) b.addEventListener("click", function () { var o = nav.classList.toggle("open"); b.setAttribute("aria-expanded", o ? "true" : "false"); });
 
-    /* header shadow once scrolled + reading progress bar */
-    var top = document.querySelector(".top"), bar = document.createElement("div");
-    bar.className = "progress"; document.body.appendChild(bar);
-    var onScroll = function () {
-      var y = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
-      if (top) top.classList.toggle("scrolled", y > 10);
-      bar.style.transform = "scaleX(" + (h > 0 ? Math.min(1, y / h) : 0) + ")";
-    };
+    /* header shadow once scrolled */
+    var top = document.querySelector(".top");
+    var onScroll = function () { if (top) top.classList.toggle("scrolled", window.scrollY > 10); };
     window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
 
     /* reveal on scroll (staggered with --d) */
@@ -44,13 +39,12 @@
       document.querySelectorAll(".stat strong").forEach(function (el) { co.observe(el); });
     }
 
-    /* hero: cards follow the pointer a little, glow follows the cursor */
+    /* hero: cards follow the pointer a little */
     var art = document.querySelector("[data-tilt]"), box = document.querySelector(".hero-box");
     if (art && box && !reduce && window.matchMedia("(pointer: fine)").matches) {
       box.addEventListener("pointermove", function (e) {
         var r = box.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
         art.style.setProperty("--rx", (-y * 6).toFixed(2) + "deg"); art.style.setProperty("--ry", (x * 8).toFixed(2) + "deg");
-        box.style.setProperty("--gx", ((x + 0.5) * 100).toFixed(1) + "%"); box.style.setProperty("--gy", ((y + 0.5) * 100).toFixed(1) + "%");
       });
       box.addEventListener("pointerleave", function () { art.style.setProperty("--rx", "0deg"); art.style.setProperty("--ry", "0deg"); });
     }

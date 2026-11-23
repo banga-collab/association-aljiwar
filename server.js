@@ -98,7 +98,9 @@ const ICONS = {
   pin: '<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>',
   clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   wa: '<path d="M4 20l1.3-4A8 8 0 1 1 8 18.8z"/><path d="M9 9.5c.3 2 1.8 3.8 4 4.6l1.2-1.1 1.8.8c-.2 1-1 1.6-2 1.6A6.5 6.5 0 0 1 8 9.2c0-1 .7-1.8 1.6-2l.8 1.8z"/>',
-  arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>'
+  arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  insta: '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/>',
+  fb: '<path d="M14 21v-7.5h2.6l.4-3H14V8.7c0-.9.3-1.5 1.5-1.5H17V4.5a20 20 0 0 0-2.3-.1C12.4 4.4 11 5.8 11 8.3v2.2H8.5v3H11V21"/>'
 };
 const icon = (n, cls) => '<svg class="ico ' + (cls || "") + '" viewBox="0 0 24 24" aria-hidden="true">' + (ICONS[n] || ICONS.heart) + "</svg>";
 
@@ -110,28 +112,29 @@ function layout(c, lang, page, title, body, desc) {
   const base = safeUrl(s.siteUrl).replace(/\/+$/, "");
   const alt = base ? LANGS.map(l => '<link rel="alternate" hreflang="' + l + '" href="' + base + "/" + l + "/" + page + '">').join("") : "";
   const wa = digits(s.whatsapp);
-  const social = [["facebook", "Facebook"], ["instagram", "Instagram"]].filter(([k]) => safeUrl(s[k])).map(([k, l]) => '<a href="' + esc(safeUrl(s[k])) + '" rel="noopener" target="_blank">' + l + "</a>").join(" · ");
   return '<!doctype html><html lang="' + lang + '" dir="' + (lang === "ar" ? "rtl" : "ltr") + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
     "<title>" + esc(title ? title + " · " + name : name + " · " + tr(s.tagline, lang)) + "</title>" +
     '<meta name="description" content="' + esc(String(desc || tr(c.home && c.home.heroText, lang)).slice(0, 160)) + '">' +
     '<meta property="og:title" content="' + esc(title || name) + '"><meta property="og:image" content="/assets/img/logo.png">' + alt +
     '<link rel="icon" href="/assets/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">' +
-    '<link rel="stylesheet" href="/assets/css/site.css?v=5"><script src="/assets/js/site.js?v=5"></script></head><body class="page-' + (page || "home") + '">' +
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap">' +
+    '<link rel="stylesheet" href="/assets/css/site.css?v=6"><script src="/assets/js/site.js?v=6"></script></head><body class="page-' + (page || "home") + '">' +
     '<a class="skip" href="#main">↓</a><header class="top"><div class="wrap top-in">' +
-    '<a class="brand" href="' + href("") + '"><img src="/assets/img/symbol.png" alt="" width="44" height="34"><span>' + esc(name) + "</span></a>" +
+    '<a class="brand" href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo.png" alt="' + esc(name) + '" width="62" height="56"></a>' +
     '<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="' + esc(u.menu) + '"><span></span><span></span><span></span></button>' +
     '<nav id="nav" class="nav"><div class="pill-nav">' + nav + '</div><div class="nav-end"><div class="langs">' + langs + '</div><a class="btn btn-outline" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div></nav></div></header>" +
     '<main id="main">' + body + "</main>" +
-    '<footer class="foot"><div class="wrap foot-in"><div><img src="/assets/img/logo.png" alt="' + esc(name) + '" width="150" class="foot-logo"><p>' + esc(tr(s.tagline, lang)) + "</p></div>" +
-    '<div><h3>' + esc(u.contact) + "</h3><ul>" +
-      (s.phone ? '<li><a href="tel:' + esc(s.phone.replace(/\s/g, "")) + '" dir="ltr">' + esc(s.phone) + "</a></li>" : "") +
-      (wa ? '<li><a href="https://wa.me/' + wa + '" rel="noopener" target="_blank">' + esc(u.whatsapp) + "</a></li>" : "") +
-      (s.email ? '<li><a href="mailto:' + esc(s.email) + '">' + esc(s.email) + "</a></li>" : "") +
-      (tr(s.address, lang) ? "<li>" + esc(tr(s.address, lang)) + "</li>" : "") +
-      (social ? "<li>" + social + "</li>" : "") +
-    '</ul></div><div><h3>' + esc(u.menu) + '</h3><ul>' + PAGES.map(p => '<li><a href="' + href(p) + '">' + esc(p ? u[p] : u.home) + "</a></li>").join("") + "</ul></div></div>" +
-    '<div class="wrap foot-end"><span>© ' + new Date().getFullYear() + " " + esc(name) + " · " + esc(u.rights) + "</span><span>" + esc(u.privacy) + "</span></div></footer>" +
+    '<footer class="foot"><div class="wrap">' +
+      '<div class="foot-top"><p class="foot-say">' + esc(tr(s.tagline, lang)) + '</p><a class="btn btn-orange" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div>" +
+      '<div class="foot-grid">' +
+        '<div class="foot-brand"><a href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo.png" alt="' + esc(name) + '" width="110"></a>' +
+          '<div class="foot-social">' + [["phone", s.phone && "tel:" + s.phone.replace(/s/g, ""), u.phone], ["wa", wa && "https://wa.me/" + wa, "WhatsApp"], ["mail", s.email && "mailto:" + s.email, u.email], ["insta", safeUrl(s.instagram), "Instagram"], ["fb", safeUrl(s.facebook), "Facebook"]]
+            .filter(x => x[1]).map(x => '<a href="' + esc(x[1]) + '" aria-label="' + esc(x[2]) + '" title="' + esc(x[2]) + '"' + (/^https/.test(x[1]) ? ' target="_blank" rel="noopener"' : "") + ">" + icon(x[0]) + "</a>").join("") + "</div>" +
+          (tr(s.address, lang) ? '<p class="foot-addr">' + esc(tr(s.address, lang)) + "</p>" : "") + "</div>" +
+        '<nav class="foot-nav" aria-label="' + esc(u.menu) + '">' + PAGES.map(p => '<a href="' + href(p) + '">' + esc(p ? u[p] : u.home) + "</a>").join("") + "</nav>" +
+      "</div>" +
+      '<div class="foot-end"><span>© ' + new Date().getFullYear() + " " + esc(name) + '</span><span class="foot-langs">' + LANGS.map(l => '<a href="/' + l + "/" + page + '" lang="' + l + '">' + ({ ar: "العربية", fr: "Français", en: "English" })[l] + "</a>").join("") + "</span></div>" +
+    "</div></footer>" +
     '</body></html>';
 }
 
@@ -179,7 +182,7 @@ function render(c, lang, page) {
     const insta = safeUrl(s.instagram);
     const tile = (v, ic, d) => v ? '<div class="tile rv" style="--d:' + d + '"><span class="icon-dot">' + icon(ic) + "</span><h3>" + esc(tr(v.title, lang)) + "</h3>" + paras(tr(v.text, lang)) + "</div>" : "";
     const words = [tr(s.tagline, lang)].concat(acts.map(a => tr(a.title, lang))).filter(Boolean);
-    const marquee = words.map(w => "<span>" + esc(w) + '</span><i aria-hidden="true">✦</i>').join("");
+    const marquee = words.map(w => "<span>" + esc(w) + '</span><img src="/assets/img/favicon.png" alt="" width="26" height="20">').join("");
     const body =
       /* HERO: brand panel, animated rings, text on one side, fanned photo cards + donation card on the other */
       '<section class="hero"><div class="wrap"><div class="hero-box">' +
