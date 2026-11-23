@@ -22,7 +22,8 @@
     "mapEmbed": "",
     "facebook": "",
     "instagram": "https://www.instagram.com/associationaljiwar/",
-    "siteUrl": "https://association-aljiwar.vercel.app"
+    "siteUrl": "https://association-aljiwar.vercel.app",
+    "theme": "zellige"
   },
   "home": {
     "heroTitle": {

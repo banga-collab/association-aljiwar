@@ -199,3 +199,17 @@ document.addEventListener("DOMContentLoaded", function () {
     dlg.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
   }
 });
+
+/* ---------- zellige: tiles keep turning, one at a time ---------- */
+document.addEventListener("DOMContentLoaded", function () {
+  var shapes = document.querySelectorAll(".zmosaic .zs");
+  if (!shapes.length || document.documentElement.classList.contains("reduce")) return;
+  var cols = ["z-b", "z-o", "z-g", "z-s"], last = -1;
+  setInterval(function () {
+    if (document.hidden) return;
+    var i; do { i = Math.floor(Math.random() * shapes.length); } while (i === last && shapes.length > 1); last = i;
+    var sh = shapes[i], r = +((sh.className.match(/\br(\d)\b/) || [0, 0])[1]);
+    sh.classList.remove("r" + r); sh.classList.add("r" + ((r + 1) % 4));
+    if (Math.random() < .35) { var t = sh.parentNode; cols.forEach(function (c) { t.classList.remove(c); }); t.classList.add(cols[Math.floor(Math.random() * cols.length)]); }
+  }, 900);
+});

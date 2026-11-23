@@ -131,8 +131,8 @@ function layout(c, lang, page, title, body, desc) {
     '<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0a3f59">' + alt +
     '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "</script>" +
     '<link rel="icon" href="/assets/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap">' +
-    '<link rel="stylesheet" href="/assets/css/site.css?v=12"><script src="/assets/js/site.js?v=12"></script></head><body class="page-' + (page || "home") + '">' +
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&family=Reem+Kufi:wght@500;600;700&display=swap">' +
+    '<link rel="stylesheet" href="/assets/css/site.css?v=15"><script src="/assets/js/site.js?v=15"></script></head><body class="page-' + (page || "home") + " theme-" + (s.theme === "zellige" ? "zellige" : "classic") + '">' +
     '<a class="skip" href="#main">↓</a><header class="top"><div class="wrap top-in">' +
     '<a class="brand" href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo-sm.png" alt="' + esc(name) + '" width="62" height="56"></a>' +
     '<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="' + esc(u.menu) + '"><span></span><span></span><span></span></button>' +
@@ -181,6 +181,19 @@ function projectCard(p, lang, u) {
     (needs ? '<p class="needs"><strong>' + esc(u.needs) + " :</strong> " + esc(needs) + "</p>" : "") +
     (p.status !== "done" && p._href ? '<a class="btn btn-pill" href="' + p._href("donate") + "?pour=" + encodeURIComponent(p.id) + '">' + esc(u.support) + "</a>" : "") + "</div></article>";
 }
+/* ---- zellige theme: a living mosaic of tiles in the logo colours, with photos set in it ---- */
+const Z_SHAPES = ["q", "h", "c", "d", "q", "h", "q", "c", "d", "h", "q", "c"];
+const Z_COLORS = ["b", "o", "g", "s", "o", "b", "s", "g", "b", "o", "g", "b"];
+function zMosaic(photos) {
+  const spots = { 1: 0, 6: 1, 8: 2 };
+  let out = '<div class="zmosaic" aria-hidden="true">';
+  for (let i = 0; i < 12; i++) {
+    if (spots[i] !== undefined && photos[spots[i]]) out += '<div class="zt zphoto"><img src="' + esc(photos[spots[i]]) + '" alt=""></div>';
+    else out += '<div class="zt z-' + Z_COLORS[i] + '"><span class="zs s-' + Z_SHAPES[i] + " r" + (i % 4) + '"></span></div>';
+  }
+  return out + "</div>";
+}
+
 /* ---- news, fundraiser, FAQ, chat ---- */
 function fmtDate(d, lang) {
   const t = Date.parse(String(d || "")); if (!t) return "";
@@ -245,9 +258,10 @@ function render(c, lang, page, query) {
         '<div class="hero-text"><span class="pill-label light rv">' + esc(tr(s.tagline, lang)) + '</span><h1 class="rv" style="--d:1">' + esc(tr(h.heroTitle, lang)) + '</h1><div class="rv hero-p" style="--d:2">' + paras(tr(h.heroText, lang)) + "</div>" +
           '<div class="actions rv" style="--d:3"><a class="btn btn-orange btn-lg" href="' + href("donate") + '">' + icon("heart") + esc(u.donateNow) + '</a><a class="btn btn-glass btn-lg" href="' + href("activities") + '">' + esc(u.seeActivities) + icon("arrow", "flip") + "</a></div>" +
           (chips.length ? '<div class="chips rv" style="--d:4">' + chips.map(x => '<span class="chip">' + esc(x) + "</span>").join("") + "</div>" : "") + "</div>" +
+        (s.theme === "zellige" ? '<div class="hero-art zmosaic-wrap">' + zMosaic(cards) :
         '<div class="hero-art" data-tilt>' +
           '<div class="fan">' + (cards.length ? cards.map((src, i) => '<figure class="fan-card f' + i + '"><img src="' + esc(src) + '" alt="" loading="' + (i ? "lazy" : "eager") + '"></figure>').join("")
-                                              : '<figure class="fan-card f1 logo-card"><img src="/assets/img/logo.png" alt=""></figure>') + "</div>" +
+                                              : '<figure class="fan-card f1 logo-card"><img src="/assets/img/logo.png" alt=""></figure>') + "</div>") +
           '<div class="float-card"><div class="fc-top"><span class="fc-brand"><img src="/assets/img/favicon.png" alt="">' + esc(tr(s.name, lang)) + "</span><span>" + esc(tr(h.cardTag, lang)) + "</span></div><h3>" + esc(tr(h.cardTitle, lang) || u.ctaTitle) + "</h3><p>" + esc(tr(h.cardText, lang) || u.ctaText) + '</p><a class="btn btn-pill" href="' + href("donate") + '">' + esc(u.donateNow) + icon("arrow", "flip") + "</a></div>" +
         "</div>" +
       "</div></div></section>" +
