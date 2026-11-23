@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Admin · Association Al Jiwar</title>
+<link rel="icon" href="/assets/img/favicon.png">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <section id="login" class="login" hidden>
+    <form class="login-box">
+      <img src="/assets/img/logo.png" alt="Association Al Jiwar" width="160">
+      <h1>Espace admin</h1>
+      <label>Mot de passe <input type="password" name="password" autocomplete="current-password" required autofocus></label>
+      <button class="btn primary" type="submit">Se connecter</button>
+      <p class="err" role="alert"></p>
+    </form>
+  </section>
+
+  <section id="app" hidden>
+    <header class="bar">
+      <div class="bar-l"><img src="/assets/img/symbol.png" alt="" width="40"><strong>Admin Al Jiwar</strong></div>
+      <nav id="tabs" class="tabs"></nav>
+      <div class="bar-r">
+        <a class="btn" href="/" target="_blank" rel="noopener">Voir le site ↗</a>
+        <button id="save" class="btn primary" disabled>Enregistrer</button>
+        <button id="logout" class="btn ghost" title="Se déconnecter">⎋</button>
+      </div>
+    </header>
+    <main id="panel" class="panel"></main>
+    <div id="toast" class="toast" role="status"></div>
+  </section>
+<script src="/admin/admin.js"></script>
+</body>
+</html>

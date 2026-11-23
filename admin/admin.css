@@ -1,0 +1,54 @@
+:root { --blue: #137ead; --orange: #f29c2b; --green: #0e7f5a; --ink: #17324a; --muted: #5c6f7f; --line: #e3dfd6; --bg: #f6f3ee; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px/1.5 system-ui, "Segoe UI", Tahoma, sans-serif; color: var(--ink); background: var(--bg); }
+[hidden] { display: none !important; }
+.btn { font: 600 14px system-ui, sans-serif; padding: 9px 16px; border-radius: 10px; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.btn:hover { border-color: var(--blue); }
+.btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+.btn.primary:disabled { opacity: .45; cursor: default; }
+.btn.ghost { background: transparent; }
+.btn.small { padding: 5px 10px; font-size: 13px; }
+.btn.danger { color: #b42318; }
+.login { min-height: 100vh; display: grid; place-items: center; padding: 16px; }
+.login-box { background: #fff; padding: 36px; border-radius: 20px; width: min(380px, 100%); box-shadow: 0 20px 50px -24px rgba(0,0,0,.3); text-align: center; }
+.login-box img { margin: 0 auto 8px; }
+.login-box label { display: block; text-align: start; font-weight: 600; margin: 18px 0; }
+.login-box input { width: 100%; margin-top: 6px; }
+.login-box .btn { width: 100%; justify-content: center; }
+.err { color: #b42318; min-height: 1.5em; }
+.bar { position: sticky; top: 0; z-index: 5; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 16px; padding: 10px 16px; flex-wrap: wrap; }
+.bar-l { display: flex; align-items: center; gap: 8px; }
+.bar-r { display: flex; gap: 8px; margin-inline-start: auto; }
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.tabs button { border: 0; background: transparent; padding: 8px 12px; border-radius: 8px; font: 600 14px system-ui, sans-serif; color: var(--muted); cursor: pointer; }
+.tabs button.on { background: #e6f3f9; color: var(--blue); }
+.panel { max-width: 980px; margin: 24px auto 80px; padding: 0 16px; }
+.panel > h1 { font-size: 22px; margin: 0 0 4px; }
+.hint { color: var(--muted); margin: 0 0 18px; font-size: 14px; }
+.box { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 16px; }
+.field { margin-bottom: 16px; }
+.field > .lbl { display: block; font-weight: 700; margin-bottom: 6px; }
+.field > .lbl small { font-weight: 400; color: var(--muted); }
+input, textarea, select { font: inherit; width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: inherit; }
+input:focus, textarea:focus, select:focus { outline: 2px solid #b9dcec; border-color: var(--blue); }
+textarea { resize: vertical; min-height: 70px; }
+.ml { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.ml > div { position: relative; }
+.ml span { position: absolute; top: 6px; inset-inline-end: 8px; font-size: 11px; font-weight: 700; color: var(--muted); background: #f1efe9; border-radius: 6px; padding: 0 5px; pointer-events: none; }
+.ml [dir="rtl"] { font-family: Tahoma, "Segoe UI", sans-serif; font-size: 16px; }
+@media (max-width: 760px) { .ml { grid-template-columns: 1fr; } }
+.img { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.img .prev { width: 120px; height: 80px; border-radius: 8px; background: #eee center/cover no-repeat; border: 1px solid var(--line); display: grid; place-items: center; color: var(--muted); font-size: 12px; }
+.img .ctl { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 200px; }
+.img .ctl div { display: flex; gap: 6px; }
+.item { border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; background: #fcfbf8; }
+.item > summary { cursor: pointer; padding: 12px 14px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 10px; list-style: none; }
+.item > summary::-webkit-details-marker { display: none; }
+.item > summary::before { content: "▸"; color: var(--muted); }
+.item[open] > summary::before { content: "▾"; }
+.item > summary .t { flex: 1; }
+.item > .body { padding: 4px 14px 14px; }
+.tools { display: flex; gap: 4px; }
+.toast { position: fixed; bottom: 20px; inset-inline-start: 50%; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 10px 18px; border-radius: 10px; opacity: 0; transition: .2s; pointer-events: none; max-width: 90vw; }
+.toast.show { opacity: 1; }
+.toast.bad { background: #b42318; }
