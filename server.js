@@ -11,6 +11,10 @@ const UPLOADS = path.join(ROOT, "assets", "uploads");
 const SERVERLESS = !!process.env.VERCEL;
 const LANGS = ["ar", "fr", "en"];
 const PAGES = ["", "about", "activities", "projects", "partners", "donate", "contact"];
+const EXTRA = ["transparency"];                       // reachable from the footer, not in the top menu
+const DEFAULT_URL = process.env.SITE_URL || "https://association-aljiwar.vercel.app";
+const LANG_NAMES = { ar: "العربية", fr: "Français", en: "English" };
+const LOCALES = { ar: "ar_MA", fr: "fr_FR", en: "en_US" };
 
 /* ---------------- admin password & sessions (stateless signed cookie) ---------------- */
 function adminPassword() {
@@ -44,14 +48,15 @@ function clientIp(req) { return String(req.headers["x-forwarded-for"] || req.soc
 function load() { try { return JSON.parse(fs.readFileSync(DATA_FILE, "utf8")); } catch (e) { return {}; } }
 const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 function tr(o, lang) { if (!o) return ""; if (typeof o === "string") return o; return o[lang] || o.fr || o.ar || o.en || ""; }
-function paras(text) { return String(text || "").split(/\n\s*\n/).map(p => p.trim()).filter(Boolean).map(p => "<p>" + esc(p).replace(/\n/g, "<br>") + "</p>").join(""); }
+const isTodo = p => /^\[[^\]]*\]$/.test(String(p || "").trim());
+function paras(text) { return String(text || "").split(/\n\s*\n/).map(p => p.trim()).filter(p => p && !isTodo(p)).map(p => "<p>" + esc(p).replace(/\n/g, "<br>") + "</p>").join(""); }
 const digits = s => String(s || "").replace(/[^0-9]/g, "");
 function safeUrl(u) { u = String(u || "").trim(); return /^https?:\/\//i.test(u) ? u : ""; }
 function img(u) { u = String(u || "").trim(); return /^\/assets\/[\w\-./]+\.(jpe?g|png|webp|gif)$/i.test(u) && !u.includes("..") ? u : safeUrl(u); }
 
 /* ---------------- interface strings ---------------- */
 const UI = {
-  ar: { home: "الرئيسية", about: "من نحن", activities: "أنشطتنا", projects: "مشاريعنا", partners: "شركاؤنا", donate: "تبرّع", contact: "اتصل بنا",
+  ar: { learnMore: "اقرأ المزيد", support: "ادعم هذا العمل", youSupport: "أنتم تدعمون:", askInsta: "اطلبوا معلومات الحساب البنكي برسالة على إنستغرام.", instaMsg: "راسلونا على إنستغرام", transparency: "الشفافية", legalTitle: "الجمعية في سطور", l_status: "الصفة القانونية", l_registration: "رقم الوصل / الترخيص", l_founded: "سنة التأسيس", l_office: "المكتب المسير", l_report: "التقرير الأدبي والمالي", privacyTitle: "المعطيات الشخصية", download: "تحميل", home: "الرئيسية", about: "من نحن", activities: "أنشطتنا", projects: "مشاريعنا", partners: "شركاؤنا", donate: "تبرّع", contact: "اتصل بنا",
     donateNow: "تبرّع الآن", seeActivities: "اكتشف أنشطتنا", allActivities: "كل الأنشطة", allProjects: "كل المشاريع", inNumbers: "الجوار بالأرقام",
     values: "قيمنا", story: "قصتنا", current: "مشاريع جارية", upcoming: "مشاريع قادمة", done: "مشاريع منجزة", needs: "ما نحتاجه", s_current: "جارٍ", s_upcoming: "قادم", s_done: "منجز",
     ctaTitle: "ساهم معنا في رمضان 1448", ctaText: "قفة واحدة أو مقعد على مائدة إفطار الأيتام: كل مساهمة تصنع الفرق.",
@@ -59,9 +64,9 @@ const UI = {
     bank: "التحويل البنكي", bankName: "البنك", holder: "صاحب الحساب", rib: "رقم الحساب (RIB)", swift: "SWIFT", copy: "نسخ", copied: "تم النسخ",
     bankAsk: "اطلبوا معلومات الحساب البنكي عبر واتساب.", inKind: "تبرع عيني", volunteer: "تطوّع معنا", whatsapp: "واتساب", whatsappMsg: "السلام عليكم، أريد التبرع لجمعية الجوار",
     phone: "الهاتف", email: "البريد الإلكتروني", address: "العنوان", hours: "أوقات الاستقبال", follow: "تابعونا", gallery: "أنشطتنا بالصور",
-    formName: "الاسم", formMsg: "رسالتكم", formSend: "إرسال عبر واتساب", formNoWa: "رقم واتساب غير متوفر بعد. راسلونا عبر البريد الإلكتروني.",
+    formName: "الاسم", formMsg: "رسالتكم", formSend: "إرسال عبر واتساب", formNoWa: "أسهل طريقة للتواصل معنا حاليًا: رسالة على إنستغرام.",
     rights: "جميع الحقوق محفوظة", stay: "لنبقَ على تواصل", stayTitle: "سؤال، تبرع أو رغبة في التطوع؟ نحن هنا.", menu: "القائمة", privacy: "لا ننشر أي معطيات شخصية عن المستفيدين." },
-  fr: { home: "Accueil", about: "Qui sommes-nous", activities: "Nos activités", projects: "Nos projets", partners: "Partenaires", donate: "Faire un don", contact: "Contact",
+  fr: { learnMore: "En savoir plus", support: "Soutenir cette action", youSupport: "Vous soutenez :", askInsta: "Demandez nos coordonnées bancaires par message sur Instagram.", instaMsg: "Écrivez-nous sur Instagram", transparency: "Transparence", legalTitle: "L'association en bref", l_status: "Statut", l_registration: "Récépissé / autorisation", l_founded: "Création", l_office: "Bureau", l_report: "Rapport moral et financier", privacyTitle: "Données personnelles", download: "Télécharger", home: "Accueil", about: "Qui sommes-nous", activities: "Nos activités", projects: "Nos projets", partners: "Partenaires", donate: "Faire un don", contact: "Contact",
     donateNow: "Faire un don", seeActivities: "Découvrir nos activités", allActivities: "Toutes les activités", allProjects: "Tous les projets", inNumbers: "Al Jiwar en chiffres",
     values: "Nos valeurs", story: "Notre histoire", current: "Projets en cours", upcoming: "Projets à venir", done: "Projets réalisés", needs: "Nos besoins", s_current: "En cours", s_upcoming: "À venir", s_done: "Réalisé",
     ctaTitle: "Participez au Ramadan 1448", ctaText: "Un panier, une place à la table du ftour des orphelins : chaque geste compte.",
@@ -69,9 +74,9 @@ const UI = {
     bank: "Virement bancaire", bankName: "Banque", holder: "Titulaire", rib: "RIB", swift: "SWIFT", copy: "Copier", copied: "Copié",
     bankAsk: "Demandez nos coordonnées bancaires sur WhatsApp.", inKind: "Don en nature", volunteer: "Devenir bénévole", whatsapp: "WhatsApp", whatsappMsg: "Bonjour, je souhaite faire un don à l'Association Al Jiwar",
     phone: "Téléphone", email: "E-mail", address: "Adresse", hours: "Horaires", follow: "Suivez-nous", gallery: "Nos actions en images",
-    formName: "Votre nom", formMsg: "Votre message", formSend: "Envoyer sur WhatsApp", formNoWa: "Numéro WhatsApp bientôt disponible. Écrivez-nous par e-mail.",
+    formName: "Votre nom", formMsg: "Votre message", formSend: "Envoyer sur WhatsApp", formNoWa: "Le plus simple pour nous joindre aujourd'hui : un message sur Instagram.",
     rights: "Tous droits réservés", stay: "Restons en contact", stayTitle: "Une question, un don, l'envie d'aider ? Écrivez-nous.", menu: "Menu", privacy: "Nous ne publions aucune donnée personnelle sur les bénéficiaires." },
-  en: { home: "Home", about: "About us", activities: "What we do", projects: "Projects", partners: "Partners", donate: "Donate", contact: "Contact",
+  en: { learnMore: "Learn more", support: "Support this", youSupport: "You are supporting:", askInsta: "Ask us for our bank details by Instagram message.", instaMsg: "Message us on Instagram", transparency: "Transparency", legalTitle: "The association at a glance", l_status: "Legal status", l_registration: "Registration", l_founded: "Founded", l_office: "Board", l_report: "Annual report", privacyTitle: "Personal data", download: "Download", home: "Home", about: "About us", activities: "What we do", projects: "Projects", partners: "Partners", donate: "Donate", contact: "Contact",
     donateNow: "Donate now", seeActivities: "See what we do", allActivities: "All activities", allProjects: "All projects", inNumbers: "Al Jiwar in numbers",
     values: "Our values", story: "Our story", current: "Current projects", upcoming: "Upcoming projects", done: "Completed projects", needs: "What we need", s_current: "In progress", s_upcoming: "Upcoming", s_done: "Completed",
     ctaTitle: "Join us for Ramadan 1448", ctaText: "A food basket, a seat at the orphans' iftar table: every gesture counts.",
@@ -79,7 +84,7 @@ const UI = {
     bank: "Bank transfer", bankName: "Bank", holder: "Account holder", rib: "Account number (RIB)", swift: "SWIFT", copy: "Copy", copied: "Copied",
     bankAsk: "Ask us for our bank details on WhatsApp.", inKind: "In-kind donation", volunteer: "Volunteer with us", whatsapp: "WhatsApp", whatsappMsg: "Hello, I would like to donate to Al Jiwar Association",
     phone: "Phone", email: "Email", address: "Address", hours: "Opening hours", follow: "Follow us", gallery: "Our work in pictures",
-    formName: "Your name", formMsg: "Your message", formSend: "Send on WhatsApp", formNoWa: "WhatsApp number coming soon. Please email us.",
+    formName: "Your name", formMsg: "Your message", formSend: "Send on WhatsApp", formNoWa: "The easiest way to reach us for now: a message on Instagram.",
     rights: "All rights reserved", stay: "Stay connected", stayTitle: "A question, a donation, want to help? Write to us.", menu: "Menu", privacy: "We never publish personal data about the people we help." }
 };
 
@@ -108,32 +113,38 @@ const icon = (n, cls) => '<svg class="ico ' + (cls || "") + '" viewBox="0 0 24 2
 function layout(c, lang, page, title, body, desc) {
   const u = UI[lang], s = c.site || {}, name = tr(s.name, lang), href = p => "/" + lang + "/" + (p ? p : "");
   const nav = PAGES.filter(p => p !== "donate").map(p => '<a href="' + href(p) + '"' + (p === page ? ' aria-current="page"' : "") + ">" + esc(p ? u[p] : u.home) + "</a>").join("");
-  const langs = LANGS.map(l => '<a href="/' + l + "/" + page + '" lang="' + l + '"' + (l === lang ? ' aria-current="true"' : "") + ">" + ({ ar: "ع", fr: "FR", en: "EN" })[l] + "</a>").join("");
-  const base = safeUrl(s.siteUrl).replace(/\/+$/, "");
-  const alt = base ? LANGS.map(l => '<link rel="alternate" hreflang="' + l + '" href="' + base + "/" + l + "/" + page + '">').join("") : "";
+  const langs = LANGS.map(l => '<a href="/' + l + "/" + page + '" lang="' + l + '" aria-label="' + LANG_NAMES[l] + '" title="' + LANG_NAMES[l] + '"' + (l === lang ? ' aria-current="true"' : "") + ">" + ({ ar: "ع", fr: "FR", en: "EN" })[l] + "</a>").join("");
+  const base = (safeUrl(s.siteUrl) || DEFAULT_URL).replace(/\/+$/, "");
+  const alt = LANGS.map(l => '<link rel="alternate" hreflang="' + l + '" href="' + base + "/" + l + "/" + page + '">').join("") + '<link rel="alternate" hreflang="x-default" href="' + base + "/" + (s.defaultLang || "fr") + "/" + page + '">';
+  const metaDesc = esc(String(desc || tr(c.home && c.home.heroText, lang)).replace(/\s+/g, " ").slice(0, 160));
+  const ld = { "@context": "https://schema.org", "@type": "NGO", name: name, alternateName: [tr(s.name, "ar"), tr(s.name, "fr")].filter(x => x && x !== name), url: base + "/" + lang + "/", logo: base + "/assets/img/logo.png", slogan: tr(s.tagline, lang),
+    sameAs: [safeUrl(s.instagram), safeUrl(s.facebook)].filter(Boolean), email: s.email || undefined, telephone: s.phone || undefined };
   const wa = digits(s.whatsapp);
   return '<!doctype html><html lang="' + lang + '" dir="' + (lang === "ar" ? "rtl" : "ltr") + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
     "<title>" + esc(title ? title + " · " + name : name + " · " + tr(s.tagline, lang)) + "</title>" +
-    '<meta name="description" content="' + esc(String(desc || tr(c.home && c.home.heroText, lang)).slice(0, 160)) + '">' +
-    '<meta property="og:title" content="' + esc(title || name) + '"><meta property="og:image" content="/assets/img/logo.png">' + alt +
+    '<meta name="description" content="' + metaDesc + '"><link rel="canonical" href="' + base + "/" + lang + "/" + page + '">' +
+    '<meta property="og:type" content="website"><meta property="og:site_name" content="' + esc(name) + '"><meta property="og:title" content="' + esc(title ? title + " · " + name : name) + '"><meta property="og:description" content="' + metaDesc + '">' +
+    '<meta property="og:url" content="' + base + "/" + lang + "/" + page + '"><meta property="og:locale" content="' + LOCALES[lang] + '"><meta property="og:image" content="' + base + '/assets/img/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' +
+    '<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0a3f59">' + alt +
+    '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "</script>" +
     '<link rel="icon" href="/assets/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap">' +
-    '<link rel="stylesheet" href="/assets/css/site.css?v=6"><script src="/assets/js/site.js?v=6"></script></head><body class="page-' + (page || "home") + '">' +
+    '<link rel="stylesheet" href="/assets/css/site.css?v=7"><script src="/assets/js/site.js?v=7"></script></head><body class="page-' + (page || "home") + '">' +
     '<a class="skip" href="#main">↓</a><header class="top"><div class="wrap top-in">' +
-    '<a class="brand" href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo.png" alt="' + esc(name) + '" width="62" height="56"></a>' +
+    '<a class="brand" href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo-sm.png" alt="' + esc(name) + '" width="62" height="56"></a>' +
     '<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="' + esc(u.menu) + '"><span></span><span></span><span></span></button>' +
     '<nav id="nav" class="nav"><div class="pill-nav">' + nav + '</div><div class="nav-end"><div class="langs">' + langs + '</div><a class="btn btn-outline" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div></nav></div></header>" +
     '<main id="main">' + body + "</main>" +
     '<footer class="foot"><div class="wrap">' +
       '<div class="foot-top"><p class="foot-say">' + esc(tr(s.tagline, lang)) + '</p><a class="btn btn-orange" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div>" +
       '<div class="foot-grid">' +
-        '<div class="foot-brand"><a href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo.png" alt="' + esc(name) + '" width="110"></a>' +
-          '<div class="foot-social">' + [["phone", s.phone && "tel:" + s.phone.replace(/s/g, ""), u.phone], ["wa", wa && "https://wa.me/" + wa, "WhatsApp"], ["mail", s.email && "mailto:" + s.email, u.email], ["insta", safeUrl(s.instagram), "Instagram"], ["fb", safeUrl(s.facebook), "Facebook"]]
+        '<div class="foot-brand"><a href="' + href("") + '" aria-label="' + esc(name) + '"><img src="/assets/img/logo-md.png" alt="' + esc(name) + '" width="110" height="100" loading="lazy"></a>' +
+          '<div class="foot-social">' + [["phone", s.phone && "tel:" + s.phone.replace(/\s/g, ""), u.phone], ["wa", wa && "https://wa.me/" + wa, "WhatsApp"], ["mail", s.email && "mailto:" + s.email, u.email], ["insta", safeUrl(s.instagram), "Instagram"], ["fb", safeUrl(s.facebook), "Facebook"]]
             .filter(x => x[1]).map(x => '<a href="' + esc(x[1]) + '" aria-label="' + esc(x[2]) + '" title="' + esc(x[2]) + '"' + (/^https/.test(x[1]) ? ' target="_blank" rel="noopener"' : "") + ">" + icon(x[0]) + "</a>").join("") + "</div>" +
           (tr(s.address, lang) ? '<p class="foot-addr">' + esc(tr(s.address, lang)) + "</p>" : "") + "</div>" +
-        '<nav class="foot-nav" aria-label="' + esc(u.menu) + '">' + PAGES.map(p => '<a href="' + href(p) + '">' + esc(p ? u[p] : u.home) + "</a>").join("") + "</nav>" +
+        '<nav class="foot-nav" aria-label="' + esc(u.menu) + '">' + PAGES.concat(EXTRA).map(p => '<a href="' + href(p) + '">' + esc(p ? u[p] : u.home) + "</a>").join("") + "</nav>" +
       "</div>" +
-      '<div class="foot-end"><span>© ' + new Date().getFullYear() + " " + esc(name) + '</span><span class="foot-langs">' + LANGS.map(l => '<a href="/' + l + "/" + page + '" lang="' + l + '">' + ({ ar: "العربية", fr: "Français", en: "English" })[l] + "</a>").join("") + "</span></div>" +
+      '<div class="foot-end"><span>© ' + new Date().getFullYear() + " " + esc(name) + '</span><span class="foot-langs">' + LANGS.map(l => '<a href="/' + l + "/" + page + '" lang="' + l + '">' + LANG_NAMES[l] + "</a>").join("") + "</span></div>" +
     "</div></footer>" +
     '</body></html>';
 }
@@ -149,8 +160,10 @@ function media(src, alt, fallbackIcon, cls, tone) {
 }
 const TONES = ["blue", "orange", "green"];
 function causeRow(a, lang, u, i, href, tag) {
+  const link = tag === "h3" ? '<a class="btn btn-line" href="' + href("activities") + "#" + esc(a.id) + '">' + esc(u.learnMore) + icon("arrow", "flip") + "</a>"
+                            : '<a class="btn btn-pill" href="' + href("donate") + "?pour=" + encodeURIComponent(a.id) + '">' + esc(u.support) + "</a>";
   return '<article class="cause rv" id="' + esc(a.id) + '"><div class="cause-card"><span class="icon-dot">' + icon(a.icon) + "</span><" + tag + ">" + esc(tr(a.title, lang)) + "</" + tag + ">" + paras(tr(a.text, lang)) +
-    '<a class="btn btn-pill" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div>" + media(a.image, tr(a.title, lang), a.icon, "cause-media", TONES[i % 3]) + "</article>";
+    link + "</div>" + media(a.image, tr(a.title, lang), a.icon, "cause-media", TONES[i % 3]) + "</article>";
 }
 function statBox(x, lang, cls) {
   const v = String((x && x.value) || "").trim();
@@ -159,8 +172,9 @@ function statBox(x, lang, cls) {
 }
 function projectCard(p, lang, u) {
   const needs = tr(p.needs, lang);
-  return '<article class="card proj" id="' + esc(p.id) + '">' + media(p.image, tr(p.title, lang), "home", "", TONES[(p._i || 0) % 3]) + '<div class="card-body"><span class="tag tag-' + esc(p.status) + '">' + esc(u["s_" + p.status] || "") + "</span><h3>" + esc(tr(p.title, lang)) + "</h3>" + paras(tr(p.text, lang)) +
-    (needs ? '<p class="needs"><strong>' + esc(u.needs) + " :</strong> " + esc(needs) + "</p>" : "") + "</div></article>";
+  return '<article class="card proj" id="' + esc(p.id) + '">' + media(p.image, tr(p.title, lang), ICONS[p.icon] ? p.icon : "home", "", TONES[(p._i || 0) % 3]) + '<div class="card-body"><span class="tag tag-' + esc(p.status) + '">' + esc(u["s_" + p.status] || "") + "</span><h3>" + esc(tr(p.title, lang)) + "</h3>" + paras(tr(p.text, lang)) +
+    (needs ? '<p class="needs"><strong>' + esc(u.needs) + " :</strong> " + esc(needs) + "</p>" : "") +
+    (p.status !== "done" && p._href ? '<a class="btn btn-pill" href="' + p._href("donate") + "?pour=" + encodeURIComponent(p.id) + '">' + esc(u.support) + "</a>" : "") + "</div></article>";
 }
 function waLink(c, text) { const n = digits(c.site && c.site.whatsapp); return n ? "https://wa.me/" + n + "?text=" + encodeURIComponent(text) : ""; }
 function partnersGrid(c, lang, u) {
@@ -172,7 +186,7 @@ function partnersGrid(c, lang, u) {
   }).join("") + "</div>";
 }
 
-function render(c, lang, page) {
+function render(c, lang, page, query) {
   const u = UI[lang], h = c.home || {}, s = c.site || {}, href = p => "/" + lang + "/" + p;
   if (page === "") {
     const st = c.stats || [], vals = (c.about && c.about.values) || [], acts = c.activities || [];
@@ -199,7 +213,7 @@ function render(c, lang, page) {
       /* MARQUEE */
       '<div class="marquee" aria-hidden="true"><div class="marquee-track">' + marquee + marquee + "</div></div>" +
       /* CAUSES */
-      '<section class="block"><div class="wrap"><div class="sec-head rv"><div><span class="pill-label">' + esc(u.activities) + "</span><h2>" + esc(tr(h.missionTitle, lang)) + '</h2></div><a class="btn btn-outline" href="' + href("activities") + '">' + esc(u.allActivities) + icon("arrow", "flip") + '</a></div><div class="causes">' +
+      '<section class="block"><div class="wrap"><div class="sec-head rv"><div><span class="pill-label">' + esc(tr(s.tagline, lang)) + "</span><h2>" + esc(u.activities) + '</h2></div><a class="btn btn-outline" href="' + href("activities") + '">' + esc(u.allActivities) + icon("arrow", "flip") + '</a></div><div class="causes">' +
         acts.slice(0, 3).map((a, i) => causeRow(a, lang, u, i, href, "h3")).join("") + "</div></div></section>" +
       /* BENTO */
       '<section class="block"><div class="wrap"><div class="bento">' +
@@ -220,14 +234,14 @@ function render(c, lang, page) {
       '<section class="block"><div class="wrap"><div class="sec-head rv"><div><h2>' + esc(u.partners) + '</h2><p class="muted">' + esc(tr(c.partners && c.partners.intro, lang)) + '</p></div><a class="btn btn-outline" href="' + href("partners") + '">' + esc(u.becomePartner) + "</a></div>" + partnersGrid(c, lang, u) + "</div></section>" +
       /* STAY IN TOUCH: photo mosaic with a floating card */
       '<section class="block"><div class="wrap"><div class="band rv">' +
-        (gal.length >= 4 ? '<div class="band-mosaic" aria-hidden="true">' + gal.slice(-4).map(g => '<img src="' + esc(img(g.image)) + '" alt="" loading="lazy">').join("") + "</div>" : media(h.bandImage, "", "logo", "band-media", "blue")) +
+        media(h.bandImage, "", "logo", "band-media", "blue") +
         '<div class="band-card"><span class="pill-label">' + esc(u.stay) + "</span><h2>" + esc(u.stayTitle) + '</h2><div class="actions"><a class="btn btn-pill" href="' + href("contact") + '">' + esc(u.writeUs) + icon("arrow", "flip") + "</a>" + (insta ? '<a class="btn btn-outline btn-sm" href="' + esc(insta) + '" target="_blank" rel="noopener">Instagram</a>' : "") + "</div></div></div></div></section>";
     return layout(c, lang, page, "", body);
   }
   if (page === "about") {
     const a = c.about || {};
     const body = pageHead(u.about, tr(a.intro, lang)) +
-      '<section class="block"><div class="wrap split"><div><h2>' + esc(u.story) + "</h2>" + paras(tr(a.story, lang)) + "</div>" + (img(a.image) ? media(a.image, u.story, "users", "tall") : '<div class="media media-empty tall"><img src="/assets/img/logo.png" alt="" class="logo-in"></div>') + "</div></section>" +
+      '<section class="block"><div class="wrap split"><div><h2>' + esc(u.story) + "</h2>" + paras(tr(a.story, lang)) + "</div>" + media(a.image, u.story, "logo", "tall", "blue") + "</div></section>" +
       '<section class="block soft"><div class="wrap"><h2 class="center">' + esc(u.values) + '</h2><div class="grid grid-4">' +
         (a.values || []).map((v, i) => '<div class="value v' + (i % 3) + '"><h3>' + esc(tr(v.title, lang)) + "</h3>" + paras(tr(v.text, lang)) + "</div>").join("") + "</div></div></section>";
     return layout(c, lang, page, u.about, body, tr(a.intro, lang));
@@ -239,7 +253,7 @@ function render(c, lang, page) {
     return layout(c, lang, page, u.activities, body);
   }
   if (page === "projects") {
-    const groups = ["current", "upcoming", "done"].map(st => { const l = (c.projects || []).filter(p => p.status === st); return l.length ? '<section class="block"><div class="wrap"><h2>' + esc(u[st]) + '</h2><div class="grid grid-3">' + l.map((p, i) => projectCard(Object.assign({ _i: i }, p), lang, u)).join("") + "</div></div></section>" : ""; }).join("");
+    const groups = ["current", "upcoming", "done"].map(st => { const l = (c.projects || []).filter(p => p.status === st); return l.length ? '<section class="block"><div class="wrap"><h2>' + esc(u[st]) + '</h2><div class="grid grid-3">' + l.map((p, i) => projectCard(Object.assign({ _i: i, _href: href }, p), lang, u)).join("") + "</div></div></section>" : ""; }).join("");
     return layout(c, lang, page, u.projects, pageHead(u.projects, "") + groups);
   }
   if (page === "partners") {
@@ -249,12 +263,18 @@ function render(c, lang, page) {
     return layout(c, lang, page, u.partners, body, tr(p.intro, lang));
   }
   if (page === "donate") {
-    const d = c.donate || {}, wa = waLink(c, u.whatsappMsg);
+    const d = c.donate || {}, insta = safeUrl(s.instagram);
+    const pourId = String((query && query.get("pour")) || "").slice(0, 60);
+    const target = pourId && (c.activities || []).concat(c.projects || []).find(x => x && x.id === pourId);
+    const tTitle = target ? tr(target.title, lang) : "";
+    const wa = waLink(c, u.whatsappMsg + (tTitle ? " (" + tTitle + ")" : ""));
     const rows = [["bankName", d.bankName], ["holder", d.holder], ["rib", d.rib], ["swift", d.swift]].filter(r => String(r[1] || "").trim());
     const bank = rows.length ? '<dl class="bank">' + rows.map(([k, v]) => "<div><dt>" + esc(u[k]) + '</dt><dd><span dir="ltr">' + esc(v) + "</span>" + (k === "rib" || k === "swift" ? '<button class="copy" data-copy="' + esc(v) + '" data-done="' + esc(u.copied) + '">' + esc(u.copy) + "</button>" : "") + "</dd></div>").join("") + "</dl>"
-      : '<p class="muted">' + esc(u.bankAsk) + "</p>";
-    const waBtn = wa ? '<a class="btn btn-green" href="' + esc(wa) + '" rel="noopener" target="_blank">' + icon("wa") + esc(u.whatsapp) + "</a>" : "";
+      : (digits(s.whatsapp) || !insta ? '<p class="muted">' + esc(u.bankAsk) + "</p>" : '<p class="muted">' + esc(u.askInsta) + '</p><a class="btn btn-ghost" href="' + esc(insta) + '" target="_blank" rel="noopener">' + icon("insta") + "Instagram</a>");
+    const waBtn = wa ? '<a class="btn btn-green" href="' + esc(wa) + '" rel="noopener" target="_blank">' + icon("wa") + esc(u.whatsapp) + "</a>"
+      : insta ? '<a class="btn btn-ghost" href="' + esc(insta) + '" target="_blank" rel="noopener">' + icon("insta") + esc(u.instaMsg) + "</a>" : "";
     const body = pageHead(u.donate, tr(d.intro, lang), "orange") +
+      (tTitle ? '<section class="block tight"><div class="wrap"><p class="pour">' + icon(target.icon && ICONS[target.icon] ? target.icon : "heart") + "<span>" + esc(u.youSupport) + " <strong>" + esc(tTitle) + "</strong></span></p></div></section>" : "") +
       '<section class="block"><div class="wrap grid grid-3 donate">' +
         '<div class="card pad"><div class="badge">' + icon("heart") + "</div><h2>" + esc(u.bank) + "</h2>" + bank + "</div>" +
         '<div class="card pad"><div class="badge b-blue">' + icon("box") + "</div><h2>" + esc(u.inKind) + "</h2>" + paras(tr(d.inKind, lang)) + waBtn + "</div>" +
@@ -269,16 +289,30 @@ function render(c, lang, page) {
       wa && ["wa", u.whatsapp, '<a href="https://wa.me/' + wa + '" rel="noopener" target="_blank" dir="ltr">+' + esc(wa) + "</a>"],
       s.email && ["mail", u.email, '<a href="mailto:' + esc(s.email) + '">' + esc(s.email) + "</a>"],
       tr(s.address, lang) && ["pin", u.address, esc(tr(s.address, lang))],
-      tr(ct.hours, lang) && ["clock", u.hours, esc(tr(ct.hours, lang))]
+      tr(ct.hours, lang) && ["clock", u.hours, esc(tr(ct.hours, lang))],
+      safeUrl(s.instagram) && ["insta", "Instagram", '<a href="' + esc(safeUrl(s.instagram)) + '" target="_blank" rel="noopener" dir="ltr">@' + esc(safeUrl(s.instagram).replace(/\/+$/, "").split("/").pop()) + "</a>"],
+      safeUrl(s.facebook) && ["fb", "Facebook", '<a href="' + esc(safeUrl(s.facebook)) + '" target="_blank" rel="noopener">Facebook</a>']
     ].filter(Boolean);
     const map = /^https:\/\/(www\.)?google\.[a-z.]+\/maps\/embed\?/.test(String(s.mapEmbed || "")) ? '<div class="map"><iframe src="' + esc(s.mapEmbed) + '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="' + esc(u.address) + '"></iframe></div>' : "";
     const form = wa ? '<form class="card pad waform" data-wa="' + wa + '"><h2>' + esc(u.writeUs) + '</h2><label>' + esc(u.formName) + '<input name="name" required maxlength="80"></label><label>' + esc(u.formMsg) + '<textarea name="msg" rows="5" required maxlength="1000"></textarea></label><button class="btn btn-green" type="submit">' + icon("wa") + esc(u.formSend) + "</button></form>"
-      : '<div class="card pad"><h2>' + esc(u.writeUs) + '</h2><p class="muted">' + esc(u.formNoWa) + "</p>" + (s.email ? '<a class="btn btn-blue" href="mailto:' + esc(s.email) + '">' + icon("mail") + esc(s.email) + "</a>" : "") + "</div>";
+      : '<div class="card pad"><h2>' + esc(u.writeUs) + '</h2><p class="muted">' + esc(u.formNoWa) + "</p>" + (s.email ? '<a class="btn btn-blue" href="mailto:' + esc(s.email) + '">' + icon("mail") + esc(s.email) + "</a>" : safeUrl(s.instagram) ? '<a class="btn btn-blue" href="' + esc(safeUrl(s.instagram)) + '" target="_blank" rel="noopener">' + icon("insta") + esc(u.instaMsg) + "</a>" : "") + "</div>";
     const body = pageHead(u.contact, tr(ct.intro, lang), "blue") +
       '<section class="block"><div class="wrap split top">' +
         '<div><ul class="contact-list">' + items.map(([i, l, v]) => "<li>" + icon(i) + "<div><small>" + esc(l) + "</small>" + v + "</div></li>").join("") + "</ul>" + map + "</div>" + form +
       "</div></section>";
     return layout(c, lang, page, u.contact, body, tr(ct.intro, lang));
+  }
+  if (page === "transparency") {
+    const lg = c.legal || {};
+    const rows = [["l_status", tr(lg.status, lang)], ["l_registration", lg.registration], ["l_founded", lg.founded], ["l_office", tr(lg.office, lang)]].filter(r => String(r[1] || "").trim());
+    const report = safeUrl(lg.reportUrl) || (img(lg.reportUrl) ? lg.reportUrl : (/^\/assets\/uploads\/[\w.-]+\.pdf$/i.test(String(lg.reportUrl || "")) ? lg.reportUrl : ""));
+    const body = pageHead(u.transparency, tr(lg.intro, lang)) +
+      '<section class="block"><div class="wrap split top">' +
+        (rows.length || report ? '<div class="card pad"><h2>' + esc(u.legalTitle) + "</h2>" + (rows.length ? '<dl class="bank">' + rows.map(([k, v]) => "<div><dt>" + esc(u[k]) + "</dt><dd><span>" + esc(v).replace(/\n/g, "<br>") + "</span></dd></div>").join("") + "</dl>" : "") +
+          (report ? '<a class="btn btn-ghost" href="' + esc(report) + '" target="_blank" rel="noopener">' + esc(u.l_report) + " · " + esc(u.download) + "</a>" : "") + "</div>" : "") +
+        '<div class="card pad"><h2>' + esc(u.privacyTitle) + "</h2>" + paras(tr(lg.privacy, lang)) + "</div>" +
+      "</div></section>";
+    return layout(c, lang, page, u.transparency, body, tr(lg.intro, lang));
   }
   return null;
 }
@@ -295,14 +329,14 @@ function clean(v, depth) {
 function slugId(s, seen) { let id = String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 50) || "item"; let b = id, k = 2; while (seen.has(id)) id = b + "-" + k++; seen.add(id); return id; }
 function normalize(c) {
   c = clean(c, 0) || {};
-  for (const key of ["site", "home", "about", "partners", "donate", "contact"]) if (!c[key] || typeof c[key] !== "object" || Array.isArray(c[key])) c[key] = {};
+  for (const key of ["site", "home", "about", "partners", "donate", "contact", "legal"]) if (!c[key] || typeof c[key] !== "object" || Array.isArray(c[key])) c[key] = {};
   for (const key of ["stats", "activities", "projects", "gallery"]) if (!Array.isArray(c[key])) c[key] = [];
   if (!Array.isArray(c.partners.list)) c.partners.list = [];
   if (!Array.isArray(c.about.values)) c.about.values = [];
   if (!LANGS.includes(c.site.defaultLang)) c.site.defaultLang = "ar";
   const seenA = new Set(), seenP = new Set();
   c.activities.forEach(a => { a.id = slugId(a.id || tr(a.title, "fr") || tr(a.title, "en"), seenA); if (!ICONS[a.icon]) a.icon = "heart"; });
-  c.projects.forEach(p => { p.id = slugId(p.id || tr(p.title, "fr") || tr(p.title, "en"), seenP); if (!["current", "upcoming", "done"].includes(p.status)) p.status = "current"; });
+  c.projects.forEach(p => { p.id = slugId(p.id || tr(p.title, "fr") || tr(p.title, "en"), seenP); if (p.icon && !ICONS[p.icon]) p.icon = "home"; if (!["current", "upcoming", "done"].includes(p.status)) p.status = "current"; });
   return c;
 }
 
@@ -322,7 +356,7 @@ function sameOrigin(req) { const o = req.headers.origin; if (!o) return true; tr
 async function api(req, res, url) {
   const p = url.pathname;
   if (req.method !== "GET" && !sameOrigin(req)) return send(res, 403, { error: "Origine refusée" });
-  if (p === "/api/session") return send(res, 200, { authed: authed(req), configured: !!PW });
+  if (p === "/api/session") return send(res, 200, { authed: authed(req), configured: !!PW, repo: process.env.GH_REPO || "" });
   if (p === "/api/login" && req.method === "POST") {
     const ip = clientIp(req), a = attempts.get(ip) || { n: 0, until: 0 };
     if (a.n >= 8 && a.until > Date.now()) return send(res, 429, { error: "Trop d'essais. Réessayez dans 15 minutes." });
@@ -381,12 +415,12 @@ async function handle(req, res) {
     if (p === "/robots.txt") return send(res, 200, "User-agent: *\nDisallow: /admin\nDisallow: /api/\n" + (safeUrl(c.site && c.site.siteUrl) ? "Sitemap: " + safeUrl(c.site.siteUrl).replace(/\/+$/, "") + "/sitemap.xml\n" : ""), { "Content-Type": "text/plain; charset=utf-8" });
     if (p === "/sitemap.xml") {
       const base = safeUrl(c.site && c.site.siteUrl).replace(/\/+$/, "") || ((isHttps(req) ? "https://" : "http://") + req.headers.host);
-      return send(res, 200, '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + LANGS.flatMap(l => PAGES.map(pg => "<url><loc>" + esc(base + "/" + l + "/" + pg) + "</loc></url>")).join("") + "</urlset>", { "Content-Type": "application/xml; charset=utf-8" });
+      return send(res, 200, '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + LANGS.flatMap(l => PAGES.concat(EXTRA).map(pg => "<url><loc>" + esc(base + "/" + l + "/" + pg) + "</loc></url>")).join("") + "</urlset>", { "Content-Type": "application/xml; charset=utf-8" });
     }
     const m = /^\/(ar|fr|en)(?:\/([a-z]*))?\/?$/.exec(p);
     if (m) {
       const page = m[2] || "";
-      if (PAGES.includes(page)) return send(res, 200, render(c, m[1], page), { "Cache-Control": "public, max-age=0, s-maxage=30" });
+      if (PAGES.includes(page) || EXTRA.includes(page)) return send(res, 200, render(c, m[1], page, url.searchParams), { "Cache-Control": url.search ? "no-store" : "public, max-age=0, s-maxage=60, stale-while-revalidate=86400" });
     }
     if (serveStatic(req, res, p.replace(/^\/+/, ""))) return;
     const lang = LANGS.find(l => p.startsWith("/" + l + "/")) || (c.site && c.site.defaultLang) || "ar";

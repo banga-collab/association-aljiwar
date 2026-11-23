@@ -58,7 +58,7 @@
     ] },
     { id: "projects", icon: "◆", page: "projects", label: "Projets", fields: [
       { root: "projects", label: "Projets", type: "list", title: function (x) { return (x.title && x.title.fr) + " · " + ((STATUS.filter(function (s) { return s[0] === x.status; })[0] || [0, ""])[1]); }, blank: function () { return { id: "", status: "current", image: "", title: {}, text: {}, needs: {} }; }, fields: [
-        { k: "title", label: "Titre", type: "ml" }, { k: "status", label: "État", type: "select", opts: STATUS },
+        { k: "title", label: "Titre", type: "ml" }, { k: "status", label: "État", type: "select", opts: STATUS }, { k: "icon", label: "Icône (si pas de photo)", type: "select", opts: ICONS },
         { k: "text", label: "Description", type: "mlarea", rows: 4 }, { k: "needs", label: "Besoins", hint: "facultatif", type: "ml" }, { k: "image", label: "Photo", type: "image" } ] }
     ] },
     { id: "partners", icon: "♡", page: "partners", label: "Partenaires", fields: [
@@ -66,6 +66,15 @@
       { obj: "partners", k: "list", label: "Partenaires", type: "list", title: function (x) { return x.name; }, blank: function () { return { name: "", logo: "", url: "", text: {} }; }, fields: [
         { k: "name", label: "Nom", type: "text" }, { k: "logo", label: "Logo", type: "image" }, { k: "url", label: "Site web", hint: "facultatif", type: "text" }, { k: "text", label: "Petite phrase", hint: "facultatif", type: "ml" } ] },
       { obj: "partners", k: "become", label: "Texte « Devenir partenaire »", type: "mlarea" }
+    ] },
+    { id: "legal", icon: "§", page: "transparency", label: "Transparence", hint: "Page « Transparence » (lien en bas du site). Les champs vides ne s'affichent pas.", fields: [
+      { obj: "legal", k: "intro", label: "Introduction", type: "mlarea" },
+      { obj: "legal", k: "status", label: "Statut", type: "ml" },
+      { obj: "legal", k: "registration", label: "N° de récépissé / autorisation", type: "text" },
+      { obj: "legal", k: "founded", label: "Année de création", type: "text", ph: "ex. 2015" },
+      { obj: "legal", k: "office", label: "Bureau (président, trésorier…)", hint: "une personne par ligne, uniquement si le bureau est d'accord", type: "mlarea" },
+      { obj: "legal", k: "reportUrl", label: "Rapport moral et financier (lien)", hint: "lien Google Drive, PDF en ligne…", type: "text" },
+      { obj: "legal", k: "privacy", label: "Données personnelles", type: "mlarea", rows: 5 }
     ] },
     { id: "donate", icon: "♥", page: "donate", label: "Dons & contact", hint: "Sans coordonnées bancaires, la page propose de les demander sur WhatsApp.", fields: [
       { obj: "donate", k: "intro", label: "Introduction de la page Don", type: "mlarea" },
@@ -86,7 +95,7 @@
     return e;
   }
   function toast(msg, bad) { var t = $("#toast"); t.textContent = msg; t.className = "toast show" + (bad === true ? " bad" : bad === "ok" ? " ok" : ""); clearTimeout(toast.t); toast.t = setTimeout(function () { t.className = "toast"; }, bad ? 5000 : 2200); }
-  function touch() { dirty = true; $("#save").disabled = false; $("#save .lbl").textContent = "Enregistrer"; }
+  function touch() { dirty = true; $("#save").disabled = false; $("#undo").hidden = false; $("#save .lbl").textContent = "Enregistrer"; }
   function api(path, body) {
     return fetch("/api/" + path, body === undefined ? { credentials: "same-origin" } : { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) throw new Error(j.error || ("Erreur " + r.status)); return j; }); });
@@ -207,7 +216,7 @@
 
   $("#save").addEventListener("click", function () {
     var b = $("#save"); b.disabled = true; $("#save .lbl").textContent = "Enregistrement…";
-    api("content", data).then(function (r) { data = r.content; dirty = false; $("#save .lbl").textContent = "Enregistré"; toast("Enregistré ✓ — le site est à jour", "ok"); showTab(tab); })
+    api("content", data).then(function (r) { data = r.content; dirty = false; $("#undo").hidden = true; $("#save .lbl").textContent = "Enregistré"; toast("Enregistré ✓ — le site est à jour", "ok"); showTab(tab); })
       .catch(function (e) { b.disabled = false; $("#save .lbl").textContent = "Enregistrer"; toast(e.message, true); if (/Connexion/.test(e.message)) showLogin(); });
   });
   var lang = "all"; try { lang = localStorage.getItem("aj-admin-lang") || "all"; } catch (e) { /* private mode */ }
@@ -220,6 +229,10 @@
   document.querySelectorAll("#langs button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.l); }); });
   setLang(lang);
   $("#menu").addEventListener("click", function () { $("#app").classList.toggle("nav-open"); });
+  $("#undo").addEventListener("click", function () {
+    if (!dirty || !confirm("Annuler toutes les modifications non enregistrées ?")) return;
+    api("content").then(function (c) { data = c; dirty = false; $("#save").disabled = true; $("#save .lbl").textContent = "Enregistré"; showTab(tab); toast("Modifications annulées", "ok"); });
+  });
   $("#logout").addEventListener("click", function () { if (dirty && !confirm("Des modifications ne sont pas enregistrées. Quitter quand même ?")) return; api("logout", {}).then(function () { dirty = false; showLogin(); }); });
   $(".login-box").addEventListener("submit", function (e) {
     e.preventDefault(); var f = e.target; $(".err").textContent = "";
@@ -228,5 +241,5 @@
   window.addEventListener("beforeunload", function (e) { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
   window.addEventListener("keydown", function (e) { if ((e.ctrlKey || e.metaKey) && e.key === "s") { e.preventDefault(); if (!$("#save").disabled) $("#save").click(); } });
 
-  api("session").then(function (s) { if (s.authed) start(); else { showLogin(); if (!s.configured) $(".err").textContent = "ADMIN_PASSWORD n'est pas défini sur le serveur."; } }).catch(showLogin);
+  api("session").then(function (s) { if (s.repo) { var h = $("#history"); h.href = "https://github.com/" + s.repo + "/commits/main/data/content.json"; h.hidden = false; } if (s.authed) start(); else { showLogin(); if (!s.configured) $(".err").textContent = "ADMIN_PASSWORD n'est pas défini sur le serveur."; } }).catch(showLogin);
 })();

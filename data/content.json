@@ -22,7 +22,7 @@
     "mapEmbed": "",
     "facebook": "",
     "instagram": "https://www.instagram.com/associationaljiwar/",
-    "siteUrl": ""
+    "siteUrl": "https://association-aljiwar.vercel.app"
   },
   "home": {
     "heroTitle": {
@@ -288,7 +288,8 @@
         "ar": "",
         "fr": "",
         "en": ""
-      }
+      },
+      "icon": "users"
     },
     {
       "id": "ramadan-1448",
@@ -308,7 +309,8 @@
         "ar": "مواد غذائية أساسية، متطوعون للتوزيع، شركاء للإفطار",
         "fr": "Denrées de base, bénévoles pour la distribution, partenaires pour le ftour",
         "en": "Staple food, volunteers for distribution, partners for the iftar"
-      }
+      },
+      "icon": "moon"
     },
     {
       "id": "entrepots",
@@ -328,7 +330,8 @@
         "ar": "",
         "fr": "",
         "en": ""
-      }
+      },
+      "icon": "box"
     },
     {
       "id": "iguiliz",
@@ -348,7 +351,8 @@
         "ar": "",
         "fr": "",
         "en": ""
-      }
+      },
+      "icon": "book"
     }
   ],
   "partners": {
@@ -462,5 +466,30 @@
         "en": "Iguiliz"
       }
     }
-  ]
+  ],
+  "legal": {
+    "intro": {
+      "ar": "نؤمن بأن الثقة تُبنى بالوضوح: من نحن، كيف نشتغل، وكيف نحمي معطيات الأسر التي نساندها.",
+      "fr": "La confiance se construit avec de la clarté : qui nous sommes, comment nous fonctionnons et comment nous protégeons les familles que nous aidons.",
+      "en": "Trust is built on clarity: who we are, how we work and how we protect the families we help."
+    },
+    "status": {
+      "ar": "جمعية غير ربحية",
+      "fr": "Association à but non lucratif",
+      "en": "Non-profit association"
+    },
+    "registration": "",
+    "founded": "",
+    "office": {
+      "ar": "",
+      "fr": "",
+      "en": ""
+    },
+    "reportUrl": "",
+    "privacy": {
+      "ar": "لا يضع هذا الموقع أي ملفات تتبع (كوكيز) ولا يسجل أي معطيات شخصية عن الزوار. نموذج الاتصال يفتح تطبيق واتساب فقط، ولا تُحفظ رسالتكم على الموقع. الخطوط تُحمَّل من خدمة Google Fonts.\n\nلا ننشر أبدًا صورًا أو معلومات تسمح بالتعرف على الأسر والأطفال الذين نساندهم.",
+      "fr": "Ce site ne dépose aucun cookie de suivi et n'enregistre aucune donnée personnelle des visiteurs. Le formulaire de contact ouvre simplement WhatsApp : votre message n'est pas conservé sur le site. Les polices de caractères sont chargées depuis Google Fonts.\n\nNous ne publions jamais de photos ni d'informations permettant d'identifier les familles et les enfants que nous aidons.",
+      "en": "This site sets no tracking cookies and records no personal data about visitors. The contact form simply opens WhatsApp: your message is not stored on the site. Fonts are loaded from Google Fonts.\n\nWe never publish photos or details that could identify the families and children we help."
+    }
+  }
 }
