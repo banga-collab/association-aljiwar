@@ -26,8 +26,17 @@
       { obj: "home", k: "heroTitle", label: "Grand titre", type: "ml" },
       { obj: "home", k: "heroText", label: "Texte d'introduction", type: "mlarea" },
       { obj: "home", k: "heroImage", label: "Photo d'accueil", hint: "sans photo, le logo s'affiche", type: "image" },
+      { obj: "home", k: "chip1", label: "Petite étiquette 1 (sur la photo)", type: "ml" },
+      { obj: "home", k: "chip2", label: "Petite étiquette 2 (sur la photo)", type: "ml" },
+      { obj: "home", k: "cardTag", label: "Carte don : petite mention", hint: "ex. Ramadan 1448", type: "ml" },
+      { obj: "home", k: "cardTitle", label: "Carte don : titre", type: "ml" },
+      { obj: "home", k: "cardText", label: "Carte don : texte", type: "mlarea" },
       { obj: "home", k: "missionTitle", label: "Titre « mission »", type: "ml" },
       { obj: "home", k: "missionText", label: "Texte « mission »", type: "mlarea" },
+      { obj: "home", k: "visionTitle", label: "Titre « vision »", type: "ml" },
+      { obj: "home", k: "visionText", label: "Texte « vision »", type: "mlarea" },
+      { obj: "home", k: "visionImage", label: "Photo à côté de vision/mission", type: "image" },
+      { obj: "home", k: "bandImage", label: "Grande photo du bas (« Restons en contact »)", type: "image" },
       { root: "stats", label: "Chiffres clés", hint: "un chiffre vide n'est pas affiché", type: "list", title: function (x) { return (x.value || "—") + " " + (x.label && x.label.fr || ""); }, blank: function () { return { value: "", label: { ar: "", fr: "", en: "" } }; }, fields: [
         { k: "value", label: "Chiffre", type: "text", ph: "ex. 120" }, { k: "label", label: "Légende", type: "ml" } ] }
     ] },

@@ -60,7 +60,7 @@ const UI = {
     bankAsk: "اطلبوا معلومات الحساب البنكي عبر واتساب.", inKind: "تبرع عيني", volunteer: "تطوّع معنا", whatsapp: "واتساب", whatsappMsg: "السلام عليكم، أريد التبرع لجمعية الجوار",
     phone: "الهاتف", email: "البريد الإلكتروني", address: "العنوان", hours: "أوقات الاستقبال", follow: "تابعونا",
     formName: "الاسم", formMsg: "رسالتكم", formSend: "إرسال عبر واتساب", formNoWa: "رقم واتساب غير متوفر بعد. راسلونا عبر البريد الإلكتروني.",
-    rights: "جميع الحقوق محفوظة", menu: "القائمة", privacy: "لا ننشر أي معطيات شخصية عن المستفيدين." },
+    rights: "جميع الحقوق محفوظة", stay: "لنبقَ على تواصل", stayTitle: "سؤال، تبرع أو رغبة في التطوع؟ نحن هنا.", menu: "القائمة", privacy: "لا ننشر أي معطيات شخصية عن المستفيدين." },
   fr: { home: "Accueil", about: "Qui sommes-nous", activities: "Nos activités", projects: "Nos projets", partners: "Partenaires", donate: "Faire un don", contact: "Contact",
     donateNow: "Faire un don", seeActivities: "Découvrir nos activités", allActivities: "Toutes les activités", allProjects: "Tous les projets", inNumbers: "Al Jiwar en chiffres",
     values: "Nos valeurs", story: "Notre histoire", current: "Projets en cours", upcoming: "Projets à venir", done: "Projets réalisés", needs: "Nos besoins", s_current: "En cours", s_upcoming: "À venir", s_done: "Réalisé",
@@ -70,7 +70,7 @@ const UI = {
     bankAsk: "Demandez nos coordonnées bancaires sur WhatsApp.", inKind: "Don en nature", volunteer: "Devenir bénévole", whatsapp: "WhatsApp", whatsappMsg: "Bonjour, je souhaite faire un don à l'Association Al Jiwar",
     phone: "Téléphone", email: "E-mail", address: "Adresse", hours: "Horaires", follow: "Suivez-nous",
     formName: "Votre nom", formMsg: "Votre message", formSend: "Envoyer sur WhatsApp", formNoWa: "Numéro WhatsApp bientôt disponible. Écrivez-nous par e-mail.",
-    rights: "Tous droits réservés", menu: "Menu", privacy: "Nous ne publions aucune donnée personnelle sur les bénéficiaires." },
+    rights: "Tous droits réservés", stay: "Restons en contact", stayTitle: "Une question, un don, l'envie d'aider ? Écrivez-nous.", menu: "Menu", privacy: "Nous ne publions aucune donnée personnelle sur les bénéficiaires." },
   en: { home: "Home", about: "About us", activities: "What we do", projects: "Projects", partners: "Partners", donate: "Donate", contact: "Contact",
     donateNow: "Donate now", seeActivities: "See what we do", allActivities: "All activities", allProjects: "All projects", inNumbers: "Al Jiwar in numbers",
     values: "Our values", story: "Our story", current: "Current projects", upcoming: "Upcoming projects", done: "Completed projects", needs: "What we need", s_current: "In progress", s_upcoming: "Upcoming", s_done: "Completed",
@@ -80,7 +80,7 @@ const UI = {
     bankAsk: "Ask us for our bank details on WhatsApp.", inKind: "In-kind donation", volunteer: "Volunteer with us", whatsapp: "WhatsApp", whatsappMsg: "Hello, I would like to donate to Al Jiwar Association",
     phone: "Phone", email: "Email", address: "Address", hours: "Opening hours", follow: "Follow us",
     formName: "Your name", formMsg: "Your message", formSend: "Send on WhatsApp", formNoWa: "WhatsApp number coming soon. Please email us.",
-    rights: "All rights reserved", menu: "Menu", privacy: "We never publish personal data about the people we help." }
+    rights: "All rights reserved", stay: "Stay connected", stayTitle: "A question, a donation, want to help? Write to us.", menu: "Menu", privacy: "We never publish personal data about the people we help." }
 };
 
 /* ---------------- icons ---------------- */
@@ -116,12 +116,12 @@ function layout(c, lang, page, title, body, desc) {
     '<meta name="description" content="' + esc(String(desc || tr(c.home && c.home.heroText, lang)).slice(0, 160)) + '">' +
     '<meta property="og:title" content="' + esc(title || name) + '"><meta property="og:image" content="/assets/img/logo.png">' + alt +
     '<link rel="icon" href="/assets/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Nunito:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap">' +
-    '<link rel="stylesheet" href="/assets/css/site.css"></head><body class="page-' + (page || "home") + '">' +
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">' +
+    '<link rel="stylesheet" href="/assets/css/site.css?v=3"></head><body class="page-' + (page || "home") + '">' +
     '<a class="skip" href="#main">↓</a><header class="top"><div class="wrap top-in">' +
-    '<a class="brand" href="' + href("") + '"><img src="/assets/img/symbol.png" alt="" width="52" height="40"><span>' + esc(name) + "</span></a>" +
+    '<a class="brand" href="' + href("") + '"><img src="/assets/img/symbol.png" alt="" width="44" height="34"><span>' + esc(name) + "</span></a>" +
     '<button class="burger" aria-expanded="false" aria-controls="nav" aria-label="' + esc(u.menu) + '"><span></span><span></span><span></span></button>' +
-    '<nav id="nav" class="nav">' + nav + '<div class="langs">' + langs + '</div><a class="btn btn-orange btn-sm" href="' + href("donate") + '">' + icon("heart") + esc(u.donate) + "</a></nav></div></header>" +
+    '<nav id="nav" class="nav"><div class="pill-nav">' + nav + '</div><div class="nav-end"><div class="langs">' + langs + '</div><a class="btn btn-outline" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div></nav></div></header>" +
     '<main id="main">' + body + "</main>" +
     '<footer class="foot"><div class="wrap foot-in"><div><img src="/assets/img/logo.png" alt="' + esc(name) + '" width="150" class="foot-logo"><p>' + esc(tr(s.tagline, lang)) + "</p></div>" +
     '<div><h3>' + esc(u.contact) + "</h3><ul>" +
@@ -136,19 +136,27 @@ function layout(c, lang, page, title, body, desc) {
 }
 
 function pageHead(title, intro, tone) {
-  return '<section class="phead ' + (tone || "") + '"><div class="wrap"><h1>' + esc(title) + "</h1>" + (intro ? '<div class="lead">' + paras(intro) + "</div>" : "") + "</div></section>";
+  return '<section class="phead-wrap"><div class="wrap"><div class="phead ' + (tone || "") + '"><span class="pill-label">' + esc(title) + "</span><h1>" + esc(title) + "</h1>" + (intro ? '<div class="lead">' + paras(intro) + "</div>" : "") + "</div></div></section>";
 }
-function media(src, alt, fallbackIcon, cls) {
+/* photo, or a brand-coloured panel (blue / orange / green) when no photo has been added yet */
+function media(src, alt, fallbackIcon, cls, tone) {
   const s = img(src);
   return s ? '<div class="media ' + (cls || "") + '"><img src="' + esc(s) + '" alt="' + esc(alt) + '" loading="lazy"></div>'
-           : '<div class="media media-empty ' + (cls || "") + '">' + icon(fallbackIcon || "heart") + "</div>";
+           : '<div class="media ph ph-' + (tone || "blue") + " " + (cls || "") + '">' + (fallbackIcon === "logo" ? '<img class="ph-logo" src="/assets/img/symbol.png" alt="">' : '<span class="ph-ico">' + icon(fallbackIcon || "heart") + "</span>") + "</div>";
 }
-function activityCard(a, lang) {
-  return '<article class="card act" id="' + esc(a.id) + '">' + media(a.image, tr(a.title, lang), a.icon) + '<div class="card-body"><h3>' + esc(tr(a.title, lang)) + "</h3>" + paras(tr(a.text, lang)) + "</div></article>";
+const TONES = ["blue", "orange", "green"];
+function causeRow(a, lang, u, i, href, tag) {
+  return '<article class="cause" id="' + esc(a.id) + '"><div class="cause-card"><span class="icon-dot">' + icon(a.icon) + "</span><" + tag + ">" + esc(tr(a.title, lang)) + "</" + tag + ">" + paras(tr(a.text, lang)) +
+    '<a class="btn btn-pill" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div>" + media(a.image, tr(a.title, lang), a.icon, "cause-media", TONES[i % 3]) + "</article>";
+}
+function statBox(x, lang, cls) {
+  const v = String((x && x.value) || "").trim();
+  if (!v) return "";
+  return '<div class="stat ' + (cls || "") + '">' + (v ? "<strong>" + esc(v) + "</strong>" : "") + "<span>" + esc(tr(x.label, lang)) + "</span></div>";
 }
 function projectCard(p, lang, u) {
   const needs = tr(p.needs, lang);
-  return '<article class="card proj" id="' + esc(p.id) + '">' + media(p.image, tr(p.title, lang), "home") + '<div class="card-body"><span class="tag tag-' + esc(p.status) + '">' + esc(u["s_" + p.status] || "") + "</span><h3>" + esc(tr(p.title, lang)) + "</h3>" + paras(tr(p.text, lang)) +
+  return '<article class="card proj" id="' + esc(p.id) + '">' + media(p.image, tr(p.title, lang), "home", "", TONES[(p._i || 0) % 3]) + '<div class="card-body"><span class="tag tag-' + esc(p.status) + '">' + esc(u["s_" + p.status] || "") + "</span><h3>" + esc(tr(p.title, lang)) + "</h3>" + paras(tr(p.text, lang)) +
     (needs ? '<p class="needs"><strong>' + esc(u.needs) + " :</strong> " + esc(needs) + "</p>" : "") + "</div></article>";
 }
 function waLink(c, text) { const n = digits(c.site && c.site.whatsapp); return n ? "https://wa.me/" + n + "?text=" + encodeURIComponent(text) : ""; }
@@ -164,20 +172,38 @@ function partnersGrid(c, lang, u) {
 function render(c, lang, page) {
   const u = UI[lang], h = c.home || {}, s = c.site || {}, href = p => "/" + lang + "/" + p;
   if (page === "") {
-    const stats = (c.stats || []).filter(x => String(x.value || "").trim());
+    const st = c.stats || [], vals = (c.about && c.about.values) || [], acts = c.activities || [];
     const hero = img(h.heroImage);
+    const chips = [h.chip1, h.chip2].map(x => tr(x, lang)).filter(Boolean);
+    const tile = (v, ic) => v ? '<div class="tile"><span class="icon-dot">' + icon(ic) + "</span><h3>" + esc(tr(v.title, lang)) + "</h3>" + paras(tr(v.text, lang)) + "</div>" : "";
     const body =
-      '<section class="hero"><div class="wrap hero-in"><div class="hero-text"><p class="eyebrow">' + esc(tr(s.tagline, lang)) + "</p><h1>" + esc(tr(h.heroTitle, lang)) + "</h1>" + paras(tr(h.heroText, lang)) +
-      '<div class="actions"><a class="btn btn-orange" href="' + href("donate") + '">' + icon("heart") + esc(u.donateNow) + '</a><a class="btn btn-ghost" href="' + href("activities") + '">' + esc(u.seeActivities) + icon("arrow", "flip") + "</a></div></div>" +
-      '<div class="hero-art">' + (hero ? '<img class="hero-photo" src="' + esc(hero) + '" alt="">' : '<div class="arcs"></div><img class="hero-logo" src="/assets/img/symbol.png" alt="">') + "</div></div></section>" +
-      (stats.length ? '<section class="stats"><div class="wrap"><h2 class="sr">' + esc(u.inNumbers) + '</h2><ul class="stat-list">' + stats.map(x => "<li><strong>" + esc(x.value) + "</strong><span>" + esc(tr(x.label, lang)) + "</span></li>").join("") + "</ul></div></section>" : "") +
-      '<section class="mission"><div class="wrap narrow center"><h2>' + esc(tr(h.missionTitle, lang)) + "</h2>" + paras(tr(h.missionText, lang)) + "</div></section>" +
-      '<section class="block"><div class="wrap"><div class="sec-head"><h2>' + esc(u.activities) + '</h2><a href="' + href("activities") + '">' + esc(u.allActivities) + icon("arrow", "flip") + '</a></div><div class="grid grid-3">' +
-        (c.activities || []).slice(0, 3).map(a => activityCard(a, lang)).join("") + "</div></div></section>" +
-      '<section class="cta"><div class="wrap cta-in"><div><h2>' + esc(u.ctaTitle) + "</h2><p>" + esc(u.ctaText) + '</p></div><a class="btn btn-white" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div></section>" +
-      '<section class="block"><div class="wrap"><div class="sec-head"><h2>' + esc(u.projects) + '</h2><a href="' + href("projects") + '">' + esc(u.allProjects) + icon("arrow", "flip") + '</a></div><div class="grid grid-3">' +
-        (c.projects || []).filter(p => p.status !== "done").slice(0, 3).map(p => projectCard(p, lang, u)).join("") + "</div></div></section>" +
-      '<section class="block soft"><div class="wrap"><div class="sec-head"><h2>' + esc(u.partners) + '</h2><a href="' + href("partners") + '">' + esc(u.becomePartner) + icon("arrow", "flip") + "</a></div>" + partnersGrid(c, lang, u) + "</div></section>";
+      /* hero: full-width rounded photo (or brand panel), headline bottom-start, chips + donation card bottom-end */
+      '<section class="hero"><div class="wrap"><div class="hero-box' + (hero ? "" : " no-photo") + '"' + (hero ? ' style="background-image:url(\'' + esc(hero) + '\')"' : "") + ">" +
+        (hero ? "" : '<img class="hero-mark" src="/assets/img/symbol.png" alt="">') +
+        '<div class="hero-text"><span class="pill-label light">' + esc(tr(s.tagline, lang)) + "</span><h1>" + esc(tr(h.heroTitle, lang)) + "</h1>" + paras(tr(h.heroText, lang)) + "</div>" +
+        '<div class="hero-side">' + chips.map(x => '<span class="chip">' + esc(x) + "</span>").join("") +
+          '<div class="float-card"><div class="fc-top"><span class="fc-brand"><img src="/assets/img/favicon.png" alt="">' + esc(tr(s.name, lang)) + "</span><span>" + esc(tr(h.cardTag, lang)) + '</span></div><span class="icon-dot">' + icon("heart") + "</span><h3>" + esc(tr(h.cardTitle, lang) || u.ctaTitle) + "</h3><p>" + esc(tr(h.cardText, lang) || u.ctaText) + '</p><a class="btn btn-pill btn-lg" href="' + href("donate") + '">' + esc(u.donateNow) + "</a></div></div>" +
+      "</div></div></section>" +
+      /* causes: card + photo, three rows */
+      '<section class="block"><div class="wrap"><div class="sec-head"><div><span class="pill-label">' + esc(u.activities) + "</span><h2>" + esc(tr(h.missionTitle, lang)) + '</h2></div><a class="btn btn-outline" href="' + href("activities") + '">' + esc(u.allActivities) + '</a></div><div class="causes">' +
+        acts.slice(0, 3).map((a, i) => causeRow(a, lang, u, i, href, "h3")).join("") + "</div></div></section>" +
+      /* bento */
+      '<section class="block"><div class="wrap"><div class="bento">' +
+        '<div class="b-col">' + media(c.about && c.about.image, "", "logo", "tile-photo", "blue") + '<div class="tile">' + statBox(st[1], lang) + "<h3>" + esc(tr(vals[0] && vals[0].title, lang)) + "</h3>" + paras(tr(vals[0] && vals[0].text, lang)) + "</div></div>" +
+        '<div class="b-col">' + tile(vals[1], "heart") + '<div class="tile tile-stat">' + (statBox(st[0], lang, "big") || '<div class="stat big quote"><span class="icon-dot">' + icon("heart") + "</span><strong>" + esc(tr(s.tagline, lang)) + "</strong></div>") + "</div></div>" +
+        '<div class="b-col">' + tile(vals[2], "box") + media(acts[3] && acts[3].image, "", acts[3] ? acts[3].icon : "table", "tile-photo", "orange") + "</div>" +
+      "</div></div></section>" +
+      /* vision & mission */
+      '<section class="block"><div class="wrap vm">' + media(h.visionImage, "", "hands", "vm-photo", "green") +
+        '<div class="vm-grid">' + statBox(st[2], lang, "mini") + statBox(st[3], lang, "mini") +
+          '<div class="tile"><span class="icon-dot">' + icon("moon") + "</span><h3>" + esc(tr(h.visionTitle, lang)) + "</h3>" + paras(tr(h.visionText, lang)) + "</div>" +
+          '<div class="tile"><span class="icon-dot">' + icon("users") + "</span><h3>" + esc(tr(h.missionTitle, lang)) + "</h3>" + paras(tr(h.missionText, lang)) + "</div>" +
+      "</div></div></section>" +
+      /* partners */
+      '<section class="block"><div class="wrap"><div class="sec-head"><div><h2>' + esc(u.partners) + "</h2><p class=\"muted\">" + esc(tr(c.partners && c.partners.intro, lang)) + '</p></div><a class="btn btn-outline" href="' + href("partners") + '">' + esc(u.becomePartner) + "</a></div>" + partnersGrid(c, lang, u) + "</div></section>" +
+      /* stay in touch: card floating over a photo */
+      '<section class="block"><div class="wrap"><div class="band">' + media(h.bandImage, "", "logo", "band-media", "blue") +
+        '<div class="band-card"><span class="pill-label">' + esc(u.stay) + "</span><h2>" + esc(u.stayTitle) + '</h2><a class="btn btn-pill" href="' + href("contact") + '">' + esc(u.writeUs) + "</a></div></div></div></section>";
     return layout(c, lang, page, "", body);
   }
   if (page === "about") {
@@ -190,12 +216,12 @@ function render(c, lang, page) {
   }
   if (page === "activities") {
     const body = pageHead(u.activities, tr(h.missionText, lang)) + '<section class="block"><div class="wrap rows">' +
-      (c.activities || []).map(a => '<article class="row" id="' + esc(a.id) + '">' + media(a.image, tr(a.title, lang), a.icon) + '<div><h2>' + esc(tr(a.title, lang)) + "</h2>" + paras(tr(a.text, lang)) + "</div></article>").join("") +
+      '<div class="causes">' + (c.activities || []).map((a, i) => causeRow(a, lang, u, i, href, "h2")).join("") + "</div>" +
       '</div></section><section class="cta"><div class="wrap cta-in"><div><h2>' + esc(u.volunteer) + "</h2><p>" + esc(tr(c.donate && c.donate.volunteer, lang)) + '</p></div><a class="btn btn-white" href="' + href("contact") + '">' + esc(u.writeUs) + "</a></div></section>";
     return layout(c, lang, page, u.activities, body);
   }
   if (page === "projects") {
-    const groups = ["current", "upcoming", "done"].map(st => { const l = (c.projects || []).filter(p => p.status === st); return l.length ? '<section class="block"><div class="wrap"><h2>' + esc(u[st]) + '</h2><div class="grid grid-3">' + l.map(p => projectCard(p, lang, u)).join("") + "</div></div></section>" : ""; }).join("");
+    const groups = ["current", "upcoming", "done"].map(st => { const l = (c.projects || []).filter(p => p.status === st); return l.length ? '<section class="block"><div class="wrap"><h2>' + esc(u[st]) + '</h2><div class="grid grid-3">' + l.map((p, i) => projectCard(Object.assign({ _i: i }, p), lang, u)).join("") + "</div></div></section>" : ""; }).join("");
     return layout(c, lang, page, u.projects, pageHead(u.projects, "") + groups);
   }
   if (page === "partners") {

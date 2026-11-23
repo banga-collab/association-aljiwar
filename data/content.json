@@ -1,37 +1,122 @@
 {
   "site": {
-    "name": { "ar": "جمعية الجوار", "fr": "Association Al Jiwar", "en": "Al Jiwar Association" },
-    "tagline": { "ar": "التضامن يبدأ من الجوار", "fr": "La solidarité commence au voisinage", "en": "Solidarity starts next door" },
+    "name": {
+      "ar": "جمعية الجوار",
+      "fr": "Association Al Jiwar",
+      "en": "Al Jiwar Association"
+    },
+    "tagline": {
+      "ar": "التضامن يبدأ من الجوار",
+      "fr": "La solidarité commence au voisinage",
+      "en": "Solidarity starts next door"
+    },
     "defaultLang": "ar",
     "phone": "",
     "whatsapp": "",
     "email": "",
-    "address": { "ar": "", "fr": "", "en": "" },
+    "address": {
+      "ar": "",
+      "fr": "",
+      "en": ""
+    },
     "mapEmbed": "",
     "facebook": "",
     "instagram": "",
     "siteUrl": ""
   },
   "home": {
-    "heroTitle": { "ar": "معًا، نجعل من الجوار تضامنًا", "fr": "Ensemble, faisons du voisinage une solidarité", "en": "Together, we turn neighbourhood into solidarity" },
+    "heroTitle": {
+      "ar": "معًا، نجعل من الجوار تضامنًا",
+      "fr": "Ensemble, faisons du voisinage une solidarité",
+      "en": "Together, we turn neighbourhood into solidarity"
+    },
     "heroText": {
       "ar": "تجمع جمعية الجوار التبرعات وتوزعها على الأسر المحتاجة، وتنظم برنامجًا اجتماعيًا طوال السنة، وفي كل رمضان إفطارًا لفائدة الأيتام.",
       "fr": "L'Association Al Jiwar collecte et redistribue les dons aux familles dans le besoin, mène un programme social toute l'année et organise chaque Ramadan un ftour pour les orphelins.",
       "en": "Al Jiwar Association collects and redistributes donations to families in need, runs a social programme all year round and hosts an iftar for orphans every Ramadan."
     },
     "heroImage": "",
-    "missionTitle": { "ar": "رسالتنا", "fr": "Notre mission", "en": "Our mission" },
+    "missionTitle": {
+      "ar": "رسالتنا",
+      "fr": "Notre mission",
+      "en": "Our mission"
+    },
     "missionText": {
       "ar": "أن يكون الجار سندًا لجاره. نؤمن بأن التضامن يبدأ من الحي، ولذلك نعمل مع المتطوعين والشركاء لإيصال المساعدة إلى من يحتاجها، بكرامة وشفافية.",
       "fr": "Que chaque voisin soit un soutien pour l'autre. Nous croyons que la solidarité commence dans le quartier : avec nos bénévoles et nos partenaires, nous faisons parvenir l'aide à ceux qui en ont besoin, dans la dignité et la transparence.",
       "en": "Every neighbour can be someone's support. We believe solidarity starts in the neighbourhood: with our volunteers and partners, we bring help to those who need it, with dignity and transparency."
-    }
+    },
+    "chip1": {
+      "ar": "كل تبرع مسجَّل ومتتبَّع",
+      "fr": "Chaque don enregistré et suivi",
+      "en": "Every donation recorded and tracked"
+    },
+    "chip2": {
+      "ar": "توزيع مباشر داخل الحي",
+      "fr": "Distribution directe dans le quartier",
+      "en": "Direct distribution in the neighbourhood"
+    },
+    "cardTag": {
+      "ar": "رمضان 1448",
+      "fr": "Ramadan 1448",
+      "en": "Ramadan 1448"
+    },
+    "cardTitle": {
+      "ar": "ساهم الآن",
+      "fr": "Agissez dès maintenant",
+      "en": "Make an impact now"
+    },
+    "cardText": {
+      "ar": "قفة رمضان أو مقعد على مائدة إفطار الأيتام: كل تبرع يصل مباشرة إلى أسر الحي.",
+      "fr": "Un panier du Ramadan ou une place au ftour des orphelins : chaque don va directement aux familles du quartier.",
+      "en": "A Ramadan basket or a seat at the orphans' iftar: every donation goes straight to local families."
+    },
+    "visionTitle": {
+      "ar": "رؤيتنا",
+      "fr": "Notre vision",
+      "en": "Our vision"
+    },
+    "visionText": {
+      "ar": "حيّ لا تبقى فيه أي أسرة وحيدة أمام الحاجة، حيث يعرف الجار جاره ويسانده.",
+      "fr": "Un quartier où aucune famille ne reste seule face au besoin, où chaque voisin connaît et soutient l'autre.",
+      "en": "A neighbourhood where no family faces hardship alone, where neighbours know and support each other."
+    },
+    "visionImage": "",
+    "bandImage": ""
   },
   "stats": [
-    { "value": "", "label": { "ar": "أسرة مستفيدة", "fr": "familles accompagnées", "en": "families supported" } },
-    { "value": "", "label": { "ar": "متطوع ومتطوعة", "fr": "bénévoles", "en": "volunteers" } },
-    { "value": "", "label": { "ar": "وجبة إفطار في رمضان", "fr": "repas servis pendant Ramadan", "en": "Ramadan meals served" } },
-    { "value": "", "label": { "ar": "شريك", "fr": "partenaires", "en": "partners" } }
+    {
+      "value": "",
+      "label": {
+        "ar": "أسرة مستفيدة",
+        "fr": "familles accompagnées",
+        "en": "families supported"
+      }
+    },
+    {
+      "value": "",
+      "label": {
+        "ar": "متطوع ومتطوعة",
+        "fr": "bénévoles",
+        "en": "volunteers"
+      }
+    },
+    {
+      "value": "",
+      "label": {
+        "ar": "وجبة إفطار في رمضان",
+        "fr": "repas servis pendant Ramadan",
+        "en": "Ramadan meals served"
+      }
+    },
+    {
+      "value": "",
+      "label": {
+        "ar": "شريك",
+        "fr": "partenaires",
+        "en": "partners"
+      }
+    }
   ],
   "about": {
     "intro": {
@@ -46,16 +131,66 @@
     },
     "image": "",
     "values": [
-      { "title": { "ar": "القرب", "fr": "Proximité", "en": "Closeness" }, "text": { "ar": "نعرف حينا وأهله، ونصل إلى من يحتاج المساعدة فعلًا.", "fr": "Nous connaissons notre quartier et ses habitants : l'aide va à ceux qui en ont vraiment besoin.", "en": "We know our neighbourhood and its people, so help reaches those who truly need it." } },
-      { "title": { "ar": "الكرامة", "fr": "Dignité", "en": "Dignity" }, "text": { "ar": "نقدم المساعدة باحترام وسرية، دون نشر صور أو بيانات المستفيدين.", "fr": "L'aide est donnée avec respect et discrétion, sans exposer les bénéficiaires.", "en": "Help is given with respect and discretion, without exposing the people we support." } },
-      { "title": { "ar": "الشفافية", "fr": "Transparence", "en": "Transparency" }, "text": { "ar": "كل تبرع يُسجَّل، وكل خروج من المخزن يُتتبَّع.", "fr": "Chaque don est enregistré, chaque sortie de stock est suivie.", "en": "Every donation is recorded and every item leaving our stock is tracked." } },
-      { "title": { "ar": "التطوع", "fr": "Bénévolat", "en": "Volunteering" }, "text": { "ar": "شباب الجمعية هم قلبها: يجمعون ويرتبون ويوزعون.", "fr": "Les jeunes bénévoles sont le cœur de l'association : ils collectent, trient et distribuent.", "en": "Young volunteers are the heart of the association: they collect, sort and distribute." } }
+      {
+        "title": {
+          "ar": "القرب",
+          "fr": "Proximité",
+          "en": "Closeness"
+        },
+        "text": {
+          "ar": "نعرف حينا وأهله، ونصل إلى من يحتاج المساعدة فعلًا.",
+          "fr": "Nous connaissons notre quartier et ses habitants : l'aide va à ceux qui en ont vraiment besoin.",
+          "en": "We know our neighbourhood and its people, so help reaches those who truly need it."
+        }
+      },
+      {
+        "title": {
+          "ar": "الكرامة",
+          "fr": "Dignité",
+          "en": "Dignity"
+        },
+        "text": {
+          "ar": "نقدم المساعدة باحترام وسرية، دون نشر صور أو بيانات المستفيدين.",
+          "fr": "L'aide est donnée avec respect et discrétion, sans exposer les bénéficiaires.",
+          "en": "Help is given with respect and discretion, without exposing the people we support."
+        }
+      },
+      {
+        "title": {
+          "ar": "الشفافية",
+          "fr": "Transparence",
+          "en": "Transparency"
+        },
+        "text": {
+          "ar": "كل تبرع يُسجَّل، وكل خروج من المخزن يُتتبَّع.",
+          "fr": "Chaque don est enregistré, chaque sortie de stock est suivie.",
+          "en": "Every donation is recorded and every item leaving our stock is tracked."
+        }
+      },
+      {
+        "title": {
+          "ar": "التطوع",
+          "fr": "Bénévolat",
+          "en": "Volunteering"
+        },
+        "text": {
+          "ar": "شباب الجمعية هم قلبها: يجمعون ويرتبون ويوزعون.",
+          "fr": "Les jeunes bénévoles sont le cœur de l'association : ils collectent, trient et distribuent.",
+          "en": "Young volunteers are the heart of the association: they collect, sort and distribute."
+        }
+      }
     ]
   },
   "activities": [
     {
-      "id": "stock", "icon": "box", "image": "",
-      "title": { "ar": "المخازن وتدبير المخزون", "fr": "Entrepôts et gestion du stock", "en": "Warehouses and stock" },
+      "id": "stock",
+      "icon": "box",
+      "image": "",
+      "title": {
+        "ar": "المخازن وتدبير المخزون",
+        "fr": "Entrepôts et gestion du stock",
+        "en": "Warehouses and stock"
+      },
       "text": {
         "ar": "نجمع التبرعات العينية (مواد غذائية، ملابس، أدوات) ونخزنها في مخازن الجمعية، حيث يُسجَّل كل دخول وكل خروج قبل التوزيع.",
         "fr": "Nous collectons les dons en nature (denrées, vêtements, fournitures) et les stockons dans les entrepôts de l'association, où chaque entrée et chaque sortie est enregistrée avant distribution.",
@@ -63,8 +198,14 @@
       }
     },
     {
-      "id": "social", "icon": "heart", "image": "",
-      "title": { "ar": "البرنامج الاجتماعي", "fr": "Programme social", "en": "Social programme" },
+      "id": "social",
+      "icon": "heart",
+      "image": "",
+      "title": {
+        "ar": "البرنامج الاجتماعي",
+        "fr": "Programme social",
+        "en": "Social programme"
+      },
       "text": {
         "ar": "طوال السنة: قفف غذائية، ومساعدات للأسر التي تمر بظروف صعبة، ومبادرات تضامنية داخل الحي.",
         "fr": "Toute l'année : paniers alimentaires, aide ponctuelle aux familles en difficulté et actions de solidarité dans le quartier.",
@@ -72,8 +213,14 @@
       }
     },
     {
-      "id": "ramadan", "icon": "moon", "image": "",
-      "title": { "ar": "رمضان", "fr": "Ramadan", "en": "Ramadan" },
+      "id": "ramadan",
+      "icon": "moon",
+      "image": "",
+      "title": {
+        "ar": "رمضان",
+        "fr": "Ramadan",
+        "en": "Ramadan"
+      },
       "text": {
         "ar": "توزيع قفف رمضان على الأسر المحتاجة وتنظيم موائد إفطار جماعية خلال الشهر الفضيل.",
         "fr": "Distribution de paniers du Ramadan aux familles dans le besoin et organisation de ftours collectifs pendant le mois sacré.",
@@ -81,8 +228,14 @@
       }
     },
     {
-      "id": "ftour", "icon": "table", "image": "",
-      "title": { "ar": "إفطار الأيتام", "fr": "Ftour des orphelins", "en": "Iftar for orphans" },
+      "id": "ftour",
+      "icon": "table",
+      "image": "",
+      "title": {
+        "ar": "إفطار الأيتام",
+        "fr": "Ftour des orphelins",
+        "en": "Iftar for orphans"
+      },
       "text": {
         "ar": "في كل رمضان، نجمع الأيتام وأسرهم حول مائدة إفطار في جو عائلي، بمشاركة المتطوعين والشركاء.",
         "fr": "Chaque Ramadan, nous réunissons les orphelins et leurs familles autour d'un ftour chaleureux, avec nos bénévoles et nos partenaires.",
@@ -90,8 +243,14 @@
       }
     },
     {
-      "id": "jeunes", "icon": "hands", "image": "",
-      "title": { "ar": "الشباب والتطوع", "fr": "Jeunesse et bénévolat", "en": "Youth and volunteering" },
+      "id": "jeunes",
+      "icon": "hands",
+      "image": "",
+      "title": {
+        "ar": "الشباب والتطوع",
+        "fr": "Jeunesse et bénévolat",
+        "en": "Youth and volunteering"
+      },
       "text": {
         "ar": "نفتح الباب لشباب الحي للمشاركة في العمل الاجتماعي، ونشكر كل من يقدم وقته وجهده بشهادات تقدير.",
         "fr": "Nous ouvrons la porte aux jeunes du quartier pour s'engager dans l'action sociale, et nous remercions chaque bénévole par un certificat de reconnaissance.",
@@ -101,34 +260,64 @@
   ],
   "projects": [
     {
-      "id": "mamoun-al-jiwar", "status": "current", "image": "",
-      "title": { "ar": "مأمون الجوار", "fr": "Mamoun Al Jiwar", "en": "Mamoun Al Jiwar" },
+      "id": "mamoun-al-jiwar",
+      "status": "current",
+      "image": "",
+      "title": {
+        "ar": "مأمون الجوار",
+        "fr": "Mamoun Al Jiwar",
+        "en": "Mamoun Al Jiwar"
+      },
       "text": {
         "ar": "[للإكمال: تقديم مشروع مأمون الجوار، أهدافه والمستفيدين منه]",
         "fr": "[À compléter : présentation du projet Mamoun Al Jiwar, ses objectifs et ses bénéficiaires]",
         "en": "[To complete: presentation of the Mamoun Al Jiwar project, its goals and who it helps]"
       },
-      "needs": { "ar": "", "fr": "", "en": "" }
+      "needs": {
+        "ar": "",
+        "fr": "",
+        "en": ""
+      }
     },
     {
-      "id": "ramadan-1448", "status": "upcoming", "image": "",
-      "title": { "ar": "البرنامج الاجتماعي لرمضان 1448", "fr": "Programme social Ramadan 1448", "en": "Ramadan 1448 social programme" },
+      "id": "ramadan-1448",
+      "status": "upcoming",
+      "image": "",
+      "title": {
+        "ar": "البرنامج الاجتماعي لرمضان 1448",
+        "fr": "Programme social Ramadan 1448",
+        "en": "Ramadan 1448 social programme"
+      },
       "text": {
         "ar": "نحضّر قفف رمضان وإفطار الأيتام لرمضان 1448 (بداية 2027). التبرعات العينية والمالية مرحب بها منذ الآن.",
         "fr": "Nous préparons les paniers et le ftour des orphelins du Ramadan 1448 (début 2027). Les dons en nature et en argent sont les bienvenus dès maintenant.",
         "en": "We are preparing the food baskets and the orphans' iftar for Ramadan 1448 (early 2027). In-kind and financial donations are welcome now."
       },
-      "needs": { "ar": "مواد غذائية أساسية، متطوعون للتوزيع، شركاء للإفطار", "fr": "Denrées de base, bénévoles pour la distribution, partenaires pour le ftour", "en": "Staple food, volunteers for distribution, partners for the iftar" }
+      "needs": {
+        "ar": "مواد غذائية أساسية، متطوعون للتوزيع، شركاء للإفطار",
+        "fr": "Denrées de base, bénévoles pour la distribution, partenaires pour le ftour",
+        "en": "Staple food, volunteers for distribution, partners for the iftar"
+      }
     },
     {
-      "id": "entrepots", "status": "current", "image": "",
-      "title": { "ar": "تنظيم المخازن", "fr": "Organisation des entrepôts", "en": "Organising the warehouses" },
+      "id": "entrepots",
+      "status": "current",
+      "image": "",
+      "title": {
+        "ar": "تنظيم المخازن",
+        "fr": "Organisation des entrepôts",
+        "en": "Organising the warehouses"
+      },
       "text": {
         "ar": "جرد وتتبع المخزون لمعرفة ما هو متوفر وما ينقص في كل لحظة، وتوجيه التبرعات حسب الحاجة.",
         "fr": "Inventaire et suivi du stock pour savoir à tout moment ce qui est disponible et ce qui manque, et orienter les dons selon les besoins.",
         "en": "Inventory and stock tracking so we always know what is available and what is missing, and can direct donations where they are needed."
       },
-      "needs": { "ar": "", "fr": "", "en": "" }
+      "needs": {
+        "ar": "",
+        "fr": "",
+        "en": ""
+      }
     }
   ],
   "partners": {
@@ -171,6 +360,10 @@
       "fr": "Une question, un don, un partenariat ou l'envie de devenir bénévole ? Écrivez-nous, nous vous répondrons avec plaisir.",
       "en": "A question, a donation, a partnership or want to volunteer? Write to us, we will be happy to reply."
     },
-    "hours": { "ar": "", "fr": "", "en": "" }
+    "hours": {
+      "ar": "",
+      "fr": "",
+      "en": ""
+    }
   }
 }
