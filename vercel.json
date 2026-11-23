@@ -5,10 +5,10 @@
   },
   "routes": [
     { "src": "^/(data|lib)/.*$", "status": 404, "dest": "/api/index" },
-    { "src": "^/(server\.js|package\.json|vercel\.json|README\.md|\.admin-password)$", "status": 404, "dest": "/api/index" },
+    { "src": "^/(server[.]js|package[.]json|vercel[.]json|README[.]md|[.]admin-password)$", "status": 404, "dest": "/api/index" },
     { "src": "^/api/.*$", "dest": "/api/index" },
     { "handle": "filesystem" },
     { "src": "^/(.*)$", "dest": "/api/index" }
   ],
-  "ignoreCommand": "git log -1 --pretty=%B | grep -q \"\[skip-deploy\]\""
+  "ignoreCommand": "git log -1 --pretty=%B | grep -q skip-deploy"
 }
