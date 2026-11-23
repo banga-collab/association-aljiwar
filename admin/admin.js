@@ -12,7 +12,6 @@
       { obj: "site", k: "name", label: "Nom de l'association", type: "ml" },
       { obj: "site", k: "tagline", label: "Slogan", type: "ml" },
       { obj: "site", k: "defaultLang", label: "Langue d'accueil", type: "select", opts: [["ar", "Arabe"], ["fr", "Français"], ["en", "Anglais"]] },
-      { obj: "site", k: "theme", label: "Design du site", hint: "Zellige : mosaïque animée et motifs marocains · Classique : version précédente", type: "select", opts: [["zellige", "Zellige"], ["classic", "Classique"]] },
       { obj: "site", k: "phone", label: "Téléphone", type: "text", ph: "+212 6 00 00 00 00" },
       { obj: "site", k: "whatsapp", label: "WhatsApp", hint: "numéro au format international, ex. 212600000000", type: "text" },
       { obj: "site", k: "email", label: "E-mail", type: "text" },
