@@ -11,13 +11,13 @@
       "en": "Solidarity starts next door"
     },
     "defaultLang": "fr",
-    "phone": "",
+    "phone": "+212 666 92 06 66",
     "whatsapp": "",
-    "email": "",
+    "email": "aljiwar.maroc@gmail.com",
     "address": {
-      "ar": "",
-      "fr": "",
-      "en": ""
+      "ar": "دوار البيض، جماعة أولاد دحو، عمالة إنزكان آيت ملول، المغرب",
+      "fr": "Douar El Bid, commune d'Oulad Dahou, préfecture d'Inezgane-Aït Melloul, Maroc",
+      "en": "Douar El Bid, Oulad Dahou, Inezgane-Aït Melloul prefecture, Morocco"
     },
     "mapEmbed": "",
     "facebook": "",
@@ -26,62 +26,62 @@
   },
   "home": {
     "heroTitle": {
-      "ar": "معًا، نجعل من الجوار تضامنًا",
-      "fr": "Ensemble, faisons du voisinage une solidarité",
-      "en": "Together, we turn neighbourhood into solidarity"
+      "ar": "الجار هو من نشعر بالمسؤولية تجاهه.",
+      "fr": "Un voisin, c'est celui dont on se sent responsable.",
+      "en": "A neighbour is someone you feel responsible for."
     },
     "heroText": {
-      "ar": "تجمع جمعية الجوار التبرعات وتوزعها على الأسر المحتاجة، وتنظم برنامجًا اجتماعيًا طوال السنة، وفي كل رمضان إفطارًا لفائدة الأيتام.",
-      "fr": "L'Association Al Jiwar collecte et redistribue les dons aux familles dans le besoin, mène un programme social toute l'année et organise chaque Ramadan un ftour pour les orphelins.",
-      "en": "Al Jiwar Association collects and redistributes donations to families in need, runs a social programme all year round and hosts an iftar for orphans every Ramadan."
+      "ar": "منذ 2016 تعمل جمعية الجوار في أكادير وأولاد دحو وإلى دواوير الأطلس الكبير، حتى لا يبقى أحد وحيداً أمام الحاجة. نبحث عن جمعيات ومنظمات، في المغرب وخارجه، لنمضي أبعد معاً.",
+      "fr": "Depuis 2016, l'association Al Jiwar agit à Agadir, à Oulad Dahou et jusque dans les villages du Haut Atlas, pour que personne ne reste seul devant le besoin. Nous cherchons des associations et des organisations, au Maroc et à l'étranger, pour aller plus loin ensemble.",
+      "en": "Since 2016, Al Jiwar Association has worked in Agadir, in Oulad Dahou and as far as the villages of the High Atlas, so that no one faces need alone. We are looking for associations and organisations, in Morocco and abroad, to go further together."
     },
-    "heroImage": "",
+    "heroImage": "/assets/img/terrain/benevole.jpg",
     "missionTitle": {
-      "ar": "رسالتنا",
-      "fr": "Notre mission",
-      "en": "Our mission"
+      "ar": "سبب وجودنا",
+      "fr": "Notre raison d'être",
+      "en": "Why we exist"
     },
     "missionText": {
-      "ar": "أن يكون الجار سندًا لجاره. نؤمن بأن التضامن يبدأ من الحي، ولذلك نعمل مع المتطوعين والشركاء لإيصال المساعدة إلى من يحتاجها، بكرامة وشفافية.",
-      "fr": "Que chaque voisin soit un soutien pour l'autre. Nous croyons que la solidarité commence dans le quartier : avec nos bénévoles et nos partenaires, nous faisons parvenir l'aide à ceux qui en ont besoin, dans la dignité et la transparence.",
-      "en": "Every neighbour can be someone's support. We believe solidarity starts in the neighbourhood: with our volunteers and partners, we bring help to those who need it, with dignity and transparency."
+      "ar": "«الجوار» معناه حسن الجوار. القفة والقافلة والمساعدة وسائل فقط. ما نبنيه أكبر: مجتمع تكافلي متماسك، ينخرط فيه الجميع في خدمة المحتاجين.",
+      "fr": "« Al Jiwar » veut dire le voisinage. Un panier, une caravane, un convoi ne sont que des moyens. Ce que nous construisons est plus grand : une société solidaire, où chacun s'engage au service de ceux qui en ont besoin.",
+      "en": "“Al Jiwar” means neighbourhood. A food basket, a caravan, a convoy are only means. What we are building is larger: a caring society in which everyone commits to those in need."
     },
     "chip1": {
-      "ar": "كل تبرع مسجَّل ومتتبَّع",
-      "fr": "Chaque don enregistré et suivi",
-      "en": "Every donation recorded and tracked"
+      "ar": "مستقلة عن كل حزب ونقابة",
+      "fr": "Indépendante de tout parti et de tout syndicat",
+      "en": "Independent of any party or union"
     },
     "chip2": {
-      "ar": "توزيع مباشر داخل الحي",
-      "fr": "Distribution directe dans le quartier",
-      "en": "Direct distribution in the neighbourhood"
+      "ar": "تقرير بعد كل عمل",
+      "fr": "Un rapport après chaque action",
+      "en": "A report after every action"
     },
     "cardTag": {
-      "ar": "رمضان 1448",
-      "fr": "Ramadan 1448",
-      "en": "Ramadan 1448"
+      "ar": "تعاون",
+      "fr": "Collaborer",
+      "en": "Collaborate"
     },
     "cardTitle": {
-      "ar": "ساهم الآن",
-      "fr": "Agissez dès maintenant",
-      "en": "Make an impact now"
+      "ar": "لنبنِ عملاً مشتركاً",
+      "fr": "Construisons une action ensemble",
+      "en": "Let's build an action together"
     },
     "cardText": {
-      "ar": "قفة رمضان أو مقعد على مائدة إفطار الأيتام: كل تبرع يصل مباشرة إلى أسر الحي.",
-      "fr": "Un panier du Ramadan ou une place au ftour des orphelins : chaque don va directement aux familles du quartier.",
-      "en": "A Ramadan basket or a seat at the orphans' iftar: every donation goes straight to local families."
+      "ar": "الطلبات تفوق إمكانياتنا. لديكم الموارد أو الخبرة، ولدينا الميدان والفرق وثقة الأسر.",
+      "fr": "Les demandes dépassent nos moyens. Vous avez des ressources ou un savoir-faire ; nous avons le terrain, les équipes et la confiance des familles.",
+      "en": "Requests exceed our means. You have resources or know-how; we have the field presence, the teams and the trust of families."
     },
     "visionTitle": {
-      "ar": "رؤيتنا",
-      "fr": "Notre vision",
-      "en": "Our vision"
+      "ar": "عهدنا",
+      "fr": "Notre promesse",
+      "en": "Our promise"
     },
     "visionText": {
-      "ar": "حيّ لا تبقى فيه أي أسرة وحيدة أمام الحاجة، حيث يعرف الجار جاره ويسانده.",
-      "fr": "Un quartier où aucune famille ne reste seule face au besoin, où chaque voisin connaît et soutient l'autre.",
-      "en": "A neighbourhood where no family faces hardship alone, where neighbours know and support each other."
+      "ar": "لن يطيب لنا عيش ونحن نستطيع أن نبني ما يعود نفعه على اليتيم والأرملة والمسكين والفقير.",
+      "fr": "Nous ne vivrons pas tranquilles tant que nous pourrons bâtir quelque chose d'utile à l'orphelin, à la veuve et à ceux qui sont dans le besoin.",
+      "en": "We will not rest while we can still build something useful for the orphan, the widow and those in need."
     },
-    "visionImage": "/assets/img/ig/atlas-desert.jpg",
+    "visionImage": "/assets/img/terrain/caravane.jpg",
     "bandImage": "",
     "heroCards": [
       {
@@ -97,61 +97,73 @@
   },
   "stats": [
     {
-      "value": "",
+      "value": "10",
       "label": {
-        "ar": "أسرة مستفيدة",
-        "fr": "familles accompagnées",
-        "en": "families supported"
+        "ar": "سنوات من العمل دون انقطاع",
+        "fr": "ans d'action, sans une année d'arrêt",
+        "en": "years of action without a break"
       }
     },
     {
-      "value": "",
+      "value": "11",
       "label": {
-        "ar": "متطوع ومتطوعة",
-        "fr": "bénévoles",
-        "en": "volunteers"
+        "ar": "رمضاناً متتالياً إلى جانب الأسر",
+        "fr": "Ramadans de suite auprès des familles",
+        "en": "Ramadans in a row alongside families"
       }
     },
     {
-      "value": "",
+      "value": "4",
       "label": {
-        "ar": "وجبة إفطار في رمضان",
-        "fr": "repas servis pendant Ramadan",
-        "en": "Ramadan meals served"
+        "ar": "قوافل نحو دواوير الجبل",
+        "fr": "caravanes vers les villages de montagne",
+        "en": "caravans to mountain villages"
       }
     },
     {
-      "value": "",
+      "value": "100 %",
       "label": {
-        "ar": "شريك",
-        "fr": "partenaires",
-        "en": "partners"
+        "ar": "تطوع",
+        "fr": "bénévole",
+        "en": "volunteer-run"
       }
     }
   ],
   "about": {
     "intro": {
-      "ar": "الجوار جمعية غير ربحية يحملها شباب متطوعون. تنسق لجنة الأعمال الاجتماعية فيها جمع المساعدات وتخزينها وتوزيعها على الأسر المحتاجة.",
-      "fr": "Al Jiwar (« le voisinage » en arabe) est une association à but non lucratif portée par des jeunes bénévoles. Sa commission des œuvres sociales coordonne la collecte, le stockage et la distribution de l'aide aux familles dans le besoin.",
-      "en": "Al Jiwar (\"the neighbourhood\" in Arabic) is a non-profit association run by young volunteers. Its social works committee coordinates the collection, storage and distribution of aid to families in need."
+      "ar": "الجوار جمعية غير ربحية مصرح بها منذ 2016. مقرها بدوار البيض، جماعة أولاد دحو، قرب أكادير، وفرعها بأكادير قائم منذ 2018. كل العمل تطوعي.",
+      "fr": "Al Jiwar (« le voisinage » en arabe) est une association à but non lucratif, déclarée depuis 2016. Son siège est au douar El Bid, commune d'Oulad Dahou, près d'Agadir ; sa branche d'Agadir existe depuis 2018. Tout le travail est bénévole.",
+      "en": "Al Jiwar (“the neighbourhood” in Arabic) is a non-profit association, registered since 2016. Its seat is in Douar El Bid, Oulad Dahou, near Agadir; its Agadir branch opened in 2018. All the work is done by volunteers."
     },
     "story": {
-      "ar": "وُلدت الجمعية من رغبة الجيران وشباب الحي في العمل معًا لفائدة الأسر التي تمر بظروف صعبة.\n\n[للإكمال: سنة التأسيس، المدينة، أهم المحطات]",
-      "fr": "L'association est née de la volonté de voisins et de jeunes du quartier d'agir ensemble pour les familles en difficulté.\n\n[À compléter : année de création, ville, dates clés]",
-      "en": "The association was born from the wish of neighbours and young people of the area to act together for families going through hard times.\n\n[To complete: year founded, city, key dates]"
+      "ar": "قصتنا حركة واحدة: توسيع الدائرة. دوار سنة 2016 مع أول قفة رمضان. مدينة سنة 2018. الجبل سنة 2020 مع قوافل «لمسة حب». الطوارئ سنة 2023 بعد زلزال الحوز. الدائرة المقبلة هي أنتم.\n\nقلب أسرة ودقة مؤسسة: مكتب مسير يقرر ويصادق، لجان تُعِدّ وتقود، وأعضاء من كل الأعمار في الميدان. كل عمل يسلك المسار نفسه: اقتراح، بطاقة تقنية، مصادقة، تصريح، تنفيذ، ثم تقرير.",
+      "fr": "Notre histoire tient en un geste : agrandir le cercle. Un village en 2016, avec le premier panier de Ramadan. Une ville en 2018. La montagne en 2020, avec les caravanes « لمسة حب ». L'urgence en 2023, après le séisme d'Al Haouz. Le prochain cercle, c'est vous.\n\nLe cœur d'une famille, la rigueur d'une organisation : un bureau qui décide et valide, des commissions qui préparent et conduisent, des membres de tous âges sur le terrain. Chaque action suit le même chemin : proposer, chiffrer, valider, déclarer, agir, rendre compte.",
+      "en": "Our story comes down to one gesture: widening the circle. A village in 2016, with the first Ramadan basket. A city in 2018. The mountains in 2020, with the “Lamsat Hob” caravans. The emergency in 2023, after the Al Haouz earthquake. The next circle is you.\n\nThe heart of a family, the rigour of an organisation: a board that decides and approves, committees that prepare and lead, members of all ages in the field. Every action follows the same path: propose, cost, approve, declare, act, report."
     },
-    "image": "",
+    "image": "/assets/img/terrain/porter.jpg",
     "values": [
       {
         "title": {
-          "ar": "القرب",
-          "fr": "Proximité",
-          "en": "Closeness"
+          "ar": "الاستقلالية",
+          "fr": "Indépendance",
+          "en": "Independence"
         },
         "text": {
-          "ar": "نعرف حينا وأهله، ونصل إلى من يحتاج المساعدة فعلًا.",
-          "fr": "Nous connaissons notre quartier et ses habitants : l'aide va à ceux qui en ont vraiment besoin.",
-          "en": "We know our neighbourhood and its people, so help reaches those who truly need it."
+          "ar": "لا حزب ولا نقابة ولا انتخابات. هكذا ينص قانوننا الأساسي.",
+          "fr": "Ni parti, ni syndicat, ni élection. Les statuts le disent.",
+          "en": "No party, no union, no election. It is written in our statutes."
+        }
+      },
+      {
+        "title": {
+          "ar": "الدقة",
+          "fr": "Rigueur",
+          "en": "Rigour"
+        },
+        "text": {
+          "ar": "كل عمل يصادق عليه المكتب، ويُصرَّح به للسلطة المحلية، ثم يُقيَّم.",
+          "fr": "Chaque action est validée par le bureau, déclarée à l'autorité locale, puis évaluée.",
+          "en": "Every action is approved by the board, declared to the local authority, then evaluated."
         }
       },
       {
@@ -161,170 +173,131 @@
           "en": "Dignity"
         },
         "text": {
-          "ar": "نقدم المساعدة باحترام وسرية، دون نشر صور أو بيانات المستفيدين.",
-          "fr": "L'aide est donnée avec respect et discrétion, sans exposer les bénéficiaires.",
-          "en": "Help is given with respect and discretion, without exposing the people we support."
+          "ar": "لا يُنشر اسم أي مستفيد ولا صورته.",
+          "fr": "Aucun nom et aucun visage de bénéficiaire ne sont publiés.",
+          "en": "No beneficiary's name or face is ever published."
         }
       },
       {
         "title": {
-          "ar": "الشفافية",
-          "fr": "Transparence",
-          "en": "Transparency"
+          "ar": "التربية",
+          "fr": "Transmission",
+          "en": "Passing it on"
         },
         "text": {
-          "ar": "كل تبرع يُسجَّل، وكل خروج من المخزن يُتتبَّع.",
-          "fr": "Chaque don est enregistré, chaque sortie de stock est suivie.",
-          "en": "Every donation is recorded and every item leaving our stock is tracked."
-        }
-      },
-      {
-        "title": {
-          "ar": "التطوع",
-          "fr": "Bénévolat",
-          "en": "Volunteering"
-        },
-        "text": {
-          "ar": "شباب الجمعية هم قلبها: يجمعون ويرتبون ويوزعون.",
-          "fr": "Les jeunes bénévoles sont le cœur de l'association : ils collectent, trient et distribuent.",
-          "en": "Young volunteers are the heart of the association: they collect, sort and distribute."
+          "ar": "العمل الجمعوي يُتعلَّم: للأطفال والشباب والكبار مكانهم.",
+          "fr": "L'engagement s'apprend : enfants, jeunes et aînés ont chacun leur place.",
+          "en": "Commitment is learned: children, young people and elders each have a place."
         }
       }
     ]
   },
   "activities": [
     {
-      "id": "stock",
+      "id": "nourrir",
       "icon": "box",
-      "image": "",
+      "image": "/assets/img/terrain/panier.jpg",
       "title": {
-        "ar": "المخازن وتدبير المخزون",
-        "fr": "Entrepôts et gestion du stock",
-        "en": "Warehouses and stock"
+        "ar": "الإطعام",
+        "fr": "Nourrir",
+        "en": "Feeding"
       },
       "text": {
-        "ar": "نجمع التبرعات العينية (مواد غذائية، ملابس، أدوات) ونخزنها في مخازن الجمعية، حيث يُسجَّل كل دخول وكل خروج قبل التوزيع.",
-        "fr": "Nous collectons les dons en nature (denrées, vêtements, fournitures) et les stockons dans les entrepôts de l'association, où chaque entrée et chaque sortie est enregistrée avant distribution.",
-        "en": "We collect in-kind donations (food, clothing, supplies) and store them in the association's warehouses, where every item in and out is recorded before distribution."
+        "ar": "حتى لا تخلو المائدة.\n\nأمثلة: قفة رمضان كل سنة منذ 2016، ولحم العيد.",
+        "fr": "Que la table ne soit jamais vide.\n\nExemples : le panier de Ramadan, chaque année depuis 2016 ; la viande de l'Aïd.",
+        "en": "So that the table is never empty.\n\nExamples: the Ramadan basket, every year since 2016; meat for Eid."
       }
     },
     {
-      "id": "social",
+      "id": "desenclaver",
+      "icon": "moon",
+      "image": "/assets/img/terrain/caravane.jpg",
+      "title": {
+        "ar": "فك العزلة",
+        "fr": "Désenclaver",
+        "en": "Reaching the isolated"
+      },
+      "text": {
+        "ar": "الذهاب إلى الدواوير المنسية.\n\nأمثلة: قوافل «لمسة حب»، صباغة مدرسة، إصلاح سقف مستوصف.",
+        "fr": "Aller vers les villages que tout oublie.\n\nExemples : les caravanes « لمسة حب », une école repeinte, un toit de dispensaire réparé.",
+        "en": "Going to the villages everything forgets.\n\nExamples: the “Lamsat Hob” caravans, a repainted school, a repaired clinic roof."
+      }
+    },
+    {
+      "id": "secourir",
+      "icon": "table",
+      "image": "/assets/img/terrain/seisme.jpg",
+      "title": {
+        "ar": "الإغاثة",
+        "fr": "Secourir",
+        "en": "Relief"
+      },
+      "text": {
+        "ar": "الحضور حين ينهار كل شيء.\n\nمثال: إغاثة ضحايا زلزال الحوز، شتنبر 2023.",
+        "fr": "Être là quand tout s'effondre.\n\nExemple : les secours après le séisme d'Al Haouz, en septembre 2023.",
+        "en": "Being there when everything collapses.\n\nExample: relief after the Al Haouz earthquake, September 2023."
+      }
+    },
+    {
+      "id": "enfance",
       "icon": "heart",
       "image": "",
       "title": {
-        "ar": "البرنامج الاجتماعي",
-        "fr": "Programme social",
-        "en": "Social programme"
+        "ar": "حماية الطفولة",
+        "fr": "Protéger l'enfance",
+        "en": "Protecting children"
       },
       "text": {
-        "ar": "طوال السنة: قفف غذائية، ومساعدات للأسر التي تمر بظروف صعبة، ومبادرات تضامنية داخل الحي.",
-        "fr": "Toute l'année : paniers alimentaires, aide ponctuelle aux familles en difficulté et actions de solidarité dans le quartier.",
-        "en": "All year round: food baskets, support for families going through hard times and solidarity actions in the neighbourhood."
+        "ar": "اليتيم وكل طفل.\n\nأمثلة: إفطار اليتيم، والحقيبة المدرسية.",
+        "fr": "L'orphelin, et chaque enfant.\n\nExemples : le repas de rupture du jeûne des orphelins, les fournitures de rentrée.",
+        "en": "The orphan, and every child.\n\nExamples: the iftar for orphans, back-to-school supplies."
       }
     },
     {
-      "id": "ramadan",
-      "icon": "moon",
-      "image": "",
-      "title": {
-        "ar": "رمضان",
-        "fr": "Ramadan",
-        "en": "Ramadan"
-      },
-      "text": {
-        "ar": "توزيع قفف رمضان على الأسر المحتاجة وتنظيم موائد إفطار جماعية خلال الشهر الفضيل.",
-        "fr": "Distribution de paniers du Ramadan aux familles dans le besoin et organisation de ftours collectifs pendant le mois sacré.",
-        "en": "Ramadan food baskets for families in need and shared iftar meals during the holy month."
-      }
-    },
-    {
-      "id": "ftour",
-      "icon": "table",
-      "image": "",
-      "title": {
-        "ar": "إفطار الأيتام",
-        "fr": "Ftour des orphelins",
-        "en": "Iftar for orphans"
-      },
-      "text": {
-        "ar": "في كل رمضان، نجمع الأيتام وأسرهم حول مائدة إفطار في جو عائلي، بمشاركة المتطوعين والشركاء.",
-        "fr": "Chaque Ramadan, nous réunissons les orphelins et leurs familles autour d'un ftour chaleureux, avec nos bénévoles et nos partenaires.",
-        "en": "Every Ramadan, we bring orphans and their families together around a warm iftar, with our volunteers and partners."
-      }
-    },
-    {
-      "id": "jeunes",
+      "id": "soigner",
       "icon": "hands",
       "image": "",
       "title": {
-        "ar": "الشباب والتطوع",
-        "fr": "Jeunesse et bénévolat",
-        "en": "Youth and volunteering"
+        "ar": "العلاج",
+        "fr": "Soigner",
+        "en": "Caring"
       },
       "text": {
-        "ar": "نفتح الباب لشباب الحي للمشاركة في العمل الاجتماعي، ونشكر كل من يقدم وقته وجهده بشهادات تقدير.",
-        "fr": "Nous ouvrons la porte aux jeunes du quartier pour s'engager dans l'action sociale, et nous remercions chaque bénévole par un certificat de reconnaissance.",
-        "en": "We welcome young people from the neighbourhood into social action, and thank every volunteer with a certificate of appreciation."
+        "ar": "إيصال العلاج إلى حيث ينقص.\n\nأمثلة: الفحوصات الطبية في القوافل، والتبرع بالدم.",
+        "fr": "Amener le soin là où il manque.\n\nExemples : les consultations des caravanes, le don de sang.",
+        "en": "Bringing care where it is missing.\n\nExamples: medical consultations during caravans, blood donation."
+      }
+    },
+    {
+      "id": "autonomie",
+      "icon": "heart",
+      "image": "",
+      "title": {
+        "ar": "التمكين",
+        "fr": "Rendre autonome",
+        "en": "Building autonomy"
+      },
+      "text": {
+        "ar": "مهارة بدل مساعدة.\n\nأمثلة: ورشات الطبخ والحلويات والخياطة.",
+        "fr": "Un savoir-faire plutôt qu'une aide.\n\nExemples : les ateliers de cuisine, de pâtisserie, de couture.",
+        "en": "Know-how rather than aid.\n\nExamples: cooking, pastry and sewing workshops."
       }
     }
   ],
   "projects": [
     {
-      "id": "mamoun-al-jiwar",
-      "status": "current",
-      "image": "",
+      "id": "premier-panier",
+      "status": "done",
+      "image": "/assets/img/terrain/panier.jpg",
       "title": {
-        "ar": "مأمون الجوار",
-        "fr": "Mamoun Al Jiwar",
-        "en": "Mamoun Al Jiwar"
+        "ar": "أول قفة رمضان",
+        "fr": "Le premier panier de Ramadan",
+        "en": "The first Ramadan basket"
       },
       "text": {
-        "ar": "[للإكمال: تقديم مشروع مأمون الجوار، أهدافه والمستفيدين منه]",
-        "fr": "[À compléter : présentation du projet Mamoun Al Jiwar, ses objectifs et ses bénéficiaires]",
-        "en": "[To complete: presentation of the Mamoun Al Jiwar project, its goals and who it helps]"
-      },
-      "needs": {
-        "ar": "",
-        "fr": "",
-        "en": ""
-      },
-      "icon": "users"
-    },
-    {
-      "id": "ramadan-1448",
-      "status": "upcoming",
-      "image": "",
-      "title": {
-        "ar": "البرنامج الاجتماعي لرمضان 1448",
-        "fr": "Programme social Ramadan 1448",
-        "en": "Ramadan 1448 social programme"
-      },
-      "text": {
-        "ar": "نحضّر قفف رمضان وإفطار الأيتام لرمضان 1448 (بداية 2027). التبرعات العينية والمالية مرحب بها منذ الآن.",
-        "fr": "Nous préparons les paniers et le ftour des orphelins du Ramadan 1448 (début 2027). Les dons en nature et en argent sont les bienvenus dès maintenant.",
-        "en": "We are preparing the food baskets and the orphans' iftar for Ramadan 1448 (early 2027). In-kind and financial donations are welcome now."
-      },
-      "needs": {
-        "ar": "مواد غذائية أساسية، متطوعون للتوزيع، شركاء للإفطار",
-        "fr": "Denrées de base, bénévoles pour la distribution, partenaires pour le ftour",
-        "en": "Staple food, volunteers for distribution, partners for the iftar"
-      },
-      "icon": "moon"
-    },
-    {
-      "id": "entrepots",
-      "status": "current",
-      "image": "",
-      "title": {
-        "ar": "تنظيم المخازن",
-        "fr": "Organisation des entrepôts",
-        "en": "Organising the warehouses"
-      },
-      "text": {
-        "ar": "جرد وتتبع المخزون لمعرفة ما هو متوفر وما ينقص في كل لحظة، وتوجيه التبرعات حسب الحاجة.",
-        "fr": "Inventaire et suivi du stock pour savoir à tout moment ce qui est disponible et ce qui manque, et orienter les dons selon les besoins.",
-        "en": "Inventory and stock tracking so we always know what is available and what is missing, and can direct donations where they are needed."
+        "ar": "الأحد 19 يونيو 2016: خمسون قفة تُسلَّم في ساعة بدوار البيض، مع الجماعة والسلطة المحلية. في الصباح نفسه ينصت ثلاثة متطوعين لكل أسرة: هكذا بدأت لائحتنا.\n\nلم نُخلِف أي رمضان منذ ذلك اليوم.",
+        "fr": "Dimanche 19 juin 2016 : cinquante paniers sont remis en une heure au douar El Bid, avec la commune et l'autorité locale. Le même matin, trois bénévoles écoutent chaque famille : notre liste commence ce jour-là.\n\nNous n'avons manqué aucun Ramadan depuis.",
+        "en": "Sunday 19 June 2016: fifty baskets are handed out in one hour in Douar El Bid, with the commune and the local authority. That same morning, three volunteers listen to every family: our list starts that day.\n\nWe have not missed a single Ramadan since."
       },
       "needs": {
         "ar": "",
@@ -334,66 +307,87 @@
       "icon": "box"
     },
     {
-      "id": "iguiliz",
+      "id": "lamsat-hob",
       "status": "done",
-      "image": "/assets/img/ig/projection-ecran.jpg",
+      "image": "/assets/img/terrain/caravane.jpg",
       "title": {
-        "ar": "عرض «إگيليز، الطريق إلى مراكش»",
-        "fr": "Projection « Iguiliz, la route de Marrakech »",
-        "en": "Screening of \"Iguiliz, the road to Marrakech\""
+        "ar": "«لمسة حب»",
+        "fr": "« لمسة حب », une touche d'amour portée jusqu'en haut",
+        "en": "“Lamsat Hob”, a touch of love carried all the way up"
       },
       "text": {
-        "ar": "عرض الفيلم الوثائقي «إگيليز، الطريق إلى مراكش» يوم السبت 24 أكتوبر 2026 بسينما الصحراء بأكادير، بتعاون مع جمعية الجوار.",
-        "fr": "Projection du documentaire « Iguiliz, la route de Marrakech » le samedi 24 octobre 2026 au Cinéma Sahara d'Agadir, en collaboration avec l'Association Al Jiwar.",
-        "en": "Screening of the documentary \"Iguiliz, the road to Marrakech\" on Saturday 24 October 2026 at Cinéma Sahara in Agadir, in collaboration with Al Jiwar Association."
+        "ar": "حين يغلق الشتاء مسالك الأطلس الكبير، يصعد متطوعونا إلى الدواوير بالغذاء والأغطية والعلاج وما يلزم لإصلاح مدرسة. أربع قوافل منذ 2020، وأولاها نُظمت مع جمعيتين شريكتين.\n\nكل سنة تصلنا طلبات من الدواوير ولا نستطيع تلبيتها كلها. لننظم القافلة المقبلة معاً.",
+        "fr": "Quand l'hiver ferme les pistes du Haut Atlas, nos bénévoles montent vers les villages avec de quoi manger, se couvrir, se soigner, et de quoi remettre une école à neuf. Quatre caravanes depuis 2020 ; la première a été montée avec deux associations partenaires.\n\nChaque année, des villages nous sollicitent, et nous ne pouvons pas répondre à tous. Montons la prochaine caravane ensemble.",
+        "en": "When winter closes the tracks of the High Atlas, our volunteers go up to the villages with food, blankets, care, and what it takes to renovate a school. Four caravans since 2020; the first was run with two partner associations.\n\nEvery year villages ask for us, and we cannot answer them all. Let's run the next caravan together."
       },
       "needs": {
         "ar": "",
         "fr": "",
         "en": ""
       },
-      "icon": "book"
+      "icon": "moon"
+    },
+    {
+      "id": "seisme-2023",
+      "status": "done",
+      "image": "/assets/img/terrain/seisme.jpg",
+      "title": {
+        "ar": "في الثامن اهتز الجبل، وفي الحادي عشر كنا في الطريق.",
+        "fr": "Le 8, la montagne tremble. Le 11, nous sommes en route.",
+        "en": "On the 8th the mountain shook. On the 11th we were on the road."
+      },
+      "text": {
+        "ar": "شتنبر 2023، زلزال الحوز. بعد ثلاثة أيام كان متطوعونا في المستودع ثم في طريق تيزي نتاست: خمسة عشر يوماً في الميدان خلال ستة أسابيع.\n\nوحين تتوقف الشاحنات تكمل البغال الطريق.",
+        "fr": "Septembre 2023, séisme d'Al Haouz. Trois jours après, nos bénévoles sont au dépôt, puis sur la route de Tizi N'Test : quinze journées de terrain en six semaines.\n\nQuand les camions ne passent plus, les mulets prennent le relais.",
+        "en": "September 2023, Al Haouz earthquake. Three days later our volunteers are at the depot, then on the road to Tizi N'Test: fifteen days in the field over six weeks.\n\nWhen trucks can go no further, mules take over."
+      },
+      "needs": {
+        "ar": "",
+        "fr": "",
+        "en": ""
+      },
+      "icon": "table"
     }
   ],
   "partners": {
     "intro": {
-      "ar": "شركاؤنا يجعلون عملنا ممكنًا: مؤسسات، تجار الحي، ومحسنون.",
-      "fr": "Nos partenaires rendent notre action possible : entreprises, commerçants du quartier et donateurs.",
-      "en": "Our partners make our work possible: companies, local shops and donors."
+      "ar": "نبحث عن شركاء في العمل لا عن متفرجين. جمعيات ومؤسسات ومنظمات من المغرب وخارجه: كل شراكة تؤطرها اتفاقية ويتبعها تقرير.",
+      "fr": "Nous cherchons des collaborations, pas des spectateurs. Associations, fondations, organisations du Maroc et de l'étranger : chaque partenariat fait l'objet d'une convention et d'un rapport.",
+      "en": "We are looking for collaborators, not spectators. Associations, foundations and organisations from Morocco and abroad: every partnership comes with a signed agreement and a report."
     },
     "list": [],
     "become": {
-      "ar": "تريدون دعم برامجنا؟ يمكن أن تكون الشراكة بتبرع عيني أو مالي، أو برعاية إفطار الأيتام، أو بتوفير فضاء أو نقل.",
-      "fr": "Vous souhaitez soutenir nos programmes ? Un partenariat peut prendre la forme d'un don en nature ou en argent, du parrainage du ftour des orphelins, ou d'un prêt de local ou de transport.",
-      "en": "Want to support our programmes? A partnership can be an in-kind or financial donation, sponsoring the orphans' iftar, or lending space or transport."
+      "ar": "يمر التعاون بأربع مراحل: حديث من عشرين دقيقة، مشروع مكتوب (المكان، الفئة، الميزانية، الجدولة)، اتفاقية يوقعها الرئيس بعد رأي المكتب، ثم التنفيذ والتقرير مع الفواتير وصور لا تُظهر وجوه المستفيدين.",
+      "fr": "Une collaboration se passe en quatre temps : un échange de vingt minutes ; un projet écrit (lieu, public, budget, calendrier) ; une convention signée par le président après avis du bureau ; l'action, puis le rapport, avec les factures et des photos sans visage de bénéficiaire.",
+      "en": "A collaboration takes four steps: a twenty-minute conversation; a written project (place, people, budget, timeline); an agreement signed by the president after the board's opinion; the action, then the report, with invoices and photos showing no beneficiary's face."
     }
   },
   "donate": {
     "intro": {
-      "ar": "كل تبرع، مهما كان صغيرًا، يصل إلى أسرة من الحي. يمكنكم التبرع بتحويل بنكي أو بتبرع عيني في مخزن الجمعية.",
-      "fr": "Chaque don, même petit, arrive à une famille du quartier. Vous pouvez donner par virement bancaire ou en nature, à déposer à l'entrepôt de l'association.",
-      "en": "Every donation, however small, reaches a family in the neighbourhood. You can give by bank transfer or in kind, dropped off at the association's warehouse."
+      "ar": "الطلبات تفوق إمكانياتنا. لديكم الموارد أو الخبرة، ولدينا الميدان والفرق وثقة الأسر. ثلاث طرق للتعاون.",
+      "fr": "Les demandes dépassent nos moyens. Vous avez des ressources ou un savoir-faire ; nous avons le terrain, les équipes et la confiance des familles. Trois façons de collaborer.",
+      "en": "Requests exceed our means. You have resources or know-how; we have the field presence, the teams and the trust of families. Three ways to collaborate."
     },
     "bankName": "",
     "holder": "",
     "rib": "",
     "swift": "",
     "inKind": {
-      "ar": "مواد غذائية (دقيق، زيت، سكر، شاي، قطاني)، ملابس في حالة جيدة، أدوات مدرسية، أغطية. راسلونا على واتساب لتحديد موعد التسليم.",
-      "fr": "Denrées (farine, huile, sucre, thé, légumineuses), vêtements en bon état, fournitures scolaires, couvertures. Écrivez-nous sur WhatsApp pour convenir du dépôt.",
-      "en": "Food (flour, oil, sugar, tea, pulses), clothes in good condition, school supplies, blankets. Message us on WhatsApp to arrange drop-off."
+      "ar": "قافلة، توزيع، يوم صحي: نُعِدّه وننفذه معكم.",
+      "fr": "Une caravane, une distribution, une journée de santé : nous la préparons et la menons avec vous.",
+      "en": "A caravan, a distribution, a health day: we prepare it and run it with you."
     },
     "volunteer": {
-      "ar": "تريدون منح بعض وقتكم؟ نحتاج متطوعين للفرز والتوزيع والتنظيم، خاصة في رمضان.",
-      "fr": "Vous voulez donner un peu de votre temps ? Nous cherchons des bénévoles pour le tri, la distribution et l'organisation, surtout pendant Ramadan.",
-      "en": "Want to give some of your time? We need volunteers for sorting, distribution and organisation, especially during Ramadan."
+      "ar": "الصحة، التربية، التكوين: فرقكم وفرقنا في الميدان.",
+      "fr": "Santé, éducation, formation : vos équipes et les nôtres, sur le terrain.",
+      "en": "Health, education, training: your teams and ours, in the field."
     }
   },
   "contact": {
     "intro": {
-      "ar": "سؤال، تبرع، شراكة أو رغبة في التطوع؟ راسلونا، يسعدنا الرد عليكم.",
-      "fr": "Une question, un don, un partenariat ou l'envie de devenir bénévole ? Écrivez-nous, nous vous répondrons avec plaisir.",
-      "en": "A question, a donation, a partnership or want to volunteer? Write to us, we will be happy to reply."
+      "ar": "لديكم فكرة تعاون؟ راسلونا: نجيب كل منظمة ونقترح حديثاً من عشرين دقيقة.",
+      "fr": "Une idée de collaboration ? Écrivez-nous : nous répondons à chaque organisation et proposons un échange de vingt minutes.",
+      "en": "An idea for a collaboration? Write to us: we answer every organisation and offer a twenty-minute conversation."
     },
     "hours": {
       "ar": "",
@@ -403,67 +397,43 @@
   },
   "gallery": [
     {
-      "image": "/assets/img/ig/studio.jpg",
+      "image": "/assets/img/terrain/caravane.jpg",
       "caption": {
-        "ar": "هوية الجوار",
-        "fr": "L'identité Al Jiwar",
-        "en": "The Al Jiwar identity"
+        "ar": "فبراير 2021، القافلة وسط الثلج",
+        "fr": "Février 2021, la caravane dans la neige",
+        "en": "February 2021, the caravan in the snow"
       }
     },
     {
-      "image": "/assets/img/ig/iguiliz-affiche.jpg",
+      "image": "/assets/img/terrain/depot.jpg",
       "caption": {
-        "ar": "عرض «إگيليز، الطريق إلى مراكش»",
-        "fr": "Projection « Iguiliz, la route de Marrakech »",
-        "en": "\"Iguiliz, the road to Marrakech\" screening"
+        "ar": "شتنبر 2023، في المستودع بعد الزلزال",
+        "fr": "Septembre 2023, au dépôt après le séisme",
+        "en": "September 2023, at the depot after the earthquake"
       }
     },
     {
-      "image": "/assets/img/ig/logo-3d.jpg",
+      "image": "/assets/img/terrain/seisme.jpg",
       "caption": {
-        "ar": "أنا الجوار",
-        "fr": "Je suis Al Jiwar",
-        "en": "I am Al Jiwar"
+        "ar": "البغال تكمل طريق الشاحنات",
+        "fr": "Les mulets prennent le relais des camions",
+        "en": "Mules take over from the trucks"
       }
     },
     {
-      "image": "/assets/img/ig/decennie.jpg",
+      "image": "/assets/img/terrain/porter.jpg",
       "caption": {
-        "ar": "عقد من الزمان",
-        "fr": "Une décennie",
-        "en": "A decade"
+        "ar": "شحن قافلة",
+        "fr": "Le chargement d'une caravane",
+        "en": "Loading a caravan"
       }
     },
     {
-      "image": "/assets/img/ig/identite.jpg",
+      "image": "/assets/img/terrain/panier.jpg",
       "caption": {
-        "ar": "وهذا شعاري",
-        "fr": "Notre logo",
-        "en": "Our logo"
-      }
-    },
-    {
-      "image": "/assets/img/ig/projection-salle.jpg",
-      "caption": {
-        "ar": "سينما الصحراء، أكادير",
-        "fr": "Cinéma Sahara, Agadir",
-        "en": "Cinéma Sahara, Agadir"
-      }
-    },
-    {
-      "image": "/assets/img/ig/atlas-desert.jpg",
-      "caption": {
-        "ar": "جبال الأطلس",
-        "fr": "Les montagnes de l'Atlas",
-        "en": "The Atlas mountains"
-      }
-    },
-    {
-      "image": "/assets/img/ig/iguiliz.jpg",
-      "caption": {
-        "ar": "إگيليز",
-        "fr": "Iguiliz",
-        "en": "Iguiliz"
+        "ar": "قفف رمضان",
+        "fr": "Les paniers de Ramadan",
+        "en": "Ramadan baskets"
       }
     }
   ],
@@ -479,7 +449,7 @@
       "en": "Non-profit association"
     },
     "registration": "",
-    "founded": "",
+    "founded": "2016",
     "office": {
       "ar": "",
       "fr": "",
@@ -525,7 +495,7 @@
     }
   ],
   "campaign": {
-    "active": "yes",
+    "active": "no",
     "goal": "",
     "current": "0",
     "tag": {
@@ -557,86 +527,62 @@
   "faq": [
     {
       "q": {
-        "ar": "كيف يمكنني التبرع؟",
-        "fr": "Comment faire un don ?",
-        "en": "How can I donate?"
+        "ar": "هل يمكنكم تلقي دعم من الخارج؟",
+        "fr": "Pouvez-vous recevoir un soutien venu de l'étranger ?",
+        "en": "Can you receive support from abroad?"
       },
       "a": {
-        "ar": "بتحويل بنكي (المعلومات في صفحة «تبرّع» أو عند الطلب)، أو بتبرع عيني يُسلَّم في مخزن الجمعية. راسلونا لتحديد الطريقة الأنسب لكم.",
-        "fr": "Par virement bancaire (coordonnées sur la page « Faire un don » ou sur demande), ou en nature, à déposer à l'entrepôt de l'association. Écrivez-nous pour convenir de la solution la plus simple pour vous.",
-        "en": "By bank transfer (details on the Donate page or on request), or in kind, dropped off at the association's warehouse. Write to us to find the easiest way for you."
+        "ar": "نعم. كل دعم من الخارج يُصرَّح به لدى الأمانة العامة للحكومة داخل ثلاثين يوماً، كما ينص القانون المغربي.",
+        "fr": "Oui. Tout soutien venu de l'étranger est déclaré au Secrétariat général du gouvernement dans les trente jours, comme le prévoit la loi marocaine.",
+        "en": "Yes. Any support from abroad is declared to the General Secretariat of the Government within thirty days, as Moroccan law requires."
       }
     },
     {
       "q": {
-        "ar": "ماذا يمكنني أن أتبرع به عينيًا؟",
-        "fr": "Que puis-je donner en nature ?",
-        "en": "What can I give in kind?"
+        "ar": "ماذا يتلقى الشريك بعد عمل مشترك؟",
+        "fr": "Que reçoit un partenaire après une action commune ?",
+        "en": "What does a partner receive after a joint action?"
       },
       "a": {
-        "ar": "مواد غذائية أساسية (دقيق، زيت، سكر، شاي، قطاني)، ملابس في حالة جيدة، أدوات مدرسية وأغطية. راسلونا قبل التسليم.",
-        "fr": "Des denrées de base (farine, huile, sucre, thé, légumineuses), des vêtements en bon état, des fournitures scolaires et des couvertures. Prévenez-nous avant le dépôt.",
-        "en": "Staple food (flour, oil, sugar, tea, pulses), clothes in good condition, school supplies and blankets. Let us know before dropping off."
+        "ar": "تقريراً: ما تم اقتناؤه وتسليمه، الفواتير، وصوراً لا تُظهر وجوه المستفيدين. يُذكر اسمه أو يبقى في الكتمان حسب اختياره.",
+        "fr": "Un rapport : ce qui a été acheté et remis, les factures, et des photos sans visage de bénéficiaire. Son nom est cité, ou gardé discret, selon son choix.",
+        "en": "A report: what was bought and handed out, the invoices, and photos showing no beneficiary's face. The partner is named or kept discreet, as it chooses."
       }
     },
     {
       "q": {
-        "ar": "كيف أصبح متطوعًا؟",
-        "fr": "Comment devenir bénévole ?",
-        "en": "How do I volunteer?"
+        "ar": "بأي لغات تشتغلون؟",
+        "fr": "Dans quelles langues travaillez-vous ?",
+        "en": "Which languages do you work in?"
       },
       "a": {
-        "ar": "راسلونا عبر صفحة «اتصل بنا». نحتاج متطوعين للفرز والتوزيع والتنظيم، خاصة في رمضان.",
-        "fr": "Écrivez-nous depuis la page Contact. Nous cherchons des bénévoles pour le tri, la distribution et l'organisation, surtout pendant Ramadan.",
-        "en": "Write to us from the Contact page. We need volunteers for sorting, distribution and organisation, especially during Ramadan."
+        "ar": "بالعربية والفرنسية والإنجليزية.",
+        "fr": "En arabe, en français et en anglais.",
+        "en": "Arabic, French and English."
       }
     },
     {
       "q": {
-        "ar": "فيمَ تُستعمل التبرعات؟",
-        "fr": "À quoi servent les dons ?",
-        "en": "What are donations used for?"
+        "ar": "هل للجمعية ارتباط بحزب؟",
+        "fr": "L'association est-elle liée à un parti ?",
+        "en": "Is the association linked to a political party?"
       },
       "a": {
-        "ar": "قفف غذائية للأسر المحتاجة، البرنامج الاجتماعي طوال السنة، قفف رمضان وإفطار الأيتام. كل دخول وخروج من المخزن يُسجَّل.",
-        "fr": "Aux paniers alimentaires pour les familles dans le besoin, au programme social de l'année, aux paniers du Ramadan et au ftour des orphelins. Chaque entrée et sortie de stock est enregistrée.",
-        "en": "Food baskets for families in need, the year-round social programme, Ramadan baskets and the orphans' iftar. Every item in and out of stock is recorded."
+        "ar": "لا. قانونها الأساسي ينص على استقلالها عن الأحزاب السياسية والنقابات.",
+        "fr": "Non. Ses statuts posent son indépendance à l'égard des partis politiques et des syndicats.",
+        "en": "No. Its statutes establish its independence from political parties and unions."
       }
     },
     {
       "q": {
-        "ar": "كيف تحمون المستفيدين؟",
-        "fr": "Comment protégez-vous les bénéficiaires ?",
-        "en": "How do you protect the people you help?"
+        "ar": "من يمول الجمعية؟",
+        "fr": "Qui finance l'association ?",
+        "en": "Who funds the association?"
       },
       "a": {
-        "ar": "لا ننشر أبدًا صورًا أو معلومات تسمح بالتعرف على الأسر والأطفال الذين نساندهم. المساعدة تُقدَّم باحترام وسرية.",
-        "fr": "Nous ne publions jamais de photos ni d'informations permettant d'identifier les familles et les enfants aidés. L'aide est donnée avec respect et discrétion.",
-        "en": "We never publish photos or details that could identify the families and children we help. Help is given with respect and discretion."
-      }
-    },
-    {
-      "q": {
-        "ar": "هل يمكن لمؤسستي أن تصبح شريكًا؟",
-        "fr": "Mon entreprise peut-elle devenir partenaire ?",
-        "en": "Can my company become a partner?"
-      },
-      "a": {
-        "ar": "نعم: تبرع عيني أو مالي، رعاية إفطار الأيتام، أو توفير فضاء أو وسيلة نقل. راسلونا لنتحدث عن ذلك.",
-        "fr": "Oui : don en nature ou en argent, parrainage du ftour des orphelins, prêt de local ou de transport. Écrivez-nous pour en parler.",
-        "en": "Yes: in-kind or financial donation, sponsoring the orphans' iftar, or lending space or transport. Write to us to talk about it."
-      }
-    },
-    {
-      "q": {
-        "ar": "كيف أتواصل معكم؟",
-        "fr": "Comment vous contacter ?",
-        "en": "How can I contact you?"
-      },
-      "a": {
-        "ar": "كل وسائل التواصل موجودة في صفحة «اتصل بنا»، ويمكنكم أيضًا مراسلتنا على إنستغرام.",
-        "fr": "Tous nos moyens de contact sont sur la page Contact. Vous pouvez aussi nous écrire sur Instagram.",
-        "en": "All our contact details are on the Contact page. You can also message us on Instagram."
+        "ar": "واجبات انخراط أعضائها ومساهمات شركائها. كل العمل تطوعي.",
+        "fr": "Les cotisations de ses adhérents et les contributions de ses partenaires. Tout le travail est bénévole.",
+        "en": "Its members' dues and its partners' contributions. All the work is done by volunteers."
       }
     }
   ]
