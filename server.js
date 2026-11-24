@@ -11,6 +11,7 @@ const UPLOADS = path.join(ROOT, "assets", "uploads");
 const SERVERLESS = !!process.env.VERCEL;
 const LANGS = ["ar", "fr", "en"];
 const PAGES = ["", "about", "activities", "projects", "news", "partners", "donate", "contact"];
+const SLUG = { donate: "collaborer" };                       // adresse publique d'une page
 const EXTRA = ["faq", "transparency"];                       // reachable from the footer, not in the top menu
 const DEFAULT_URL = process.env.SITE_URL || "https://association-aljiwar.vercel.app";
 const LANG_NAMES = { ar: "العربية", fr: "Français", en: "English" };
@@ -124,20 +125,20 @@ const icon = (n, cls) => '<svg class="ico ' + (cls || "") + '" viewBox="0 0 24 2
 
 /* ---------------- page rendering ---------------- */
 function layout(c, lang, page, title, body, desc) {
-  const u = UI[lang], s = c.site || {}, name = tr(s.name, lang), href = p => "/" + lang + "/" + (p ? p : "");
+  const u = UI[lang], s = c.site || {}, name = tr(s.name, lang), href = p => "/" + lang + "/" + (p ? (SLUG[p] || p) : "");
   const nav = PAGES.filter(p => p !== "donate").map(p => '<a href="' + href(p) + '"' + (p === page ? ' aria-current="page"' : "") + ">" + esc(p ? u[p] : u.home) + "</a>").join("");
-  const langs = LANGS.map(l => '<a href="/' + l + "/" + page + '" lang="' + l + '" aria-label="' + LANG_NAMES[l] + '" title="' + LANG_NAMES[l] + '"' + (l === lang ? ' aria-current="true"' : "") + ">" + ({ ar: "ع", fr: "FR", en: "EN" })[l] + "</a>").join("");
+  const langs = LANGS.map(l => '<a href="/' + l + "/" + (SLUG[page] || page) + '" lang="' + l + '" aria-label="' + LANG_NAMES[l] + '" title="' + LANG_NAMES[l] + '"' + (l === lang ? ' aria-current="true"' : "") + ">" + ({ ar: "ع", fr: "FR", en: "EN" })[l] + "</a>").join("");
   const base = (safeUrl(s.siteUrl) || DEFAULT_URL).replace(/\/+$/, "");
-  const alt = LANGS.map(l => '<link rel="alternate" hreflang="' + l + '" href="' + base + "/" + l + "/" + page + '">').join("") + '<link rel="alternate" hreflang="x-default" href="' + base + "/" + (s.defaultLang || "fr") + "/" + page + '">';
+  const alt = LANGS.map(l => '<link rel="alternate" hreflang="' + l + '" href="' + base + "/" + l + "/" + (SLUG[page] || page) + '">').join("") + '<link rel="alternate" hreflang="x-default" href="' + base + "/" + (s.defaultLang || "fr") + "/" + (SLUG[page] || page) + '">';
   const metaDesc = esc(String(desc || tr(c.home && c.home.heroText, lang)).replace(/\s+/g, " ").slice(0, 160));
   const ld = { "@context": "https://schema.org", "@type": "NGO", name: name, alternateName: [tr(s.name, "ar"), tr(s.name, "fr")].filter(x => x && x !== name), url: base + "/" + lang + "/", logo: base + "/assets/img/logo.png", slogan: tr(s.tagline, lang),
     sameAs: [safeUrl(s.instagram), safeUrl(s.facebook)].filter(Boolean), email: s.email || undefined, telephone: s.phone || undefined };
   const wa = digits(s.whatsapp);
   return '<!doctype html><html lang="' + lang + '" dir="' + (lang === "ar" ? "rtl" : "ltr") + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
     "<title>" + esc(title ? title + " · " + name : name + " · " + tr(s.tagline, lang)) + "</title>" +
-    '<meta name="description" content="' + metaDesc + '"><link rel="canonical" href="' + base + "/" + lang + "/" + page + '">' +
+    '<meta name="description" content="' + metaDesc + '"><link rel="canonical" href="' + base + "/" + lang + "/" + (SLUG[page] || page) + '">' +
     '<meta property="og:type" content="website"><meta property="og:site_name" content="' + esc(name) + '"><meta property="og:title" content="' + esc(title ? title + " · " + name : name) + '"><meta property="og:description" content="' + metaDesc + '">' +
-    '<meta property="og:url" content="' + base + "/" + lang + "/" + page + '"><meta property="og:locale" content="' + LOCALES[lang] + '"><meta property="og:image" content="' + base + '/assets/img/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' +
+    '<meta property="og:url" content="' + base + "/" + lang + "/" + (SLUG[page] || page) + '"><meta property="og:locale" content="' + LOCALES[lang] + '"><meta property="og:image" content="' + base + '/assets/img/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' +
     '<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0a3f59">' + alt +
     '<script type="application/ld+json">' + JSON.stringify(ld).replace(/</g, "\\u003c") + "</script>" +
     '<link rel="icon" href="/assets/img/favicon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
@@ -157,7 +158,7 @@ function layout(c, lang, page, title, body, desc) {
           (tr(s.address, lang) ? '<p class="foot-addr">' + esc(tr(s.address, lang)) + "</p>" : "") + "</div>" +
         '<nav class="foot-nav" aria-label="' + esc(u.menu) + '">' + PAGES.concat(EXTRA).map(p => '<a href="' + href(p) + '">' + esc(p ? u[p] : u.home) + "</a>").join("") + "</nav>" +
       "</div>" +
-      '<div class="foot-end"><span>© ' + new Date().getFullYear() + " " + esc(name) + '</span><span class="foot-langs">' + LANGS.map(l => '<a href="/' + l + "/" + page + '" lang="' + l + '">' + LANG_NAMES[l] + "</a>").join("") + "</span></div>" +
+      '<div class="foot-end"><span>© ' + new Date().getFullYear() + " " + esc(name) + '</span><span class="foot-langs">' + LANGS.map(l => '<a href="/' + l + "/" + (SLUG[page] || page) + '" lang="' + l + '">' + LANG_NAMES[l] + "</a>").join("") + "</span></div>" +
     "</div></footer>" +
     chatWidget(c, lang, u, href) +
     (process.env.VERCEL && s.analytics !== "off" ? '<script defer src="/_vercel/insights/script.js"></script>' : "") +
@@ -249,7 +250,7 @@ function ringsHtml(lang, photo) {
     r.t.map((t, i) => '<span class="aj-rep r' + (i + 1) + '">' + esc(t) + "</span>").join("") + "</div>";
 }
 function render(c, lang, page, query) {
-  const u = UI[lang], h = c.home || {}, s = c.site || {}, href = p => "/" + lang + "/" + p;
+  const u = UI[lang], h = c.home || {}, s = c.site || {}, href = p => "/" + lang + "/" + (SLUG[p] || p);
   if (page === "") {
     const st = c.stats || [], vals = (c.about && c.about.values) || [], acts = c.activities || [];
     const gal = (c.gallery || []).filter(g => img(g.image));
@@ -491,13 +492,13 @@ async function handle(req, res) {
     if (p === "/robots.txt") return send(res, 200, "User-agent: *\nDisallow: /admin\nDisallow: /api/\n" + (safeUrl(c.site && c.site.siteUrl) ? "Sitemap: " + safeUrl(c.site.siteUrl).replace(/\/+$/, "") + "/sitemap.xml\n" : ""), { "Content-Type": "text/plain; charset=utf-8" });
     if (p === "/sitemap.xml") {
       const base = safeUrl(c.site && c.site.siteUrl).replace(/\/+$/, "") || ((isHttps(req) ? "https://" : "http://") + req.headers.host);
-      return send(res, 200, '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + LANGS.flatMap(l => PAGES.concat(EXTRA).concat(newsList(c).map(n => "news/" + n.id)).map(pg => "<url><loc>" + esc(base + "/" + l + "/" + pg) + "</loc></url>")).join("") + "</urlset>", { "Content-Type": "application/xml; charset=utf-8" });
+      return send(res, 200, '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + LANGS.flatMap(l => PAGES.concat(EXTRA).concat(newsList(c).map(n => "news/" + n.id)).map(pg => "<url><loc>" + esc(base + "/" + l + "/" + (SLUG[pg] || pg)) + "</loc></url>")).join("") + "</urlset>", { "Content-Type": "application/xml; charset=utf-8" });
     }
     const na = /^\/(ar|fr|en)\/news\/([a-z0-9-]{1,60})\/?$/.exec(p);
     if (na) { const html = render(c, na[1], "news/" + na[2], url.searchParams); if (html) return send(res, 200, html, { "Cache-Control": "public, max-age=0, s-maxage=60, stale-while-revalidate=86400" }); }
     const m = /^\/(ar|fr|en)(?:\/([a-z]*))?\/?$/.exec(p);
     if (m) {
-      const page = m[2] || "";
+      const page = m[2] === "collaborer" ? "donate" : (m[2] || "");
       if (PAGES.includes(page) || EXTRA.includes(page)) return send(res, 200, render(c, m[1], page, url.searchParams), { "Cache-Control": url.search ? "no-store" : "public, max-age=0, s-maxage=60, stale-while-revalidate=86400" });
     }
     if (serveStatic(req, res, p.replace(/^\/+/, ""))) return;
